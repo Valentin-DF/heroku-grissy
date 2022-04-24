@@ -8,6 +8,7 @@
         public $codigo;
         public $talla;
         public $estado;
+        public $idarea;
     }
 
 ?>

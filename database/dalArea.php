@@ -1,10 +1,10 @@
 <?php
  require_once('/xampp/htdocs/Grissy/database/conexion.php');
- require_once('/xampp/htdocs/Grissy/models/producto.php');
+ require_once('/xampp/htdocs/Grissy/models/area.php');
 
-    function listaDeProductos(){
+    function listaDeArea(){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM producto_e';
+        $consultaSQL = 'SELECT * FROM area';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->execute();
@@ -14,36 +14,32 @@
     
         while ($row = $result->fetch_assoc()) {
     
-            $obj = new producto();
+            $obj = new area();
             $obj->id = $row['id'];
-            $obj->nombre = $row['nombre'];
-            $obj->cantidad = $row['cantidad'];
-            $obj->precio = $row['precio'];
             $obj->codigo = $row['codigo'];
-            $obj->talla = $row['talla'];
+            $obj->nombre = $row['nombre'];
             $obj->estado = $row['estado'];
-            $obj->idarea = $row['idarea'];
             array_push($lista, $obj);
         }
-    
+
         $stmt->close();
         $mysqli->close();
     
         return $lista;
     }
 
-    function borrarProducto($id){
+    function borrarArea($id){
         $mysqli = conexion();
         $resultado = 0;
     
-        $consultaSQL = "UPDATE producto_e SET estado = 0 WHERE id = ?";
+        $consultaSQL = "UPDATE area SET estado = 0 WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
-    
+
         $stmt->bind_param(
             "i",
             $id
         );
-    
+
         if ($stmt->execute()) {
             $stmt->bind_result($resultado);
             $stmt->fetch();
@@ -55,15 +51,15 @@
         return $resultado;
     }
 
-    function insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idarea){
+    function insertarArea($codigo,$nombre){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, precio, estado, idarea) VALUES(?,?,?,?,?,?,?)";
+        $consultaSQL = "INSERT INTO area(codigo,nombre,estado) VALUES(?,?,1)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssidii", $codigo,$nombre,$talla,$cantidad,$precio,$estado,$idarea
+            "ss", $codigo,$nombre
         );
 
         if ($stmt->execute()) {
@@ -77,15 +73,15 @@
         return $resultado;
     }
 
-    function ActualizarProducto($id,$nombre,$talla,$cantidad,$precio){
+    function ActualizarArea($id,$nombre){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE producto_e SET nombre = ?,talla = ?,cantidad = ?,precio = ? WHERE id = ?";
+        $consultaSQL = "UPDATE area SET nombre = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "ssidi",$nombre,$talla,$cantidad,$precio,$id
+            "si",$nombre,$id
         );
 
         if ($stmt->execute()) {
