@@ -42,6 +42,7 @@ var producto = function () {
             var talla = $("#talla").val();
             var cantidad = $("#cantidad").val();
             var precio = $("#precio").val();
+            var idArea = 1;
             var estado = 1;
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Producto/guardarProducto.php',
@@ -52,7 +53,8 @@ var producto = function () {
                     talla: talla,
                     cantidad: cantidad,
                     precio: precio,
-                    estado: estado
+                    estado: estado,
+                    idArea: idArea
                 },
                 complete: function (response) { 
                     

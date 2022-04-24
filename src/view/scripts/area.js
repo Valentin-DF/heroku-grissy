@@ -1,0 +1,6 @@
+var area = function () {
+
+    return {
+        
+    }
+}();

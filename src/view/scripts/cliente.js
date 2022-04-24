@@ -1,0 +1,6 @@
+var cliente = function () {
+
+    return {
+        
+    }
+}();
