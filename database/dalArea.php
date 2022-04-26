@@ -53,7 +53,7 @@
         return $resultado;
     }
 
-    function insertarArea($codigo,$nombre){
+    function insertarArea($codigo,$nombre,$descripcion,$foto){
         $mysqli = conexion();
         $resultado = 0;
 

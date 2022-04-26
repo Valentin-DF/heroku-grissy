@@ -15,7 +15,7 @@ var personal = function () {
                         var personal = '';
                        
                         personal += '<div class="col-xl-4 col-md-6 col-sm-12">';
-                        personal += '    <div class="card" >';
+                        personal += '    <div class="card " >';
                         personal += '        <div class="card-header">';
                         personal += '            <img class="img-fluid w-100" src="'+obj.foto+'"';
                         personal += '                alt="Card image cap">';

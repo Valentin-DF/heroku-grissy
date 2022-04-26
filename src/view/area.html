@@ -144,18 +144,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-
                                 <div class="card-body">
-                                    <div class="row gallery " 
-                                        id="lst-area">
+                                    <div class="row gallery " id="lst-area">
                                         <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                            <button class="btn icon icon-left">
+                                            <button class="btn icon icon-left" data-bs-toggle="modal"
+                                                data-bs-target="#agregarArea">
                                                 <img src="assets/images/boton-agregar.png" width="200" height="200">
-                                                <p>AGREGAR</p>
+                                                <h4 class="card-title mb-3">AGREGAR</h4>
                                             </button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -177,12 +175,12 @@
     </div>
 
     <!--AGREGAR AREA EN UN MODAL-->
-    <!-- <div class="modal fade text-left" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    <div class="modal fade text-left" id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Producto</h5>
+                    <h5 class="modal-title" id="myModalLabel1">Area</h5>
                     <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
@@ -203,42 +201,40 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="talla">Talla</label>
-                                <input type="text" id="talla" class="form-control " placeholder="Talla">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" class="form-control " placeholder="Cantidad">
+                                <label for="foto">URL Foto</label>
+                                <input type="text" id="foto" class="form-control " placeholder="Foto">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="precio">Precio</label>
-                                <input type="text" id="precio" class="form-control " placeholder="Precio">
+                                <label for="descripcion">Descripcion</label>
+                                <textarea class="form-control" id="descripcion" rows="3"
+                                    placeholder="Descripcion"></textarea>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Cancelar</span>
-                    </button>
-                    <button type="button" class="btn btn-primary ml-1 btn btn-outline-primary btn-block btn-lg"
-                        data-bs-dismiss="modal" id="guardar" >
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Guardar</span>
-                    </button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Cancelar</span>
+                        </button>
+                        <button type="button" class="btn btn-primary ml-1 btn btn-outline-primary btn-block btn-lg"
+                            data-bs-dismiss="modal" id="guardar" onclick="area.guardarArea()">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Guardar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
+
+
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
