@@ -22,7 +22,7 @@ var area = function () {
                         area += '   </button>';
 
                         area += '</div>';
-                        area += '<div class="modal fade text-left" id="cartillaArea-' + obj.id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">';
+                        area += '<div class="modal fade text-left"  id="cartillaArea-' + obj.id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">';
                         area += '<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">';
                         area += '    <div class="modal-content">';
                         area += '        <div class="modal-header">';
@@ -78,7 +78,7 @@ var area = function () {
                     foto: foto
                 },
                 complete: function (response) {
-
+                    console.log(response);
                 }
             });
         },
@@ -90,7 +90,7 @@ var area = function () {
                     id: id
                 },
                 complete: function (response) {
-
+                    console.log(response);
                 }
             });
         }

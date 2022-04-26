@@ -98,7 +98,7 @@
         $mysqli = conexion();
         $resultado = 0;
     
-        $consultaSQL = "INSERT INTO personal (codigo,nombre, apellidoPaterno, apellidoMaterno, dni, contacto,direccion,cargo,estado,sueldo,fechaContrato,correo,contrasena,foto) VALUES(?,?,?,??,?,?,?,1,?,now(),?,?,?)";
+        $consultaSQL = "INSERT INTO personal (codigo,nombre, apellidoPaterno, apellidoMaterno, dni, contacto,direccion,cargo,estado,sueldo,fechaContrato,correo,contrasena,foto) VALUES(?,?,?,?,?,?,?,?,1,?,now(),?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(

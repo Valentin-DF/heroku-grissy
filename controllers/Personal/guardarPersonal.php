@@ -6,18 +6,18 @@ try {
 
     if (isset($_POST['codigo']) && isset($_POST['nombre']) && isset($_POST['apellidoMaterno']) && isset($_POST['apellidoPaterno']) && isset($_POST['dni']) && isset($_POST['contrasena']) && 
         isset($_POST['contacto']) &&  isset($_POST['direccion']) && isset($_POST['cargo'])&& isset($_POST['sueldo'])&& isset($_POST['correo'])&& isset($_POST['foto'])) {
-        $codigo = isset($_POST['codigo']);
-        $nombre = isset($_POST['nombre']);
-        $apellidoMaterno = isset($_POST['apellidoMaterno']);
-        $apellidoPaterno = isset($_POST['apellidoPaterno']);
-        $dni = isset($_POST['dni']);
-        $contacto = isset($_POST['contacto']);
-        $direccion = isset($_POST['direccion']);
-        $cargo = isset($_POST['cargo']);
-        $sueldo = isset($_POST['sueldo']);
-        $correo = isset($_POST['correo']);
-        $contrasena = isset($_POST['contrasena']);
-        $foto = isset($_POST['foto']);
+        $codigo = $_POST['codigo'];
+        $nombre = $_POST['nombre'];
+        $apellidoMaterno = $_POST['apellidoMaterno'];
+        $apellidoPaterno = $_POST['apellidoPaterno'];
+        $dni = $_POST['dni'];
+        $contacto = $_POST['contacto'];
+        $direccion = $_POST['direccion'];
+        $cargo = $_POST['cargo'];
+        $sueldo = $_POST['sueldo'];
+        $correo = $_POST['correo'];
+        $contrasena = $_POST['contrasena'];
+        $foto = $_POST['foto'];
         
         echo json_encode(guardarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto));
     } else {

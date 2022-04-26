@@ -57,7 +57,7 @@ var producto = function () {
                     idArea: idArea
                 },
                 complete: function (response) { 
-                    
+                    console.log(response);
                 }
             });
         },
@@ -69,7 +69,7 @@ var producto = function () {
                     id: id
                 },
                 complete: function (response) { 
-                    
+                    console.log(response);
                 }
             });
         }

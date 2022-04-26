@@ -131,7 +131,6 @@
 
                 <!-- Basic Tables start -->
 
-                <!--Prueba-->
                 <section class="section">
                     <div class="row">
                         <div class="col-12">
@@ -140,7 +139,7 @@
                                     <div class="row gallery" id="lst-personal">
                                         <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
                                             <button class="btn icon icon-left" data-bs-toggle="modal"
-                                                data-bs-target="#agregarArea">
+                                                data-bs-target="#agregarPersonal">
                                                 <img src="assets/images/boton-agregar.png" width="200" height="200">
                                                 <h4 class="card-title">AGREGAR</h4>
                                             </button>
@@ -150,9 +149,7 @@
                             </div>
                         </div>
                     </div>
-
                 </section>
-                <!--...........-->
 
                 <!-- Basic Tables end -->
             </div>
@@ -169,16 +166,13 @@
         </div>
     </div>
 
-    <!--AGREGAR USUARIO EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <!--AGREGAR PERSONAL EN UN MODAL-->
+    <div class="modal fade text-left" id="agregarPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    data-bs-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Personal</h5>
-                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -188,7 +182,21 @@
                                 <input type="text" id="codigo" class="form-control " placeholder="Codigo">
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="dni">Doc Identidad</label>
+                                <input type="number" id="dni" class="form-control " placeholder="Doc Identidad">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button"  class="form-control" onclick="personal.consultarDocIdentidad()">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" id="nombre" class="form-control " placeholder="Nombre">
@@ -198,40 +206,108 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="talla">Talla</label>
-                                <input type="text" id="talla" class="form-control " placeholder="Talla">
+                                <label for="apellidoPaterno">Apellido Paterno</label>
+                                <input type="text" id="apellidoPaterno" class="form-control " placeholder="Apellido Paterno">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" class="form-control " placeholder="Cantidad">
+                                <label for="apellidoMaterno">Apellido Materno</label>
+                                <input type="text" id="apellidoMaterno" class="form-control " placeholder="ApellidoMaterno" >
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="precio">Precio</label>
-                                <input type="text" id="precio" class="form-control " placeholder="Precio">
+                                <label for="contacto">Telefono</label>
+                                <input type="text" id="contacto" class="form-control " placeholder="Telefono" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="correo">Correo</label>
+                                <input type="text" id="correo" class="form-control " placeholder="Correo" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="contrasena">Contraseña</label>
+                                <input type="text" id="contrasena" class="form-control " placeholder="Contraseña">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="direccion">Direccion</label>
+                                <input type="text" id="direccion" class="form-control " placeholder="Direccion" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="foto">URL Foto</label>
+                                <input type="text" id="foto" class="form-control " placeholder="Foto" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="cargo">Cargo</label>
+                                <fieldset class="form-group">
+                                    <select class="form-select" id="cargo">
+                                        <option>Gerente</option>
+                                        <option>Vendedor</option>
+                                        <option>Alamcenero</option>
+                                        <option>Administracion</option>
+                                    </select>
+                                </fieldset>
+                            
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sueldo">Sueldo</label>
+                                <input type="text" id="sueldo" class="form-control " placeholder="Sueldo" >
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn btn-outline-danger " data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal"
-                        onclick="producto.guardarPersonal()">
-                        <i class="bx bx-check d-block d-sm-none"></i>
+                    <button type="button" class="btn btn-outline-primary"
+                        data-bs-dismiss="modal" id="guardar"  onclick="personal.guardarPersonal()">
+                        <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

@@ -90,7 +90,7 @@ var cliente = function () {
                     id: id
                 },
                 complete: function (response) {
-
+                    console.log(response);
                 }
             });
         },
@@ -120,7 +120,7 @@ var cliente = function () {
                     telefono: telefono
                 },
                 complete: function (response) {
-
+                    console.log(response);
                 }
             });
         }

@@ -9,8 +9,8 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
         return borrarProducto($id);
     }
 
-    function guardarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idarea){
-        return insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idarea);
+    function guardarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea){
+        return insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea);
     }
 
     function editarProducto($id,$nombre,$talla,$cantidad,$precio){

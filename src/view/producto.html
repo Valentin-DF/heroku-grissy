@@ -185,14 +185,11 @@
 
     <!--AGREGAR PRODUCTO EN UN MODAL-->
     <div class="modal fade text-left" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        data-bs-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Producto</h5>
-                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -232,14 +229,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn btn-outline-danger " data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
-                    <button type="button" class="btn btn-primary ml-1 btn btn-outline-primary btn-block btn-lg"
-                        data-bs-dismiss="modal" id="guardar" >
-                        <i class="bx bx-check d-block d-sm-none"></i>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
+                        onclick="producto.guardarProducto();">
+                        <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>

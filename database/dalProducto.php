@@ -55,15 +55,15 @@
         return $resultado;
     }
 
-    function insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idarea){
+    function insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, precio, estado, idarea) VALUES(?,?,?,?,?,?,?)";
+        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, precio, estado, idArea) VALUES(?,?,?,?,?,1,?)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssidii", $codigo,$nombre,$talla,$cantidad,$precio,$estado,$idarea
+            "sssidi", $codigo,$nombre,$talla,$cantidad,$precio,$idArea
         );
 
         if ($stmt->execute()) {
