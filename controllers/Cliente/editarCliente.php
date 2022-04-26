@@ -11,12 +11,12 @@ try {
         $condicionSunat = isset($_POST['condicionSunat']);
         $direccion = isset($_POST['direccion']);
         $docIdentidad = isset($_POST['docIdentidad']);
-        $estadosunat = isset($_POST['estadoSunat']);
+        $estadoSunat = isset($_POST['estadoSunat']);
         $nombre = isset($_POST['nombre']);
         $telefono = isset($_POST['telefono']);
 
         
-        echo json_encode(editarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono));
+        echo json_encode(editarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono));
     } else {
         echo json_encode('No se guardo');
     }

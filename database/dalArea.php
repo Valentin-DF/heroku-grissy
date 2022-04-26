@@ -19,6 +19,8 @@
             $obj->codigo = $row['codigo'];
             $obj->nombre = $row['nombre'];
             $obj->estado = $row['estado'];
+            $obj->foto = $row['foto'];
+            $obj->descripcion = $row['descripcion'];
             array_push($lista, $obj);
         }
 
@@ -55,11 +57,11 @@
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO area(codigo,nombre,estado) VALUES(?,?,1)";
+        $consultaSQL = "INSERT INTO area(codigo,nombre,descripcion,foto,estado) VALUES(?,?,?,?,1)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "ss", $codigo,$nombre
+            "ssss", $codigo,$nombre,$descripcion,$foto
         );
 
         if ($stmt->execute()) {
@@ -73,15 +75,15 @@
         return $resultado;
     }
 
-    function ActualizarArea($id,$nombre){
+    function ActualizarArea($id,$nombre,$descripcion,$foto){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE area SET nombre = ? WHERE id = ?";
+        $consultaSQL = "UPDATE area SET nombre = ?,descripcion = ?, foto =? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "si",$nombre,$id
+            "sssi",$nombre,$descripcion,$foto,$id
         );
 
         if ($stmt->execute()) {

@@ -9,12 +9,12 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
         return borrarArea($id);
     }
 
-    function guardarArea($codigo,$nombre){
-        return insertarArea($codigo,$nombre);
+    function guardarArea($codigo,$nombre,$descripcion,$foto){
+        return insertarArea($codigo,$nombre,$descripcion,$foto);
     }
 
-    function editarArea($id,$nombre){
-        return eliminarArea($id,$nombre);
+    function editarArea($id,$nombre,$descripcion,$foto){
+        return actualizarArea($id,$nombre,$descripcion,$foto);
     }
 
 ?>

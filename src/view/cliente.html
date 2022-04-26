@@ -140,12 +140,12 @@
                 </div>
 
                 <!-- Basic Tables start -->
-                <!-- <section class="section">
+                <section class="section">
                     <div class="card">
                         <div class="card-header">
                             Detalle
                             <button class="btn btn-outline-success" data-bs-toggle="modal"
-                                data-bs-target="#agregarProducto"><span class="fa-fw select-all fas"></span>
+                                data-bs-target="#agregarCliente"><span class="fa-fw select-all fas"></span>
                                 Agregar</button>
                         </div>
                         <div class="card-body">
@@ -153,21 +153,21 @@
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
+                                        <th>Doc. Identidad</th>
                                         <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>precio</th>
-                                        <th>Talla</th>
+                                        <th>Apellido</th>
+                                        <th>Fecha Registro</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody id="lst-producto">
+                                <tbody id="lst-cliente">
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                </section> -->
+                </section>
                 <!-- Basic Tables end -->
             </div>
             <footer>
@@ -184,15 +184,13 @@
     </div>
 
     <!--AGREGAR AREA EN UN MODAL-->
-    <!-- <div class="modal fade text-left" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        aria-hidden="true">
+    <div class="modal fade text-left" id="agregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-toggle="modal"
+    data-bs-backdrop="false"  aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Producto</h5>
-                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                        <i data-feather="x"></i>
-                    </button>
+                    <h5 class="modal-title" id="myModalLabel1">Cliente</h5>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -202,7 +200,21 @@
                                 <input type="text" id="codigo" class="form-control " placeholder="Codigo">
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="docIdentidad">Doc Identidad</label>
+                                <input type="number" id="docIdentidad" class="form-control " placeholder="Doc Identidad">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button"  class="form-control" onclick="cliente.consultarDocIdentidad()">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" id="nombre" class="form-control " placeholder="Nombre">
@@ -212,40 +224,56 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="talla">Talla</label>
-                                <input type="text" id="talla" class="form-control " placeholder="Talla">
+                                <label for="apellidoPaterno">Apellido Paterno</label>
+                                <input type="text" id="apellidoPaterno" class="form-control " placeholder="Apellido Paterno">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" class="form-control " placeholder="Cantidad">
+                                <label for="apellidoMaterno">Apellido Materno</label>
+                                <input type="text" id="apellidoMaterno" class="form-control " placeholder="ApellidoMaterno" >
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="precio">Precio</label>
-                                <input type="text" id="precio" class="form-control " placeholder="Precio">
+                                <label for="estadoSunat">Estado Sunat</label>
+                                <input type="text" id="estadoSunat" class="form-control " placeholder="Estado Sunat" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="condicionSunat">Condicion Sunat</label>
+                                <input type="text" id="condicionSunat" class="form-control " placeholder="Condicion Sunat" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="telefono">Telefono</label>
+                                <input type="number" id="telefono" class="form-control " placeholder="Telefono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="direccion">Direccion</label>
+                                <input type="text" id="direccion" class="form-control " placeholder="Direccion" >
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Cancelar</span>
-                    </button>
                     <button type="button" class="btn btn-primary ml-1 btn btn-outline-primary btn-block btn-lg"
-                        data-bs-dismiss="modal" id="guardar" >
+                        data-bs-dismiss="modal" id="guardar" onclick="cliente.guardarCliente()">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -256,10 +284,10 @@
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-<script src="scripts/producto.js"></script>
+<script src="scripts/cliente.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        producto.obtenerListaProductos();
+        cliente.obtenerListaCliente();
 
     });
 </script>

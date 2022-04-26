@@ -14,7 +14,7 @@
     
         while ($row = $result->fetch_assoc()) {
     
-            $obj = new producto();
+            $obj = new cliente();
             $obj->id = $row['id'];
             $obj->nombre = $row['nombre'];
             $obj->apellidoPaterno = $row['apellidoPaterno'];
@@ -24,8 +24,8 @@
             $obj->direccion = $row['direccion'];
             $obj->docIdentidad = $row['docIdentidad'];
             $obj->estado = $row['estado'];
-            $obj->estadoSunat = $row['estadosunat'];
-            $obj->fechaRegistro = $row['fecharRegistro'];
+            $obj->estadoSunat = $row['estadoSunat'];
+            $obj->fechaRegistro = $row['fechaRegistro'];
             $obj->telefono = $row['telefono'];
             array_push($lista, $obj);
         }
@@ -59,15 +59,15 @@
         return $resultado;
     }
 
-    function insertarCliente($apellidoMaterno,$apellidoPaterno,$codigo,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono){
+    function insertarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO cliente(apellidoMaterno,apellidoPaterno,codigo,condicionSunat,direccion,docIdentidad,estado,estadosunat,fechaRegistro,nombre,telefono) VALUES(?,?,?,?,?,?,1,?,now(),?,?)";
+        $consultaSQL = "INSERT INTO cliente (id, codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssssissi", $apellidoMaterno,$apellidoPaterno,$codigo,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono
+            "ssssisiss", $codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat
         );
 
         if ($stmt->execute()) {
@@ -81,16 +81,16 @@
         return $resultado;
     }
     
-    function actualizarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono){
+    function actualizarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE cliente SET apellidoMaterno = ?,apellidoPaterno = ?,condicionSunat = ?,direccion = ?,docIdentidad = ?,estadosunat = ?,nombre = ?,telefono = ? WHERE id = ?";
+        $consultaSQL = "UPDATE cliente SET apellidoMaterno = ?,apellidoPaterno = ?,condicionSunat = ?,direccion = ?,docIdentidad = ?,estadoSunat = ?,nombre = ?,telefono = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
             "ssssisssi",
-            $apellidoMaterno,$apellidoPaterno,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono,$id
+            $apellidoMaterno,$apellidoPaterno,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono,$id
         );
 
         if ($stmt->execute()) {

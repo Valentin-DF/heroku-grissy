@@ -9,12 +9,12 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
         return borrarCliente($id);
     }
 
-    function guardarCliente($apellidoMaterno,$apellidoPaterno,$codigo,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono){
-        return insertarCliente($apellidoMaterno,$apellidoPaterno,$codigo,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono);
+    function guardarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
+        return insertarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat);
     }
   
-    function editarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono){
-        return actualizarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadosunat,$nombre,$telefono);
+    function editarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono){
+        return actualizarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono);
     }
     
 ?>

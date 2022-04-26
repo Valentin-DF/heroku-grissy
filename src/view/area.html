@@ -140,34 +140,27 @@
                 </div>
 
                 <!-- Basic Tables start -->
-                <!-- <section class="section">
-                    <div class="card">
-                        <div class="card-header">
-                            Detalle
-                            <button class="btn btn-outline-success" data-bs-toggle="modal"
-                                data-bs-target="#agregarProducto"><span class="fa-fw select-all fas"></span>
-                                Agregar</button>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>precio</th>
-                                        <th>Talla</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="lst-producto">
-                                </tbody>
-                            </table>
+                <section class="section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="row gallery " 
+                                        id="lst-area">
+                                        <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                            <button class="btn icon icon-left">
+                                                <img src="assets/images/boton-agregar.png" width="200" height="200">
+                                                <p>AGREGAR</p>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                </section> -->
+                </section>
                 <!-- Basic Tables end -->
             </div>
             <footer>
@@ -256,10 +249,10 @@
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-<script src="scripts/producto.js"></script>
+<script src="scripts/area.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        producto.obtenerListaProductos();
+        area.obtenerListaArea();
 
     });
 </script>
