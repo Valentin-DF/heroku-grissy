@@ -14,11 +14,18 @@ var login = function () {
                 success: function (response) {
                     console.log(response);
                     var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        if(obj.estado == 1){                       
+                             localStorage.setItem("empleado", obj);
+                             window.location.replace('http://localhost:8080/Grissy/src/view/menu.html');
 
+                        }else{
+                            console.log("Erorosssssssssr");
+                        }
+                    });
 
-                    localStorage.setItem("empleado", JSON.stringify(objListado));
+                   
 
-                    window.location.replace('http://localhost:8080/Grissy/src/view/menu.html');
 
 
 
