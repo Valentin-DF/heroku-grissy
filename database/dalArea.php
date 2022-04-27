@@ -30,16 +30,16 @@
         return $lista;
     }
 
-    function borrarArea($id){
+    function borrarArea($id,$estado){
         $mysqli = conexion();
         $resultado = 0;
     
-        $consultaSQL = "UPDATE area SET estado = 0 WHERE id = ?";
+        $consultaSQL = "UPDATE area SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "i",
-            $id
+            "ii",
+            $estado,$id
         );
 
         if ($stmt->execute()) {

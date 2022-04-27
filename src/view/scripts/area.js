@@ -87,7 +87,8 @@ var area = function () {
                 url: 'http://localhost:8080/Grissy/controllers/Area/eliminarArea.php',
                 method: "POST",
                 data: {
-                    id: id
+                    id: id,
+                    estado: 0
                 },
                 complete: function (response) {
                     console.log(response);
@@ -134,6 +135,21 @@ var area = function () {
                     nombre: nombre,
                     descripcion: descripcion,
                     foto: foto
+                },
+                complete: function (response) {
+                    console.log(response);
+                    $("#lst-area").empty();
+                    area.obtenerListaArea();
+                }
+            });
+        },
+        reintegrarArea: function (id) {
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Area/eliminarArea.php',
+                method: "POST",
+                data: {
+                    id: id,
+                    estado: 1
                 },
                 complete: function (response) {
                     console.log(response);

@@ -5,8 +5,8 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
         return listaDeArea();
     }
 
-    function eliminarArea($id){
-        return borrarArea($id);
+    function eliminarArea($id,$estado){
+        return borrarArea($id,$estado);
     }
 
     function guardarArea($codigo,$nombre,$descripcion,$foto){

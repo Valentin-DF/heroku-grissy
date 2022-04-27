@@ -4,9 +4,10 @@ require_once('/xampp/htdocs/Grissy/logic/gestorArea.php');
 
 try {
 
-    if (isset($_POST['id'])) {
+    if (isset($_POST['id']) && isset($_POST['estado'])) {
         $id = $_POST['id'];
-        echo json_encode(eliminarArea($id));
+        $estado = $_POST['estado'];
+        echo json_encode(eliminarArea($id,$estado));
     } else {
         echo json_encode('No se recibió el id');
     }
