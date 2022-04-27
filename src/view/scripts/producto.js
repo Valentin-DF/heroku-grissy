@@ -58,6 +58,8 @@ var producto = function () {
                 },
                 complete: function (response) { 
                     console.log(response);
+                    $("#lst-producto").empty();
+                    producto.obtenerListaProductos();
                 }
             });
         },
@@ -70,6 +72,8 @@ var producto = function () {
                 },
                 complete: function (response) { 
                     console.log(response);
+                    $("#lst-producto").empty();
+                    producto.obtenerListaProductos();
                 }
             });
         }

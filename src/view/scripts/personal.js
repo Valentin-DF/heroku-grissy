@@ -63,6 +63,8 @@ var personal = function () {
                 },
                 complete: function (response) {
                     console.log(response);
+                    $("#lst-personal").empty();
+                    personal.obtenerListaPersonal();
                 }
             });
         },
@@ -98,6 +100,8 @@ var personal = function () {
                 },
                 complete: function (response) {
                     console.log(response);
+                    $("#lst-personal").empty();
+                    personal.obtenerListaPersonal();
                 }
             });
         },

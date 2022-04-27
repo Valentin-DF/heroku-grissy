@@ -2,23 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
-    <link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-    <link rel="stylesheet" href="../assets/css/demo.css">
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-    <!-- ICONS -->
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 
 
     <title>Grissy</title>
@@ -26,116 +22,158 @@
 </head>
 
 <body>
-    <!-- WRAPPER -->
-    <div id="wrapper">
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-btn">
-                    <button type="button" class="btn-toggle-fullwidth"><i
-                            class="lnr lnr-arrow-left-circle"></i></button>
+
+    <div id="app">
+        <div id="main" class="layout-horizontal">
+            <header class="mb-5">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="menu.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="header-top-right">
+
+                            <div class="dropdown">
+                                <a href="#" class="user-dropdown d-flex dropend" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <div class="avatar avatar-md2">
+                                        <img src="assets/images/faces/1.jpg" alt="Avatar">
+                                    </div>
+                                    <div class="text">
+                                        <h6 class="user-dropdown-name">John Ducky</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Member</p>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg"
+                                    aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">My Account</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="login.html" onclick="cerrarSeccion()">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Burger button responsive -->
+                            <a href="#" class="burger-btn d-block d-xl-none">
+                                <i class="bi bi-justify fs-3"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <!-- END NAVBAR -->
-        <!-- LEFT SIDEBAR -->
-        <div id="sidebar-nav" class="sidebar">
-            <div class="sidebar-scroll">
-                <nav>
-                    <ul class="nav">
-                        <li>
-                            <a href="./menu.html">
-                                <i class="lnr lnr-home"></i>
-                                <span>Menu</span></a>
-                        </li>
-                        <li>
-                            <a href="#administracion" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
-                                <span>Administracion</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="administracion" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./personal.html" class="">Personal</a></li>
-                                    <li><a href="./producto.html" class="">Producto</a></li>
-                                    <li><a href="./cliente.html" class="">Cliente</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#gestor" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
-                                <span>Gestor</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="gestor" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./compra.html" class="">Compra</a></li>
-                                    <li><a href="./venta.html" class="">Venta</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#almacen" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
-                                <span>Almacen</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="almacen" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./ingresos.html" class="">Ingresos</a></li>
-                                    <li><a href="./salidad.html" class="">Salidas</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#reporte" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty">
-                                </i> <span>Notifications</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="reporte" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="#" class="">Profile</a></li>
-                                    <li><a href="#" class="">Login</a></li>
-                                    <li><a href="#" class="">Lockscreen</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                <nav class="main-navbar">
+                    <div class="container">
+                        <ul>
+                            <li class="menu-item  ">
+                                <a href="menu.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </li>
+                            <li class="menu-item  has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-stack"></i>
+                                    <span>Administracion</span>
+                                </a>
+                                <div class="submenu ">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item  ">
+                                                <a href="personal.html" class='submenu-link'>Personal</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="producto.html" class='submenu-link'>Producto</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="cliente.html" class='submenu-link'>Cliente</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="area.html" class='submenu-link'>Area</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item active has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-grid-1x2-fill"></i>
+                                    <span>Gestor</span>
+                                </a>
+                                <div class="submenu ">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item  ">
+                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
+                                                    Column</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item  has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-file-earmark-medical-fill"></i>
+                                    <span>Almacen</span>
+                                </a>
+                                <div class="submenu ">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item  ">
+                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
+                                                    Column</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item  has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-table"></i>
+                                    <span>Reporte</span>
+                                </a>
+                                <div class="submenu ">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item  ">
+                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
+                                                    Column</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
                 </nav>
-            </div>
+            </header>
         </div>
-        <!-- END LEFT SIDEBAR -->
-        <!-- MAIN -->
-        <div class="main">
-
-            <!-- MAIN CONTENT -->
-            <div class="main-content">
-
-
-                <div class="container-fluid">
-
-                    <p>MENU</p>
-
-                </div>
-            </div>
-            <!-- END MAIN CONTENT -->
-        </div>
-        <!-- END MAIN -->
-        <div class="clearfix"></div>
-        <footer>
-            <div class="container-fluid text-center">
-                <p>Moda & Diseño del Perú @2022</p>
-            </div>
-        </footer>
     </div>
-    <!-- END WRAPPER -->
-    <!-- Javascript -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-    <script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-    <script src="../assets/scripts/klorofil-common.js"></script>
-    <!--jquery-->
-    <script></script>
+
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+
+    <script src="assets/js/pages/horizontal-layout.js"></script>
 </body>
+<script>
+    function cerrarSeccion() {
+        window.localStorage.removeItem("empleado");
+    }
+</script>
+</script>
 
 </html>

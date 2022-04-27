@@ -20,6 +20,7 @@ var cliente = function () {
             });
         },
         obtenerListaCliente: function () {
+
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Cliente/obtenerListaClientes.php",
                 method: "GET",
@@ -30,8 +31,9 @@ var cliente = function () {
 
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
+
                         var cliente = '';
-                        cliente += '<tr>';
+                        cliente += '<tr id="data-'+obj.id+'">';
                         cliente += '<td>' + obj.codigo + '</td>';
                         cliente += '<td>' + obj.docIdentidad + '</td>';
                         cliente += '<td>' + obj.nombre + '</td>';
@@ -79,6 +81,8 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
+                    $("#lst-cliente").empty();
+                    cliente.obtenerListaCliente();
                 }
             });
         },
@@ -91,6 +95,8 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
+                    $("#lst-cliente").empty();
+                    cliente.obtenerListaCliente();
                 }
             });
         },
@@ -121,6 +127,8 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
+                    $("#lst-cliente").empty();
+                    cliente.obtenerListaCliente();
                 }
             });
         }
