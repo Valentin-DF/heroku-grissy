@@ -151,7 +151,7 @@
                                         </button>
                                     </div>
                                     <div class="row gallery" id="lst-personal">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
 
     <!--AGREGAR PERSONAL EN UN MODAL-->
     <div class="modal fade text-left" id="agregarPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-    data-bs-backdrop="false" aria-hidden="true">
+        data-bs-backdrop="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -199,7 +199,8 @@
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label></label>
-                                <button type="button"  class="form-control" onclick="personal.consultarDocIdentidad()">Buscar</button>
+                                <button type="button" class="form-control"
+                                    onclick="personal.consultarDocIdentidad()">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -215,13 +216,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="apellidoPaterno">Apellido Paterno</label>
-                                <input type="text" id="apellidoPaterno" class="form-control " placeholder="Apellido Paterno">
+                                <input type="text" id="apellidoPaterno" class="form-control "
+                                    placeholder="Apellido Paterno">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="apellidoMaterno">Apellido Materno</label>
-                                <input type="text" id="apellidoMaterno" class="form-control " placeholder="ApellidoMaterno" >
+                                <input type="text" id="apellidoMaterno" class="form-control "
+                                    placeholder="ApellidoMaterno">
                             </div>
                         </div>
                     </div>
@@ -229,7 +232,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="contacto">Telefono</label>
-                                <input type="text" id="contacto" class="form-control " placeholder="Telefono" >
+                                <input type="text" id="contacto" class="form-control " placeholder="Telefono">
                             </div>
                         </div>
                     </div>
@@ -237,7 +240,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="correo">Correo</label>
-                                <input type="text" id="correo" class="form-control " placeholder="Correo" >
+                                <input type="text" id="correo" class="form-control " placeholder="Correo">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -251,7 +254,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="direccion">Direccion</label>
-                                <input type="text" id="direccion" class="form-control " placeholder="Direccion" >
+                                <input type="text" id="direccion" class="form-control " placeholder="Direccion">
                             </div>
                         </div>
                     </div>
@@ -259,7 +262,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="foto">URL Foto</label>
-                                <input type="text" id="foto" class="form-control " placeholder="Foto" >
+                                <input type="text" id="foto" class="form-control " placeholder="Foto">
                             </div>
                         </div>
                     </div>
@@ -275,13 +278,13 @@
                                         <option>Administracion</option>
                                     </select>
                                 </fieldset>
-                            
+
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="sueldo">Sueldo</label>
-                                <input type="text" id="sueldo" class="form-control " placeholder="Sueldo" >
+                                <input type="text" id="sueldo" class="form-control " placeholder="Sueldo">
                             </div>
                         </div>
                     </div>
@@ -291,8 +294,13 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary"
-                        data-bs-dismiss="modal" id="guardar"  onclick="personal.guardarPersonal()">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar"
+                        onclick="personal.editarPersonal()">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Editar</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
+                        onclick="personal.guardarPersonal()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>

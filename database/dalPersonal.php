@@ -116,15 +116,15 @@
         return $resultado;
     }
 
-    function ActualizarPersonal($id, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto){
+    function ActualizarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE personal SET nombre = ?, apellidoPaterno = ?, apellidoMaterno  = ?, dni = ?, contacto = ?,direccion = ?,cargo = ?,sueldo = ?,correo = ?,foto = ? WHERE id = ?";
+        $consultaSQL = "UPDATE personal SET nombre = ?, apellidoPaterno = ?, apellidoMaterno  = ?, dni = ?, contacto = ?,direccion = ?,cargo = ?,sueldo = ?,correo = ?,foto = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "", $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$foto,$id
+            "sssiissdsss", $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$foto,$codigo
         );
 
         if ($stmt->execute()) {

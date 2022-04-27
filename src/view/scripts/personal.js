@@ -23,12 +23,48 @@ var personal = function () {
                         personal += '            <span class="text-center">'+obj.nombre+' '+obj.apellidoPaterno+' '+obj.apellidoMaterno+'</span>';
                         personal += '           </div>';
                         personal += '           <div class="row">';
-                        personal += '               <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" data-bs-dismiss="modal" onclick="" ><span class="fa-fw select-all fas"></span></button>';
-                        personal += '               <button type="button" class="btn btn-outline-primary " data-bs-dismiss="modal" onclick="" ><span class="fa-fw select-all fas"></span> </button>';
+                        personal += '               <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"  data-bs-target="#cartillaPersonal-' + obj.id + '" ><span class="fa-fw select-all fas"></span></button>';
+                        personal += '               <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#agregarPersonal" onclick="personal.obtenerPorId(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> </button>';
                         personal += '               <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button>';
                         personal += '           </div>';
                         personal += '        </div>';
                         personal += '</div>';
+
+
+                        personal += '<div class="modal fade text-left"  id="cartillaPersonal-' + obj.id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">';
+                        personal += '<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">';
+                        personal += '    <div class="modal-content">';
+                        personal += '        <div class="modal-header">';
+                        personal += '           <h5 class="modal-title" id="myModalLabel1">' + obj.nombre + '</h5>';
+                        if (obj.estado == 1) {
+                            personal += '<td><span class="badge bg-success rounded-pill">Activo</span></td>';
+                        } else {
+                            personal += '<td><span class="badge bg-danger rounded-pill">Inactive</span></td>';
+                        }
+                        personal += '        </div>';
+                        personal += '        <div class="modal-body">';
+                        personal += '            <div class="row">';
+                        personal += '                <div class="col-sm-8">';
+                        personal += '                    <p> NOMBRE:     '+obj.nombre + '</p>';
+                        personal += '                    <p> APELLIDOS:  '+obj.apellidoPaterno+' '+obj.apellidoMaterno + '</p>';
+                        personal += '                    <p> CARGO:      '+obj.cargo + '</p>';
+                        personal += '                    <p> TELEFONO:   '+obj.contacto + '</p>';
+                        personal += '                    <p> DIRECCION:  '+obj.direccion + '</p>';
+                        personal += '                    <p> CORREO:     '+obj.correo + '</p>';
+                        personal += '                </div>';
+                        personal += '                <div class="col-sm-4">';
+                        personal += '                   <img width="200" height="200" src="' + obj.foto + '">';
+                        personal += '                </div>';
+                        personal += '            </div>';
+                        personal += '        </div>';
+                        personal += '       <div class="modal-footer" >';
+                        personal += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
+                        personal += '       </div>';
+                        personal += '    </div>';
+                        personal += '</div>';
+                        personal += '</div>';
+
+                        
 
                         $("#lst-personal").append(personal);
                     });
@@ -105,6 +141,74 @@ var personal = function () {
                 }
             });
         },
+        obtenerPorId: function(id) {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Personal/buscarPersonalPorId.php",
+                method: "GET",
+                data: {
+                    id: id
+                },
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        $("#codigo").val(obj.codigo);
+                        $("#nombre").val(obj.nombre);
+                        $("#apellidoPaterno").val(obj.apellidoPaterno);
+                        $("#apellidoMaterno").val(obj.apellidoMaterno);
+                        $("#correo").val(obj.correo);
+                        $("#direccion").val(obj.direccion);
+                        $("#dni").val(obj.dni);
+                        $("#contrasena").val(obj.contrasena);
+                        $("#foto").val(obj.foto);
+                        $("#cargo").val(obj.cargo);
+                        $("#sueldo").val(obj.sueldo);
+                        $("#contacto").val(obj.contacto);
+
+                    });
+                }
+            })
+        },
+        editarPersonal: function () {
+            var codigo = $("#codigo").val();
+            var nombre = $("#nombre").val();
+            var apellidoPaterno = $("#apellidoPaterno").val();
+            var apellidoMaterno = $("#apellidoMaterno").val();
+            var correo = $("#correo").val();
+            var direccion = $("#direccion").val();
+            var dni = $("#dni").val();
+            var foto = $("#foto").val();
+            var cargo = $("#cargo").val();
+            var sueldo = $("#sueldo").val();
+            var contacto = $("#contacto").val();
+
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Personal/editarPersonal.php',
+                method: "POST",
+                data: {
+                    codigo: codigo,
+                    nombre: nombre,
+                    apellidoMaterno: apellidoMaterno,
+                    apellidoPaterno: apellidoPaterno,
+                    correo: correo,
+                    direccion: direccion,
+                    dni: dni,
+                    foto: foto,
+                    cargo: cargo,
+                    sueldo: sueldo,
+                    contacto: contacto
+                },
+                complete: function (response) {
+                    console.log(response);
+                    $("#lst-personal").empty();
+                    personal.obtenerListaPersonal();
+                }
+            });
+        }
         
     }
 }();

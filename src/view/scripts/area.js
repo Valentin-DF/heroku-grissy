@@ -120,7 +120,7 @@ var area = function () {
                 }
             })
         },
-        editarArea: function (codigo) {
+        editarArea: function () {
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var foto = $("#foto").val();
