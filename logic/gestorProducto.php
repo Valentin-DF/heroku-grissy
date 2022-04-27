@@ -13,8 +13,8 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
         return insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea);
     }
 
-    function editarProducto($id,$nombre,$talla,$cantidad,$precio){
-        return ActualizarProducto($id,$nombre,$talla,$cantidad,$precio);
+    function editarProducto($codigo,$nombre,$talla,$cantidad,$precio){
+        return ActualizarProducto($codigo,$nombre,$talla,$cantidad,$precio);
     }
 
     function buscarProductoPorId($id){

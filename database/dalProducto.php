@@ -77,15 +77,15 @@
         return $resultado;
     }
 
-    function ActualizarProducto($id,$nombre,$talla,$cantidad,$precio){
+    function ActualizarProducto($codigo,$nombre,$talla,$cantidad,$precio){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE producto_e SET nombre = ?,talla = ?,cantidad = ?,precio = ? WHERE id = ?";
+        $consultaSQL = "UPDATE producto_e SET nombre = ?,talla = ?,cantidad = ?,precio = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "ssidi",$nombre,$talla,$cantidad,$precio,$id
+            "ssids",$nombre,$talla,$cantidad,$precio,$codigo
         );
 
         if ($stmt->execute()) {
