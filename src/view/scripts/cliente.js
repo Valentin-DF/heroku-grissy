@@ -44,7 +44,7 @@ var cliente = function () {
                         } else {
                             cliente += '<td><span class="badge bg-danger">Inactive</span></td>';
                         }
-                        cliente += '<td><button class="btn btn-outline-primary"><span class="fa-fw select-all fas" onclick="cliente.editarCliente(' + obj.id + ')"></span></button>' +
+                        cliente += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente" onclick="cliente.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
                             '<button class="btn btn-outline-danger" onclick="cliente.eliminarCliente(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
                         cliente += '</tr>';
 
@@ -100,11 +100,11 @@ var cliente = function () {
                 }
             });
         },
-        editarCliente: function (id) {
-            var apellidoPaterno = $("#apelidoPaterno").val();
-            var apellidoMaterno = $("#apelidoMaterno").val();
-            var id = id;
-            var condicioSunat = $("#condicionSunat").val();
+        editarCliente: function () {
+            var apellidoPaterno = $("#apellidoPaterno").val();
+            var apellidoMaterno = $("#apellidoMaterno").val();
+            var codigo = $("#codigo").val();
+            var condicionSunat = $("#condicionSunat").val();
             var direccion = $("#direccion").val();
             var docIdentidad = $("#docIdentidad").val();
             var estadoSunat = $("#estadoSunat").val();
@@ -115,11 +115,11 @@ var cliente = function () {
                 url: 'http://localhost:8080/Grissy/controllers/Cliente/editarCliente.php',
                 method: "POST",
                 data: {
-                    id: id,
+                    codigo: codigo,
                     nombre: nombre,
                     apellidoMaterno: apellidoMaterno,
                     apellidoPaterno: apellidoPaterno,
-                    condicioSunat: condicioSunat,
+                    condicionSunat: condicionSunat,
                     direccion: direccion,
                     docIdentidad: docIdentidad,
                     estadoSunat: estadoSunat,
@@ -131,6 +131,35 @@ var cliente = function () {
                     cliente.obtenerListaCliente();
                 }
             });
+        },
+        obtenerPorId: function(id) {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorId.php",
+                method: "GET",
+                data: {
+                    id: id
+                },
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        $("#apellidoPaterno").val(obj.apellidoPaterno);
+                        $("#apellidoMaterno").val(obj.apellidoMaterno);
+                        $("#codigo").val(obj.codigo);
+                        $("#condicionSunat").val(obj.condicionSunat);
+                        $("#direccion").val(obj.direccion);
+                        $("#docIdentidad").val(obj.docIdentidad);
+                        $("#estadoSunat").val(obj.estadoSunat);
+                        $("#nombre").val(obj.nombre);
+                        $("#telefono").val(obj.telefono);
+
+                    });
+                }
+            })
         }
     }
 }();
