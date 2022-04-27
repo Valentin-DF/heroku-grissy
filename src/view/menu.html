@@ -51,7 +51,8 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="login.html" onclick="cerrarSeccion()">Logout</a>
+                                    <li><a class="dropdown-item" href="login.html"
+                                            onclick="menu.cerrarSeccion()">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -169,11 +170,21 @@
 
     <script src="assets/js/pages/horizontal-layout.js"></script>
 </body>
-<script>
-    function cerrarSeccion() {
-        window.localStorage.removeItem("empleado");
-    }
+<!-- Javascript -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="scripts/menu.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        const storedToDos = localStorage.getItem('empleado');
+        console.log(JSON.parse("Dato: ", storedToDos));
+    });
 </script>
+<script>
+
+</script>
+
 </script>
 
 </html>

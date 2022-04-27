@@ -100,9 +100,9 @@
     
         $consultaSQL = "INSERT INTO personal (codigo,nombre, apellidoPaterno, apellidoMaterno, dni, contacto,direccion,cargo,estado,sueldo,fechaContrato,correo,contrasena,foto) VALUES(?,?,?,?,?,?,?,?,1,?,now(),?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
-    
+        $encriptar = md5($contrasena);
         $stmt->bind_param(
-            "ssssiissdsss", $codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$contrasena,$foto
+            "ssssiissdsss", $codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$encriptar,$foto
         );
     
         if ($stmt->execute()) {

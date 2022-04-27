@@ -16,22 +16,13 @@ var login = function () {
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
                         if(obj.estado == 1){                       
-                             localStorage.setItem("empleado", obj);
+                             localStorage.setItem("empleado",JSON.stringify( obj));
                              window.location.replace('http://localhost:8080/Grissy/src/view/menu.html');
 
                         }else{
                             console.log("Erorosssssssssr");
                         }
                     });
-
-                   
-
-
-
-
-
-
-
                 }
             })
 
