@@ -17,4 +17,8 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
         return actualizarCliente($apellidoMaterno,$apellidoPaterno,$id,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono);
     }
     
+    function buscarClientePorId($id){
+        return ObtenerClientePorID($id);
+    }
+
 ?>

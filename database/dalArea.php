@@ -75,15 +75,15 @@
         return $resultado;
     }
 
-    function ActualizarArea($id,$nombre,$descripcion,$foto){
+    function ActualizarArea($codigo,$nombre,$descripcion,$foto){
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "UPDATE area SET nombre = ?,descripcion = ?, foto =? WHERE id = ?";
+        $consultaSQL = "UPDATE area SET nombre = ?,descripcion = ?, foto =? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssi",$nombre,$descripcion,$foto,$id
+            "ssss",$nombre,$descripcion,$foto,$codigo
         );
 
         if ($stmt->execute()) {
@@ -95,6 +95,38 @@
         $mysqli->close();
 
         return $resultado;
+    }
+
+    function ObtenerAreaPorID($id){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM area WHERE id = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new area();
+            $obj->id = $row['id'];
+            $obj->codigo = $row['codigo'];
+            $obj->nombre = $row['nombre'];
+            $obj->estado = $row['estado'];
+            $obj->foto = $row['foto'];
+            $obj->descripcion = $row['descripcion'];
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
     }
 
 ?>

@@ -16,4 +16,9 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
     function editarProducto($id,$nombre,$talla,$cantidad,$precio){
         return ActualizarProducto($id,$nombre,$talla,$cantidad,$precio);
     }
+
+    function buscarProductoPorId($id){
+        return ObtenerProductoPorID($id);
+    }
+
 ?>

@@ -138,4 +138,42 @@
         return $resultado;
     }
 
+    function ObtenerPersonalPorID($id){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM personal WHERE id = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+
+            $obj = new personal();
+            $obj->id = $row['id'];
+            $obj->codigo = $row['codigo'];
+            $obj->nombre = $row['nombre'];
+            $obj->apellidoPaterno = $row['apellidoPaterno'];
+            $obj->apellidoMaterno = $row['apellidoMaterno'];
+            $obj->dni = $row['dni'];
+            $obj->contacto = $row['contacto'];
+            $obj->direccion = $row['direccion'];
+            $obj->cargo = $row['cargo'];
+            $obj->estado = $row['estado'];
+            $obj->correo = $row['correo'];
+            $obj->foto = $row['foto'];
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
+
 ?>

@@ -229,6 +229,11 @@
                             <span class="d-none d-sm-block">Cancelar</span>
                         </button>
                         <button type="button" class="btn btn-outline-primary"
+                            data-bs-dismiss="modal" id="guardar" onclick="area.editarArea()">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Editar</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary"
                             data-bs-dismiss="modal" id="guardar" onclick="area.guardarArea()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Guardar</span>
@@ -238,9 +243,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

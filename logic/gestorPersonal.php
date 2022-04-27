@@ -21,4 +21,8 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
         return ActualizarPersonal($id, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto);
     }
 
+    function buscarPersonalPorId($id){
+        return ObtenerPersonalPorID($id);
+    }
+
 ?>

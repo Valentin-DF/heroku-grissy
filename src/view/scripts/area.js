@@ -44,7 +44,7 @@ var area = function () {
                         area += '            </div>';
                         area += '        </div>';
                         area += '       <div class="modal-footer" >';
-                        area += '           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" onclick="area.editarArea(' + obj.id + ')"><span class="fa-fw select-all fas"></span> Editar </button>';
+                        area += '           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#agregarArea" onclick="area.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> Editar </button>';
                         area += '           <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="area.reintegrarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Activar </button>';
                         area += '           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="area.eliminarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Desactivar </button>';
                         area += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
@@ -52,8 +52,6 @@ var area = function () {
                         area += '    </div>';
                         area += '</div>';
                         area += '</div>';
-
-                        //   if (obj.estado == 1) { disabled="true">
 
                         $("#lst-area").append(area);
                     });
@@ -97,6 +95,53 @@ var area = function () {
                     area.obtenerListaArea();
                 }
             });
+        },
+        obtenerPorId: function(id) {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Area/buscarAreaPorId.php",
+                method: "GET",
+                data: {
+                    id: id
+                },
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        $("#codigo").val(obj.codigo);
+                        $("#nombre").val(obj.nombre);
+                        $("#foto").val(obj.foto);
+                        $("#descripcion").val(obj.descripcion);
+
+                    });
+                }
+            })
+        },
+        editarArea: function (codigo) {
+            var codigo = $("#codigo").val();
+            var nombre = $("#nombre").val();
+            var foto = $("#foto").val();
+            var descripcion = $("#descripcion").val();
+
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Area/editarArea.php',
+                method: "POST",
+                data: {
+                    codigo: codigo,
+                    nombre: nombre,
+                    descripcion: descripcion,
+                    foto: foto
+                },
+                complete: function (response) {
+                    console.log(response);
+                    $("#lst-area").empty();
+                    area.obtenerListaArea();
+                }
+            });
         }
+
     }
 }();

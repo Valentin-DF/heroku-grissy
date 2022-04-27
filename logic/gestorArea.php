@@ -13,8 +13,11 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
         return insertarArea($codigo,$nombre,$descripcion,$foto);
     }
 
-    function editarArea($id,$nombre,$descripcion,$foto){
-        return actualizarArea($id,$nombre,$descripcion,$foto);
+    function editarArea($codigo,$nombre,$descripcion,$foto){
+        return actualizarArea($codigo,$nombre,$descripcion,$foto);
     }
 
+    function buscarAreaPorId($id){
+        return ObtenerAreaPorID($id);
+    }
 ?>

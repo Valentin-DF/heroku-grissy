@@ -23,7 +23,7 @@ var personal = function () {
                         personal += '            <span class="text-center">'+obj.nombre+' '+obj.apellidoPaterno+' '+obj.apellidoMaterno+'</span>';
                         personal += '           </div>';
                         personal += '           <div class="row">';
-                        personal += '               <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" onclick="" ><span class="fa-fw select-all fas"></span></button>';
+                        personal += '               <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal" data-bs-dismiss="modal" onclick="" ><span class="fa-fw select-all fas"></span></button>';
                         personal += '               <button type="button" class="btn btn-outline-primary " data-bs-dismiss="modal" onclick="" ><span class="fa-fw select-all fas"></span> </button>';
                         personal += '               <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button>';
                         personal += '           </div>';

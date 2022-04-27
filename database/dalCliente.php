@@ -104,4 +104,44 @@
         return $resultado;
     }
 
+    function ObtenerClientePorID($id){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM cliente WHERE id = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new cliente();
+            $obj->id = $row['id'];
+            $obj->nombre = $row['nombre'];
+            $obj->apellidoPaterno = $row['apellidoPaterno'];
+            $obj->apellidoMaterno = $row['apellidoMaterno'];
+            $obj->codigo = $row['codigo'];
+            $obj->condicionsunat = $row['condicionSunat'];
+            $obj->direccion = $row['direccion'];
+            $obj->docIdentidad = $row['docIdentidad'];
+            $obj->estado = $row['estado'];
+            $obj->estadoSunat = $row['estadoSunat'];
+            $obj->fechaRegistro = $row['fechaRegistro'];
+            $obj->telefono = $row['telefono'];
+            array_push($lista, $obj);
+        }
+    
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
+
+
 ?>
