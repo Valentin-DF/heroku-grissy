@@ -138,6 +138,7 @@ var personal = function () {
                     console.log(response);
                     $("#lst-personal").empty();
                     personal.obtenerListaPersonal();
+                    personal.limpiar();
                 }
             });
         },
@@ -206,8 +207,23 @@ var personal = function () {
                     console.log(response);
                     $("#lst-personal").empty();
                     personal.obtenerListaPersonal();
+                    personal.limpiar();
                 }
             });
+        },
+        limpiar: function(){
+            $("#codigo").val("");
+            $("#nombre").val("");
+            $("#apellidoPaterno").val("");
+            $("#apellidoMaterno").val("");
+            $("#correo").val("");
+            $("#direccion").val("");
+            $("#dni").val("");
+            $("#contrasena").val("");
+            $("#foto").val("");
+            $("#cargo").val("");
+            $("#sueldo").val("");
+            $("#contacto").val("");
         }
         
     }

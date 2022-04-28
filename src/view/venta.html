@@ -2,140 +2,263 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
-    <link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-    <link rel="stylesheet" href="../assets/css/demo.css">
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-    <!-- ICONS -->
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <style>
+        table.dataTable td {
+            padding: 15px 8px;
+        }
 
-    
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <title>Grissy</title>
 
 </head>
 
 <body>
-    <!-- WRAPPER -->
-    <div id="wrapper">
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-btn">
-                    <button type="button" class="btn-toggle-fullwidth"><i
-                            class="lnr lnr-arrow-left-circle"></i></button>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <img src="assets/images/logo/logo.png" alt="Logo" srcset="">
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <!-- END NAVBAR -->
-        <!-- LEFT SIDEBAR -->
-        <div id="sidebar-nav" class="sidebar">
-            <div class="sidebar-scroll">
-                <nav>
-                    <ul class="nav">
-                        <li>
-                            <a href="./menu.html" >
-                                <i class="lnr lnr-home"></i>
-                                <span>Menu</span></a>
+
+                <div class="sidebar-menu">
+                    <ul class="menu">
+
+                        <li class="sidebar-item  ">
+                            <a href="menu.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Menu</span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="#administracion" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
+
+                        <li class="sidebar-item active has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Administracion</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="administracion" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./personal.html" class="">Personal</a></li>
-                                    <li><a href="./producto.html" class="">Producto</a></li>
-                                    <li><a href="./cliente.html" class="">Cliente</a></li>
-                                </ul>
-                            </div>
+                            </a>
+                            <ul class="submenu active">
+                                <li class="submenu-item ">
+                                    <a href="personal.html">Personal</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="producto.html">Producto</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="cliente.html">Cliente</a>
+                                </li>
+                                <li class="submenu-item active">
+                                    <a href="area.html">Area</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#gestor" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pentagon-fill"></i>
                                 <span>Gestor</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="gestor" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./compra.html" class="">Compra</a></li>
-                                    <li><a href="./venta.html" class="">Venta</a></li>
-                                </ul>
-                            </div>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-chatbox.html">Chatbox</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-pricing.html">Pricing</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-widgets-todolist.html">To-do List</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#almacen" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty"></i>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-egg-fill"></i>
                                 <span>Almacen</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="almacen" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="./ingresos.html" class="">Ingresos</a></li>
-                                    <li><a href="./salidad.html" class="">Salidas</a></li>
-                                </ul>
-                            </div>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-fontawesome.html">Fontawesome</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-icons-dripicons.html">Dripicons</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#reporte" data-toggle="collapse" class="collapsed">
-                                <i class="lnr lnr-file-empty">
-                                </i> <span>Notifications</span>
-                                <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="reporte" class="collapse ">
-                                <ul class="nav">
-                                    <li><a href="#" class="">Profile</a></li>
-                                    <li><a href="#" class="">Login</a></li>
-                                    <li><a href="#" class="">Lockscreen</a></li>
-                                </ul>
-                            </div>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                <span>Reporte</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-chartjs.html">ChartJS</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="ui-chart-apexcharts.html">Apexcharts</a>
+                                </li>
+                            </ul>
                         </li>
+
+
                     </ul>
-                </nav>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-        <!-- END LEFT SIDEBAR -->
-        <!-- MAIN -->
-        <div class="main">
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Area</h3>
+                            <p class="text-subtitle text-muted">Lista general de las areas de la empresa</p>
+                        </div>
 
-            <!-- MAIN CONTENT -->
-            <div class="main-content">
+                    </div>
+                </div>
 
+                <!-- Basic Tables start -->
+                <section class="section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                        <button class="btn icon icon-left" data-bs-toggle="modal"
+                                            data-bs-target="#agregarArea">
+                                            <img src="assets/images/boton-agregar.png" width="200" height="200">
+                                            <h4 class="card-title mb-3">AGREGAR</h4>
+                                        </button>
+                                    </div>
+                                    <div class="row gallery " id="lst-area">
 
-                <div class="container-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Basic Tables end -->
+            </div>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Grissy</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Moda & Diseño del Perú <span class="text-danger"></span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
-                    <p>VENTA</p>
-
+    <!--AGREGAR AREA EN UN MODAL-->
+    <div class="modal fade text-left" id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    data-bs-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel1">Area</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="codigo">Codigo</label>
+                                <input type="text" id="codigo" class="form-control " placeholder="Codigo">
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" class="form-control " placeholder="Nombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="foto">URL Foto</label>
+                                <input type="text" id="foto" class="form-control " placeholder="Foto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <textarea class="form-control" id="descripcion" rows="3"
+                                    placeholder="Descripcion"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Cancelar</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary"
+                            data-bs-dismiss="modal" id="guardar" onclick="area.editarArea()">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Editar</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary"
+                            data-bs-dismiss="modal" id="guardar" onclick="area.guardarArea()">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Guardar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT -->
         </div>
-        <!-- END MAIN -->
-        <div class="clearfix"></div>
-        <footer>
-            <div class="container-fluid text-center">
-                <p>Moda & Diseño del Perú @2022</p>
-            </div>
-        </footer>
     </div>
-    <!-- END WRAPPER -->
-    <!-- Javascript -->
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-    <script src="../assets/vendor/chartist/js/chartist.min.js"></script>
-    <script src="../assets/scripts/klorofil-common.js"></script>
-    <!--jquery-->
-    <script></script>
+
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/mazer.js"></script>
 </body>
+<!-- Javascript -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="scripts/area.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        area.obtenerListaArea();
+
+    });
+</script>
 
 </html>

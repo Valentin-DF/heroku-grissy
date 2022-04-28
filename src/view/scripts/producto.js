@@ -60,6 +60,7 @@ var producto = function () {
                     console.log(response);
                     $("#lst-producto").empty();
                     producto.obtenerListaProductos();
+                    producto.limpiar();
                 }
             });
         },
@@ -98,6 +99,7 @@ var producto = function () {
                     console.log(response);
                     $("#lst-producto").empty();
                     producto.obtenerListaProductos();
+                    producto.limpiar();
                 }
             });
         },
@@ -125,6 +127,13 @@ var producto = function () {
                     });
                 }
             })
+        },
+        limpiar: function(){
+            $("#codigo").val("");
+            $("#nombre").val("");
+            $("#talla").val("");
+            $("#cantidad").val("");
+            $("#precio").val("");
         }
     }
 }();

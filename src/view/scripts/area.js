@@ -79,6 +79,7 @@ var area = function () {
                     console.log(response);
                     $("#lst-area").empty();
                     area.obtenerListaArea();
+                    area.limpiar();
                 }
             });
         },
@@ -140,6 +141,7 @@ var area = function () {
                     console.log(response);
                     $("#lst-area").empty();
                     area.obtenerListaArea();
+                    area.limpiar();
                 }
             });
         },
@@ -157,6 +159,12 @@ var area = function () {
                     area.obtenerListaArea();
                 }
             });
+        },
+        limpiar: function(){
+            $("#codigo").val("");
+            $("#nombre").val("");
+            $("#foto").val("");
+            $("#descripcion").val("");
         }
 
     }

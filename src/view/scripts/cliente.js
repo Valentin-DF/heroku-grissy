@@ -83,6 +83,8 @@ var cliente = function () {
                     console.log(response);
                     $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
+                    cliente.limpiar();
+
                 }
             });
         },
@@ -129,6 +131,7 @@ var cliente = function () {
                     console.log(response);
                     $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
+                    cliente.limpiar();
                 }
             });
         },
@@ -160,6 +163,18 @@ var cliente = function () {
                     });
                 }
             })
-        }
+        },
+        limpiar: function(){
+            $("#apellidoPaterno").val("");
+            $("#apellidoMaterno").val("");
+            $("#codigo").val("");
+            $("#condicionSunat").val("");
+            $("#direccion").val("");
+            $("#docIdentidad").val("");
+            $("#estadoSunat").val("");
+            $("#nombre").val("");
+            $("#telefono").val("");
+        },
+
     }
 }();
