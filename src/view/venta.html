@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
     <style>
         table.dataTable td {
             padding: 15px 8px;
@@ -34,10 +35,11 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <img src="assets/images/logo/logo.png" alt="Logo" srcset="">
+                            <img src="assets/images/logo/logo.png" alt="Logo">
                         </div>
                         <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="Read" href="#" class="sidebar-hide d-xl-none d-block"><i
+                                    class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -127,21 +129,28 @@
 
                     </ul>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button aria-label="Name" type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+                <a aria-label="Read" href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Area</h3>
-                            <p class="text-subtitle text-muted">Lista general de las areas de la empresa</p>
+                        <div class="col-6 col-md-6 order-md-1 order-last">
+                            <h3></h3>
+                        </div>
+                        <div class="col-3 col-md-3 order-md-1 order-last">
+                            <input type="text" class="form-control" placeholder="Documento" id="documento"
+                                aria-label="text">
+                        </div>
+                        <div class="col-3 col-md-3 order-md-1 order-last">
+                            <input type="text" class="form-control" placeholder="Codigo" id="codigoVenta"
+                                aria-label="text" disabled>
                         </div>
 
                     </div>
@@ -152,21 +161,108 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                        <button class="btn icon icon-left" data-bs-toggle="modal"
-                                            data-bs-target="#agregarArea">
-                                            <img src="assets/images/boton-agregar.png" width="200" height="200">
-                                            <h4 class="card-title mb-3">AGREGAR</h4>
-                                        </button>
-                                    </div>
-                                    <div class="row gallery " id="lst-area">
+                                <div class="card-body ">
 
+                                    <div class="divider">
+                                        <div class="divider-text">
+                                            <h5 class="text-center">Venta</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="input-group">
+                                                <div class="input-group-text">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="esDocumento"
+                                                            id="dni" value="dni" checked>
+                                                        <label class="form-check-label" for="dni"> DNI </label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-text">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="esDocumento"
+                                                            id="ruc" value="ruc">
+                                                        <label class="form-check-label" for="ruc"> RUC </label>
+                                                    </div>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Documento de identidad del cliente" id="docIdentidad"
+                                                    aria-label="text" oninput="venta.consultaDocumento();">
+                                                <button aria-label="visualizarCliente" data-bs-toggle="modal"
+                                                    data-bs-target="#datoCliente" class="btn btn-outline-primary "
+                                                    type="button" id="vizualizarCliente"><span
+                                                        class="fa-fw select-all fas"></span></button>
+                                                <button aria-label="guardarCliente" class="btn btn-outline-success"
+                                                    id="agregarCliente" type="button"
+                                                    onclick="venta.agregarCliente();"><span
+                                                        class="fa-fw select-all fas"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" placeholder="Nombre del producto"
+                                                id="nombrePro" aria-label="text" oninput="venta.obtenerPorNombre()">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-sm-12">
+                                            <table class="table table-bordered mb-0" id="table1">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Codigo</th>
+                                                        <th>Nombre</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio</th>
+                                                        <th>Talla</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="lst-producto">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <hr> -->
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Codigo del producto"
+                                                id="codigoPro" aria-label="text">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Cantidad" id="cantidad"
+                                                aria-label="text">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button aria-label="guardarCliente" class="btn btn-outline-success"
+                                                type="button" id="guardarProducto"><span
+                                                    class="fa-fw select-all fas"></span> Agregar</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="card">
+
+                                <div class="card">
+                                    <div class="card-body ">
+                                        <di>
+                                            <h5 class="text-center">Detalle Venta</h5>
+                                        </di>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </section>
                 <!-- Basic Tables end -->
             </div>
@@ -183,80 +279,95 @@
         </div>
     </div>
 
-    <!--AGREGAR AREA EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-    data-bs-backdrop="false" aria-hidden="true">
+    <!--MODAL DE CLIENTE-->
+
+    <div class="modal fade text-left" id="datoCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Area</h5>
+                    <h5 class="modal-title" id="myModalLabel1">Datos del cliente</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="form-group">
+                            <div class="form-grou">
                                 <label for="codigo">Codigo</label>
-                                <input type="text" id="codigo" class="form-control " placeholder="Codigo">
+                                <input type="text" id="codigo" class="form-control" placeholder="Codigo" disabled>
                             </div>
                         </div>
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" class="form-control " placeholder="Nombre">
+                                <input type="text" id="nombre" class="form-control" placeholder="Nombre" disabled>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="foto">URL Foto</label>
-                                <input type="text" id="foto" class="form-control " placeholder="Foto">
+                                <label for="apellidoPaterno">Apellido Paterno</label>
+                                <input type="text" id="apellidoPaterno" class="form-control"
+                                    placeholder="Apellido Paterno" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="apellidoMaterno">Apellido Materno</label>
+                                <input type="text" id="apellidoMaterno" class="form-control"
+                                    placeholder="Apellido Materno" disabled>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <textarea class="form-control" id="descripcion" rows="3"
-                                    placeholder="Descripcion"></textarea>
+                                <label for="estadoSunat">Estado Sunat</label>
+                                <input type="text" id="estadoSunat" class="form-control" placeholder="Estado Sunat"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="condicionSunat">Condicion Sunat</label>
+                                <input type="text" id="condicionSunat" class="form-control"
+                                    placeholder="Condicion Sunat" disabled>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Cancelar</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary"
-                            data-bs-dismiss="modal" id="guardar" onclick="area.editarArea()">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Editar</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary"
-                            data-bs-dismiss="modal" id="guardar" onclick="area.guardarArea()">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Guardar</span>
-                        </button>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="telefono">Telefono</label>
+                                <input type="text" id="telefono" class="form-control" placeholder="Telefono" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label for="direccion">Direccion</label>
+                                <input type="text" id="direccion" class="form-control" placeholder="Direccion" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/vendors/fontawesome/all.min.js"></script>
     <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
 </body>
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-<script src="scripts/area.js"></script>
+<script src="scripts/venta.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        area.obtenerListaArea();
 
     });
 </script>

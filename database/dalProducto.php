@@ -132,5 +132,38 @@
     
         return $lista; 
     }
+    function ObtenerProductoPorNombre($nombrePro){
+        $mysqli = conexion();
+        $consultaSQL = " CALL grissy_ListarProductoPorNombre( ? ); ";
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "s",
+            $nombrePro
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new producto();
+            $obj->id = $row['id'];
+            $obj->nombre = $row['nombre'];
+            $obj->cantidad = $row['cantidad'];
+            $obj->precio = $row['precio'];
+            $obj->codigo = $row['codigo'];
+            $obj->talla = $row['talla'];
+            $obj->estado = $row['estado'];
+            $obj->idarea = $row['idarea'];
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
 
 ?>

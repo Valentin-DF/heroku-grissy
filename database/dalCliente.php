@@ -63,7 +63,7 @@
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO cliente (id, codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
+        $consultaSQL = "INSERT INTO cliente ( codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
@@ -143,6 +143,44 @@
         return $lista; 
     }
     
+    function ObtenerClientePorDocIdentidad($docIdentidad){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM cliente WHERE docIdentidad = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $docIdentidad
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new cliente();
+            $obj->id = $row['id'];
+            $obj->nombre = $row['nombre'];
+            $obj->apellidoPaterno = $row['apellidoPaterno'];
+            $obj->apellidoMaterno = $row['apellidoMaterno'];
+            $obj->codigo = $row['codigo'];
+            $obj->condicionsunat = $row['condicionSunat'];
+            $obj->direccion = $row['direccion'];
+            $obj->docIdentidad = $row['docIdentidad'];
+            $obj->estado = $row['estado'];
+            $obj->estadoSunat = $row['estadoSunat'];
+            $obj->fechaRegistro = $row['fechaRegistro'];
+            $obj->telefono = $row['telefono'];
+            array_push($lista, $obj);
+        }
+    
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
 
 
 ?>

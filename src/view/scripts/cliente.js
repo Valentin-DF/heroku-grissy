@@ -12,10 +12,30 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response.responseJSON);
+                    $("#codigo").val("D-"+response.responseJSON.dni);
                     $("#nombre").val(response.responseJSON.nombres);
                     $("#apellidoPaterno").val(response.responseJSON.apellidoPaterno);
                     $("#apellidoMaterno").val(response.responseJSON.apellidoMaterno);
 
+                }
+            });
+        },
+        consultarRUC: function () {
+            var doc = $("#docIdentidad").val();
+
+            $.ajax({
+                url: 'https://dniruc.apisperu.com/api/v1/ruc/' + doc,
+                method: "GET",
+                data: {
+                    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImVzcGlub3phdmlsbGFyQGdtYWlsLmNvbSJ9._ZzB3eoj0J1OPDMRYGdeziwiEtoJSejb3ruXOgJPlEA'
+                },
+                complete: function (response) {
+                    console.log(response.responseJSON);
+                    $("#codigo").val("R-"+response.responseJSON.ruc);
+                    $("#nombre").val(response.responseJSON.razonSocial);
+                    $("#condicionSunat").val(response.responseJSON.condicion);
+                    $("#estadoSunat").val(response.responseJSON.estado);
+                    $("#direccion").val(response.responseJSON.direccion);
                 }
             });
         },
