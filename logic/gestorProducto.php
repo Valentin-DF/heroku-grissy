@@ -24,5 +24,9 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
     function buscarProductoPorNombre($nombrePro){
         return ObtenerProductoPorNombre($nombrePro);
     }
+    
+    function buscarProductoPorNombre2($nombrePro){
+        return ObtenerProductoPorNombre2($nombrePro);
+    }
 
 ?>

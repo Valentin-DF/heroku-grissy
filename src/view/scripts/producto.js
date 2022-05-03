@@ -36,7 +36,6 @@ var producto = function () {
 
         },
         guardarProducto: function () {
-            document.getElementById("idarea").disabled = false;
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var talla = $("#talla").val();
@@ -118,7 +117,7 @@ var producto = function () {
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
-
+            document.getElementById("codigo").disabled = true;
             document.getElementById("idarea").disabled = true;
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Producto/buscarProductoPorId.php",
@@ -177,10 +176,53 @@ var producto = function () {
 
         },
         en_guardar: function(){
+            document.getElementById("idarea").disabled = false;
+            document.getElementById("codigo").disabled = false;
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
+        },
+        obtenerPorNombre: function() {
+            $("#lst-producto").empty();
+
+            var nombrePro = $("#nombrePro").val();
+
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Producto/buscarProductoPorNombre2.php",
+                method: "GET",
+                data: {
+                    nombrePro: nombrePro
+                },
+                timeout: 0,
+                success: function (response) {
+
+                 
+                    console.log(response);
+
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        var producto = '';
+                        producto += '<tr>';
+                        producto += '<td>' + obj.codigo + '</td>';
+                        producto += '<td>' + obj.nombre + '</td>';
+                        producto += '<td>' + obj.cantidad + '</td>';
+                        producto += '<td>' + obj.precio + '</td>';
+                        producto += '<td>' + obj.talla + '</td>';
+                        if (obj.estado == 1) {
+                            producto += '<td><span class="badge bg-success">Activo</span></td>';
+                        } else {
+                            producto += '<td><span class="badge bg-danger">Inactive</span></td>';
+                        }
+                        producto += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarProducto" onclick="producto.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
+                            '<button class="btn btn-outline-danger" onclick="producto.eliminarProducto(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
+                        producto += '</tr>';
+
+                        $("#lst-producto").append(producto);
+                    });
+                }
+            })
         }
     }
 }();
