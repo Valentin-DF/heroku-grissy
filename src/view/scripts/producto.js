@@ -2,39 +2,45 @@ var producto = function () {
 
     return {
         obtenerListaProductos: function () {
-            $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Producto/obtenerListaProductos.php",
-                method: "GET",
-                timeout: 0,
-                success: function (response) {
 
-                    console.log(response);
+            var table = $('#example').DataTable({
+                "ajax": {
+                    "method": "GET",
+                    "url": "http://localhost:8080/Grissy/controllers/Producto/obtenerListaProductos.php",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "codigo" },
+                    { "data": "nombre" },
+                    { "data": "cantidad" },
+                    { "data": "precio" },
+                    { "data": "talla" },
+                    { "data": "estado" },
+                    { "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarProducto' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                ],
 
-
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-                        var producto = '';
-                        producto += '<tr>';
-                        producto += '<td>' + obj.codigo + '</td>';
-                        producto += '<td>' + obj.nombre + '</td>';
-                        producto += '<td>' + obj.cantidad + '</td>';
-                        producto += '<td>' + obj.precio + '</td>';
-                        producto += '<td>' + obj.talla + '</td>';
-                        if (obj.estado == 1) {
-                            producto += '<td><span class="badge bg-success">Activo</span></td>';
-                        } else {
-                            producto += '<td><span class="badge bg-danger">Inactive</span></td>';
-                        }
-                        producto += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarProducto" onclick="producto.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
-                            '<button class="btn btn-outline-danger" onclick="producto.eliminarProducto(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
-                        producto += '</tr>';
-
-                        $("#lst-producto").append(producto);
-                    });
-                }
-            })
+            });
+            this.obtener_data_editar("#example tbody", table);
+            this.obtener_data_eliminar("#example tbody", table);
 
         },
+
+        obtener_data_editar: function (tbody, table) {
+            $(tbody).on("click", "button.editar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                producto.obtenerPorId(data.id);
+            });
+        },
+        obtener_data_eliminar: function (tbody, table) {
+            $(tbody).on("click", "button.eliminar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                producto.eliminarProducto(data.id);
+                producto.obtenerListaProductos();
+            });
+        },
+
         guardarProducto: function () {
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
@@ -57,7 +63,7 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-producto").empty();
+                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                     producto.limpiar();
                 }
@@ -72,18 +78,11 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-producto").empty();
+                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                 }
             });
         },
-
-        // var btn_1 = document.getElementById('btn-1');
-        // var btn_2 = document.getElementById('btn-2');
-        
-        // function mostrarBoton () {
-        //     btn_1.style.display = 'none';
-        //     btn_2.style.display = 'inline';
 
         editarProducto: function () {
             var codigo = $("#codigo").val();
@@ -105,13 +104,14 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-producto").empty();
+                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                     producto.limpiar();
                 }
             });
         },
         obtenerPorId: function (id) {
+
 
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
@@ -165,7 +165,7 @@ var producto = function () {
                     $(objListado).each(function (i, obj) {
                         var area = '';
                         if (obj.estado == 1) {
-                            area = '<option value="' + obj.id + '">' + obj.nombre+ '</option>';
+                            area = '<option value="' + obj.id + '">' + obj.nombre + '</option>';
 
                             $("#idarea").append(area);
                         }
@@ -175,54 +175,14 @@ var producto = function () {
             })
 
         },
-        en_guardar: function(){
+        en_guardar: function () {
             document.getElementById("idarea").disabled = false;
             document.getElementById("codigo").disabled = false;
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
-        },
-        obtenerPorNombre: function() {
-            $("#lst-producto").empty();
-
-            var nombrePro = $("#nombrePro").val();
-
-            $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Producto/buscarProductoPorNombre2.php",
-                method: "GET",
-                data: {
-                    nombrePro: nombrePro
-                },
-                timeout: 0,
-                success: function (response) {
-
-                 
-                    console.log(response);
-
-
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-                        var producto = '';
-                        producto += '<tr>';
-                        producto += '<td>' + obj.codigo + '</td>';
-                        producto += '<td>' + obj.nombre + '</td>';
-                        producto += '<td>' + obj.cantidad + '</td>';
-                        producto += '<td>' + obj.precio + '</td>';
-                        producto += '<td>' + obj.talla + '</td>';
-                        if (obj.estado == 1) {
-                            producto += '<td><span class="badge bg-success">Activo</span></td>';
-                        } else {
-                            producto += '<td><span class="badge bg-danger">Inactive</span></td>';
-                        }
-                        producto += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarProducto" onclick="producto.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
-                            '<button class="btn btn-outline-danger" onclick="producto.eliminarProducto(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
-                        producto += '</tr>';
-
-                        $("#lst-producto").append(producto);
-                    });
-                }
-            })
         }
+
     }
 }();
