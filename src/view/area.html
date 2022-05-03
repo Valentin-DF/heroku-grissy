@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
     <style>
         table.dataTable td {
             padding: 15px 8px;
@@ -37,7 +37,7 @@
                             <img src="assets/images/logo/logo.png" alt="Logo" srcset="">
                         </div>
                         <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="sidebar-hide" href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -127,12 +127,12 @@
 
                     </ul>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button aria-label="sidebar"  type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+                <a  aria-label="burger" href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
@@ -143,7 +143,15 @@
                             <h3>Area</h3>
                             <p class="text-subtitle text-muted">Lista general de las areas de la empresa</p>
                         </div>
-
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="menu.html">Menu</a></li>
+                                    <li class="breadcrumb-item " aria-current="page">Administracion</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Area</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
                 </div>
 
@@ -153,12 +161,10 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                        <button class="btn icon icon-left" data-bs-toggle="modal"
-                                            data-bs-target="#agregarArea">
-                                            <img src="assets/images/boton-agregar.png" width="200" height="200">
-                                            <h4 class="card-title mb-3">AGREGAR</h4>
-                                        </button>
+                                    <div class="card-header">
+                                        <button class="btn btn-outline-success" data-bs-toggle="modal" type="button" onclick="area.en_guardar()"
+                                            data-bs-target="#agregarArea"><span
+                                                class="fa-fw select-all fas"></span>Agregar</button>
                                     </div>
                                     <div class="row gallery " id="lst-area">
 
@@ -185,7 +191,7 @@
 
     <!--AGREGAR AREA EN UN MODAL-->
     <div class="modal fade text-left" id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-    data-bs-backdrop="false" aria-hidden="true">
+        data-bs-backdrop="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -224,17 +230,18 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal" id="cancelar"
+                            onclick="area.limpiar()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Cancelar</span>
                         </button>
-                        <button type="button" class="btn btn-outline-primary"
-                            data-bs-dismiss="modal" id="guardar" onclick="area.editarArea()">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar"
+                            onclick="area.editarArea()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Editar</span>
                         </button>
-                        <button type="button" class="btn btn-outline-primary"
-                            data-bs-dismiss="modal" id="guardar" onclick="area.guardarArea()">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
+                            onclick="area.guardarArea()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Guardar</span>
                         </button>
@@ -247,7 +254,7 @@
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendors/jquery/jquery.min.js"></script>
-    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <script src="assets/vendors/fontawesome/js/all.min.js"></script>
     <script src="assets/js/mazer.js"></script>
 </body>
 <!-- Javascript -->

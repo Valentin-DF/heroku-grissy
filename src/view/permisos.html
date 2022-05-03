@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+    <style>
+        table.dataTable td {
+            padding: 15px 8px;
+        }
+
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <title>Grissy</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <img src="assets/images/logo/logo.png" alt="Logo">
+                        </div>
+                        <div class="toggler">
+                            <a aria-label="Read" href="#" class="sidebar-hide d-xl-none d-block"><i
+                                    class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-menu">
+                    <ul class="menu">
+
+                        <li class="sidebar-item  ">
+                            <a href="menu.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Menu</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item active has-sub">
+                            <a href="" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Administracion</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item ">
+                                    <a href="personal.html">Personal</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="producto.html">Producto</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="cliente.html">Cliente</a>
+                                </li>
+                                <li class="submenu-item">
+                                    <a href="area.html">Area</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="" class='sidebar-link'>
+                                <i class="bi bi-pentagon-fill"></i>
+                                <span>Gestor</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="venta.html">Venta</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="compra.html">Compra</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="" class='sidebar-link'>
+                                <i class="bi bi-egg-fill"></i>
+                                <span>Almacen</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="">En proceso </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">En proceso </a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">En proceso </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="" class='sidebar-link'>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                <span>Reporte</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="">En proceso</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="">En proceso</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="" class='sidebar-link'>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                <span>Configuraciones</span>
+                            </a>
+                            <ul class="submenu active">
+                                <li class="submenu-item active">
+                                    <a href="permisos.html">Permisos</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <button aria-label="Name" type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+
+        <div id="main">
+            <header class="mb-3">
+                <a aria-label="Read" href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-6 col-md-6 order-md-1 order-last">
+                            <h3>Permisos</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Tables start -->
+                <section class="section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body ">
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="lst-personal">Personal</label>
+                                        <select class="form-select" id="lst-personal" oninput="permisos.seleccionar();">
+                                            <option value="0" selected>Seleccionar</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="container" style="margin-top: 10px;" id="contenido">
+                                        <div class="row align-items-start">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <h5>ADMINISTRACION</h5>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyCliente" value="0"
+                                                                aria-label="p_grissyCliente"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for=" p_grissyCliente">Cliente</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyPersonal" value="0"
+                                                                aria-label="p_grissyPersonal"
+                                                                class="form-check-input form-check-primary form-check-glow"
+                                                                <label for=" p_grissyPersonal">Personal</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyArea" value="0"
+                                                                aria-label="p_grissyArea"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for=" p_grissyArea">Area</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyProductoEmp" value="0"
+                                                                aria-label="p_grissyProductoEmp"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for=" p_grissyProductoEmp">Producto Empresa</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyProveedor" value="0"
+                                                                aria-label="p_grissyProveedor"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for=" p_grissyProveedor">Proveedor</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+                                                <div class="row">
+                                                    <h5>GESTOR</h5>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyVenta" value="0"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for="p_grissyVenta">Venta</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <h5>CONFIGURACIONES</h5>
+
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="checkbox" id="p_grissyConfiguraciones"
+                                                                value="0"
+                                                                class="form-check-input form-check-primary form-check-glow">
+                                                            <label for="p_grissyConfiguraciones">Configuraciones</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-outline-primary"
+                                                data-bs-dismiss="modal" id="guardar"
+                                                onclick="permisos.guardarCambios()">
+                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">Guardar Cambios</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+                <!-- Basic Tables end -->
+            </div>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Grissy</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Moda & Diseño del Perú <span class="text-danger"></span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
+</body>
+<!-- Javascript -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="scripts/permisos.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        permisos.obtenerListaPersonal();
+        permisos.desabilitar();
+
+    });
+</script>
+
+</html>

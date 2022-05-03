@@ -44,10 +44,17 @@ var area = function () {
                         area += '            </div>';
                         area += '        </div>';
                         area += '       <div class="modal-footer" >';
-                        area += '           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#agregarArea" onclick="area.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> Editar </button>';
-                        area += '           <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="area.reintegrarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Activar </button>';
-                        area += '           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="area.eliminarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Desactivar </button>';
-                        area += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
+                        if (obj.estado == 1) {
+                            area += '           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#agregarArea" onclick="area.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> Editar </button>';
+                            // area += '           <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="area.reintegrarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Activar </button>';
+                            area += '           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="area.eliminarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Desactivar </button>';
+                            area += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
+                        } else {
+                            // area += '           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#agregarArea" onclick="area.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> Editar </button>';
+                            area += '           <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="area.reintegrarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Activar </button>';
+                            // area += '           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="area.eliminarArea(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> Desactivar </button>';
+                            area += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
+                        }
                         area += '       </div>';
                         area += '    </div>';
                         area += '</div>';
@@ -98,7 +105,13 @@ var area = function () {
                 }
             });
         },
-        obtenerPorId: function(id) {
+        obtenerPorId: function (id) {
+            document.getElementById("codigo").disabled = true;
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'inline';
+            btn_1.style.display = 'none';
+
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Area/buscarAreaPorId.php",
                 method: "GET",
@@ -160,11 +173,18 @@ var area = function () {
                 }
             });
         },
-        limpiar: function(){
+        limpiar: function () {
             $("#codigo").val("");
             $("#nombre").val("");
             $("#foto").val("");
             $("#descripcion").val("");
+        },
+        en_guardar: function () {
+            document.getElementById("codigo").disabled = false;
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'none';
+            btn_1.style.display = 'inline';
         }
 
     }

@@ -127,7 +127,7 @@
 
                     </ul>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
@@ -152,7 +152,7 @@
                     <div class="card">
                         <div class="card-header">
                             Detalle
-                            <button class="btn btn-outline-success" data-bs-toggle="modal"
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" onclick="producto.en_guardar()"
                                 data-bs-target="#agregarProducto"><span class="fa-fw select-all fas"></span>
                                 Agregar</button>
                         </div>
@@ -235,6 +235,13 @@
                                 <input type="text" id="precio" class="form-control " placeholder="Precio">
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="idarea">Area</label>
+                                <select class="form-control form-select" id="idarea">
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
@@ -271,7 +278,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         producto.obtenerListaProductos();
-
+        producto.obtenerListaArea();
     });
 </script>
 

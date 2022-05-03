@@ -9,7 +9,7 @@ var producto = function () {
                 success: function (response) {
 
                     console.log(response);
-                    
+
 
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
@@ -36,13 +36,13 @@ var producto = function () {
 
         },
         guardarProducto: function () {
-
+            document.getElementById("idarea").disabled = false;
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var talla = $("#talla").val();
             var cantidad = $("#cantidad").val();
             var precio = $("#precio").val();
-            var idArea = 1;
+            var idArea = $("#idarea").val();
             var estado = 1;
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Producto/guardarProducto.php',
@@ -56,7 +56,7 @@ var producto = function () {
                     estado: estado,
                     idArea: idArea
                 },
-                complete: function (response) { 
+                complete: function (response) {
                     console.log(response);
                     $("#lst-producto").empty();
                     producto.obtenerListaProductos();
@@ -71,13 +71,21 @@ var producto = function () {
                 data: {
                     id: id
                 },
-                complete: function (response) { 
+                complete: function (response) {
                     console.log(response);
                     $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                 }
             });
         },
+
+        // var btn_1 = document.getElementById('btn-1');
+        // var btn_2 = document.getElementById('btn-2');
+        
+        // function mostrarBoton () {
+        //     btn_1.style.display = 'none';
+        //     btn_2.style.display = 'inline';
+
         editarProducto: function () {
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
@@ -93,7 +101,8 @@ var producto = function () {
                     nombre: nombre,
                     talla: talla,
                     cantidad: cantidad,
-                    precio: precio
+                    precio: precio,
+
                 },
                 complete: function (response) {
                     console.log(response);
@@ -103,7 +112,14 @@ var producto = function () {
                 }
             });
         },
-        obtenerPorId: function(id) {
+        obtenerPorId: function (id) {
+
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'inline';
+            btn_1.style.display = 'none';
+
+            document.getElementById("idarea").disabled = true;
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Producto/buscarProductoPorId.php",
                 method: "GET",
@@ -123,17 +139,48 @@ var producto = function () {
                         $("#talla").val(obj.talla);
                         $("#cantidad").val(obj.cantidad);
                         $("#precio").val(obj.precio);
+                        $("#idarea").val(obj.idarea);
+
 
                     });
                 }
             })
         },
-        limpiar: function(){
+        limpiar: function () {
             $("#codigo").val("");
             $("#nombre").val("");
             $("#talla").val("");
             $("#cantidad").val("");
             $("#precio").val("");
+        },
+        obtenerListaArea: function () {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Area/obtenerListaArea.php",
+                method: "GET",
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        var area = '';
+                        if (obj.estado == 1) {
+                            area = '<option value="' + obj.id + '">' + obj.nombre+ '</option>';
+
+                            $("#idarea").append(area);
+                        }
+
+                    });
+                }
+            })
+
+        },
+        en_guardar: function(){
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'none';
+            btn_1.style.display = 'inline';
         }
     }
 }();

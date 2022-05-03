@@ -142,7 +142,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-6 col-md-6 order-md-1 order-last">
-                            <h3></h3>
+                            <h3>Venta</h3>
                         </div>
                         <div class="col-3 col-md-3 order-md-1 order-last">
                             <input type="text" class="form-control" placeholder="Documento" id="documento"
@@ -163,11 +163,6 @@
                             <div class="card">
                                 <div class="card-body ">
 
-                                    <div class="divider">
-                                        <div class="divider-text">
-                                            <h5 class="text-center">Venta</h5>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="input-group">
@@ -200,21 +195,25 @@
                                         </div>
                                     </div>
 
-
-                                    <hr>
-                                    <div class="row">
+                                    <div class="row" style="margin-top: 10px;">
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" placeholder="Nombre del producto"
-                                                id="nombrePro" aria-label="text" oninput="venta.obtenerPorNombre()">
+                                            <div class="input-group">
+                                                <div class="input-group-text">
+                                                    <label class="form-check-label">Producto</label>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Nombre del producto" id="nombrePro" aria-label="text"
+                                                    oninput="venta.obtenerPorNombre()">
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="row" style="margin-top: 10px;">
+                                    <div class="row" style="margin-top: 10px;" id="tabla-producto">
                                         <div class="col-sm-12">
                                             <table class="table table-bordered mb-0" id="table1">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
+                                                        <th>#</th>
                                                         <th>Codigo</th>
                                                         <th>Nombre</th>
                                                         <th>Cantidad</th>

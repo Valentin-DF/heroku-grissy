@@ -34,10 +34,10 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <img src="assets/images/logo/logo.png" alt="Logo" srcset="">
+                            <img src="assets/images/logo/logo.png" alt="Logo">
                         </div>
                         <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="sidebar-hides" href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -127,12 +127,13 @@
 
                     </ul>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button class="sidebar-toggler btn x" type="button" aria-labelledby="sidebar"><i
+                        data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+                <a aria-label="btn-burge" href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
@@ -159,7 +160,7 @@
                     <div class="card">
                         <div class="card-header">
                             Detalle
-                            <button class="btn btn-outline-success" data-bs-toggle="modal"
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
                                 data-bs-target="#agregarCliente"><span class="fa-fw select-all fas"></span>
                                 Agregar</button>
                         </div>
