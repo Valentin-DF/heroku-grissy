@@ -157,24 +157,25 @@
                                             class="fa-fw select-all fas"></span>
                                         Agregar</button>
                                 </div>
-                                <div class="col-3 col-md-3 order-md-1 order-last">
+                                <!-- <div class="col-3 col-md-3 order-md-1 order-last">
                                     <div class="input-group">
                                         <span class="input-group-text">Buscar</span>
                                         <input type="text" class="form-control" id="documento"
                                             aria-describedby="buscardocumento" aria-label="buscar"
                                             oninput="cliente.buscarPorDocumentoIdentidad()">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table " id="table1">
+                            <table class="table " id="example" style="width:100%" >
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Doc. Identidad</th>
                                         <th>Nombre</th>
-                                        <th>Apellido</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
                                         <th>Fecha Registro</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
@@ -332,6 +333,17 @@
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
+<script src="scripts/producto.js"></script>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+    </script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+</script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+</script>
 <script src="scripts/cliente.js"></script>
 
 <script type="text/javascript">

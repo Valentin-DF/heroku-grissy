@@ -12,7 +12,7 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response.responseJSON);
-                    $("#codigo").val("D-"+response.responseJSON.dni);
+                    $("#codigo").val("D-" + response.responseJSON.dni);
                     $("#nombre").val(response.responseJSON.nombres);
                     $("#apellidoPaterno").val(response.responseJSON.apellidoPaterno);
                     $("#apellidoMaterno").val(response.responseJSON.apellidoMaterno);
@@ -31,7 +31,7 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response.responseJSON);
-                    $("#codigo").val("R-"+response.responseJSON.ruc);
+                    $("#codigo").val("R-" + response.responseJSON.ruc);
                     $("#nombre").val(response.responseJSON.razonSocial);
                     $("#condicionSunat").val(response.responseJSON.condicion);
                     $("#estadoSunat").val(response.responseJSON.estado);
@@ -41,39 +41,44 @@ var cliente = function () {
         },
         obtenerListaCliente: function () {
 
-            $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Cliente/obtenerListaClientes.php",
-                method: "GET",
-                timeout: 0,
-                success: function (response) {
+            var table = $('#example').DataTable({
+                "ajax": {
+                    "method": "GET",
+                    "url": "http://localhost:8080/Grissy/controllers/Cliente/obtenerListaClientes.php",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "codigo" },
+                    { "data": "docIdentidad" },
+                    { "data": "nombre" },
+                    { "data": "apellidoPaterno" },
+                    { "data": "apellidoMaterno" },
+                    { "data": "fechaRegistro" },
+                    { "data": "estado" },
+                    { "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                ],
 
-                    console.log(response);
-
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-
-                        var cliente = '';
-                        cliente += '<tr id="data-'+obj.id+'">';
-                        cliente += '<td>' + obj.codigo + '</td>';
-                        cliente += '<td>' + obj.docIdentidad + '</td>';
-                        cliente += '<td>' + obj.nombre + '</td>';
-                        cliente += '<td>' + obj.apellidoPaterno+' '+obj.apellidoMaterno+'</td>';
-                        cliente += '<td>' + obj.fechaRegistro + '</td>';
-                        if (obj.estado == 1) {
-                            cliente += '<td><span class="badge bg-success">Activo</span></td>';
-                        } else {
-                            cliente += '<td><span class="badge bg-danger">Inactive</span></td>';
-                        }
-                        cliente += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente" onclick="cliente.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
-                            '<button class="btn btn-outline-danger" onclick="cliente.eliminarCliente(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
-                        cliente += '</tr>';
-
-                        $("#lst-cliente").append(cliente);
-                    });
-                }
             });
-
+            this.obtener_data_editar("#example tbody", table);
+            this.obtener_data_eliminar("#example tbody", table);
         },
+
+        obtener_data_editar: function (tbody, table) {
+            $(tbody).on("click", "button.editar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                cliente.obtenerPorId(data.id);
+            });
+        },
+        obtener_data_eliminar: function (tbody, table) {
+            $(tbody).on("click", "button.eliminar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                cliente.eliminarCliente(data.id);
+                cliente.obtenerListaCliente();
+            });
+        },
+
         guardarCliente: function () {
             var apellidoPaterno = $("#apellidoPaterno").val();
             var apellidoMaterno = $("#apellidoMaterno").val();
@@ -101,7 +106,7 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-cliente").empty();
+                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                     cliente.limpiar();
 
@@ -117,7 +122,7 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-cliente").empty();
+                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                 }
             });
@@ -149,13 +154,13 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    $("#lst-cliente").empty();
+                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                     cliente.limpiar();
                 }
             });
         },
-        obtenerPorId: function(id) {
+        obtenerPorId: function (id) {
             document.getElementById("dni").style.display = 'none';
             document.getElementById("ruc").style.display = 'none';
             var btn_2 = document.getElementById('editar');
@@ -190,7 +195,7 @@ var cliente = function () {
                 }
             })
         },
-        limpiar: function(){
+        limpiar: function () {
             $("#apellidoPaterno").val("");
             $("#apellidoMaterno").val("");
             $("#codigo").val("");
@@ -219,20 +224,20 @@ var cliente = function () {
                     if (radios[i].value == "dni") {
                         // console.log("dni: ", doc);
                         // if (doc.length == 8) {
-                            this.consultarDNI();
-                        
+                        this.consultarDNI();
+
                     }
                     if (radios[i].value == "ruc") {
                         // console.log("ruc: ", doc);
                         // if (doc.length == 11) {
-                            this.consultarRUC();
+                        this.consultarRUC();
                         // }
                     }
                     break;
                 }
             }
         },
-        oninputDni_Ruc: function(){
+        oninputDni_Ruc: function () {
 
             const radios = document.getElementsByName('esDocumento');
             console.log(radios);
@@ -255,44 +260,7 @@ var cliente = function () {
                     break;
                 }
             }
-        },
-        buscarPorDocumentoIdentidad: function(){
-            $("#lst-cliente").empty();
-            var documento =  $("#documento").val();
-            $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorDocIdentidad2.php",
-                method: "GET",
-                timeout: 0,
-                data:{
-                    docIdentidad: documento
-                },
-                success: function (response) {
-
-                    console.log(response);
-
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-
-                        var cliente = '';
-                        cliente += '<tr id="data-'+obj.id+'">';
-                        cliente += '<td>' + obj.codigo + '</td>';
-                        cliente += '<td>' + obj.docIdentidad + '</td>';
-                        cliente += '<td>' + obj.nombre + '</td>';
-                        cliente += '<td>' + obj.apellidoPaterno+' '+obj.apellidoMaterno+'</td>';
-                        cliente += '<td>' + obj.fechaRegistro + '</td>';
-                        if (obj.estado == 1) {
-                            cliente += '<td><span class="badge bg-success">Activo</span></td>';
-                        } else {
-                            cliente += '<td><span class="badge bg-danger">Inactive</span></td>';
-                        }
-                        cliente += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente" onclick="cliente.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
-                            '<button class="btn btn-outline-danger" onclick="cliente.eliminarCliente(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
-                        cliente += '</tr>';
-
-                        $("#lst-cliente").append(cliente);
-                    });
-                }
-            });
         }
+
     }
 }();
