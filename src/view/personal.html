@@ -24,10 +24,10 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="menu.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                            <a href="menu.html"><img src="assets/images/logo/logo.png" alt="Logo" ></a>
                         </div>
                         <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="sidebar-hide" href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -117,12 +117,12 @@
                     </ul>
                 </div>
 
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button aria-label="sidebar"  type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+                <a  aria-label="burger" href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
@@ -132,6 +132,15 @@
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>Personal</h3>
                             <p class="text-subtitle text-muted">Lista general de personal</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item " aria-current="page">Administracion</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a
+                                            href="personal.html">Personal</a></li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -143,13 +152,19 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                            <button class="btn btn-outline-success" data-bs-toggle="modal" type="button" onclick="personal.en_guardar()"
+                                                data-bs-target="#agregarPersonal"><span
+                                                    class="fa-fw select-all fas"></span>Agregar</button>
+                                        </div>
+                                    <!-- <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
                                         <button class="btn icon icon-left" data-bs-toggle="modal"
                                             data-bs-target="#agregarPersonal">
                                             <img src="assets/images/boton-agregar.png" width="200" height="200">
                                             <h4 class="card-title">AGREGAR</h4>
                                         </button>
-                                    </div>
+                                    </div> -->
                                     <div class="row gallery" id="lst-personal">
 
                                     </div>
@@ -176,7 +191,7 @@
 
     <!--AGREGAR PERSONAL EN UN MODAL-->
     <div class="modal fade text-left" id="agregarPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        data-bs-backdrop="false" aria-hidden="true">
+        data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -246,7 +261,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="contrasena">Contraseña</label>
-                                <input type="text" id="contrasena" class="form-control " placeholder="Contraseña">
+                                <input type="password" id="contrasena" class="form-control " placeholder="Contraseña">
                             </div>
                         </div>
                     </div>
@@ -310,21 +325,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendors/jquery/jquery.min.js"></script>
@@ -338,6 +338,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         personal.obtenerListaPersonal();
+        document.getElementById("codigo").disabled = true;
+
     });
 </script>
 

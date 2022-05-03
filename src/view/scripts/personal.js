@@ -83,6 +83,7 @@ var personal = function () {
                 },
                 complete: function (response) {
                     console.log(response.responseJSON);
+                    $("#codigo").val('D-'+response.responseJSON.dni);
                     $("#nombre").val(response.responseJSON.nombres);
                     $("#apellidoPaterno").val(response.responseJSON.apellidoPaterno);
                     $("#apellidoMaterno").val(response.responseJSON.apellidoMaterno);
@@ -143,6 +144,10 @@ var personal = function () {
             });
         },
         obtenerPorId: function(id) {
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'inline';
+            btn_1.style.display = 'none';
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Personal/buscarPersonalPorId.php",
                 method: "GET",
@@ -175,6 +180,7 @@ var personal = function () {
             })
         },
         editarPersonal: function () {
+
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var apellidoPaterno = $("#apellidoPaterno").val();
@@ -224,6 +230,13 @@ var personal = function () {
             $("#cargo").val("");
             $("#sueldo").val("");
             $("#contacto").val("");
+        },
+        en_guardar: function () {
+            this.limpiar();
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'none';
+            btn_1.style.display = 'inline';
         }
         
     }
