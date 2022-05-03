@@ -1,7 +1,7 @@
 var cliente = function () {
 
     return {
-        consultarDocIdentidad: function () {
+        consultarDNI: function () {
             var docIdentidad = $("#docIdentidad").val();
 
             $.ajax({
@@ -156,6 +156,12 @@ var cliente = function () {
             });
         },
         obtenerPorId: function(id) {
+            document.getElementById("dni").style.display = 'none';
+            document.getElementById("ruc").style.display = 'none';
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'inline';
+            btn_1.style.display = 'none';
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorId.php",
                 method: "GET",
@@ -195,6 +201,98 @@ var cliente = function () {
             $("#nombre").val("");
             $("#telefono").val("");
         },
+        en_guardar: function () {
+            document.getElementById("dni").style.display = 'inline';
+            document.getElementById("ruc").style.display = 'inline';
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'none';
+            btn_1.style.display = 'inline';
+            this.limpiar();
+        },
+        consultarDocIdentidad: function () {
 
+            const radios = document.getElementsByName('esDocumento');
+            console.log(radios);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    if (radios[i].value == "dni") {
+                        // console.log("dni: ", doc);
+                        // if (doc.length == 8) {
+                            this.consultarDNI();
+                        
+                    }
+                    if (radios[i].value == "ruc") {
+                        // console.log("ruc: ", doc);
+                        // if (doc.length == 11) {
+                            this.consultarRUC();
+                        // }
+                    }
+                    break;
+                }
+            }
+        },
+        oninputDni_Ruc: function(){
+
+            const radios = document.getElementsByName('esDocumento');
+            console.log(radios);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    if (radios[i].value == "dni") {
+                        document.getElementById("apellidoPaterno").disabled = false;
+                        document.getElementById("apellidoMaterno").disabled = false;
+                        document.getElementById("estadoSunat").disabled = true;
+                        document.getElementById("condicionSunat").disabled = true;
+                        this.limpiar();
+                    }
+                    if (radios[i].value == "ruc") {
+                        document.getElementById("apellidoPaterno").disabled = true;
+                        document.getElementById("apellidoMaterno").disabled = true;
+                        document.getElementById("estadoSunat").disabled = false;
+                        document.getElementById("condicionSunat").disabled = false;
+                        this.limpiar();
+                    }
+                    break;
+                }
+            }
+        },
+        buscarPorDocumentoIdentidad: function(){
+            $("#lst-cliente").empty();
+            var documento =  $("#documento").val();
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorDocIdentidad2.php",
+                method: "GET",
+                timeout: 0,
+                data:{
+                    docIdentidad: documento
+                },
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        var cliente = '';
+                        cliente += '<tr id="data-'+obj.id+'">';
+                        cliente += '<td>' + obj.codigo + '</td>';
+                        cliente += '<td>' + obj.docIdentidad + '</td>';
+                        cliente += '<td>' + obj.nombre + '</td>';
+                        cliente += '<td>' + obj.apellidoPaterno+' '+obj.apellidoMaterno+'</td>';
+                        cliente += '<td>' + obj.fechaRegistro + '</td>';
+                        if (obj.estado == 1) {
+                            cliente += '<td><span class="badge bg-success">Activo</span></td>';
+                        } else {
+                            cliente += '<td><span class="badge bg-danger">Inactive</span></td>';
+                        }
+                        cliente += '<td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#agregarCliente" onclick="cliente.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span></button>' +
+                            '<button class="btn btn-outline-danger" onclick="cliente.eliminarCliente(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button></td>';
+                        cliente += '</tr>';
+
+                        $("#lst-cliente").append(cliente);
+                    });
+                }
+            });
+        }
     }
 }();

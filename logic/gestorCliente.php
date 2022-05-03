@@ -23,5 +23,9 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
     function buscarClientePorDocIdentidad($docIdentidad){
         return ObtenerClientePorDocIdentidad($docIdentidad);
     }
+    
+    function buscarClientePorDocIdentidad2($docIdentidad){
+        return ObtenerClientePorDocIdentidad2($docIdentidad);
+    }
 
 ?>

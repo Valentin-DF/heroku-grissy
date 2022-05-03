@@ -9,20 +9,10 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
-    <style>
-        table.dataTable td {
-            padding: 15px 8px;
-        }
-
-        .fontawesome-icons .the-icon svg {
-            font-size: 24px;
-        }
-    </style>
-
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
     <title>Grissy</title>
 
 </head>
@@ -37,7 +27,8 @@
                             <img src="assets/images/logo/logo.png" alt="Logo">
                         </div>
                         <div class="toggler">
-                            <a aria-label="sidebar-hides" href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="sidebar-hides" href="#" class="sidebar-hide d-xl-none d-block"><i
+                                    class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -147,9 +138,9 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="menu.html">Menu</a></li>
                                     <li class="breadcrumb-item " aria-current="page">Administracion</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Cliente</li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a
+                                            href="cliente.html">Cliente</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -159,10 +150,22 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Detalle
-                            <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
-                                data-bs-target="#agregarCliente"><span class="fa-fw select-all fas"></span>
-                                Agregar</button>
+                            <div class="row">
+                                <div class="col-9 col-md-9 order-md-1 order-last">
+                                    <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
+                                        onclick="cliente.en_guardar()" data-bs-target="#agregarCliente"><span
+                                            class="fa-fw select-all fas"></span>
+                                        Agregar</button>
+                                </div>
+                                <div class="col-3 col-md-3 order-md-1 order-last">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Buscar</span>
+                                        <input type="text" class="form-control" id="documento"
+                                            aria-describedby="buscardocumento" aria-label="buscar"
+                                            oninput="cliente.buscarPorDocumentoIdentidad()">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <table class="table " id="table1">
@@ -199,15 +202,29 @@
             </footer>
         </div>
     </div>
-
+    <!--  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
     <!--AGREGAR AREA EN UN MODAL-->
     <div class="modal fade text-left" id="agregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        data-bs-toggle="modal" data-bs-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        data-bs-backdrop="stactic" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Cliente</h5>
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni"
+                                onclick="cliente.oninputDni_Ruc()" checked>
+                            <label class="form-check-label" for="dni"> DNI </label>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc"
+                                onclick="cliente.oninputDni_Ruc()">
+                            <label class="form-check-label" for="ruc"> RUC </label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-3">
@@ -320,7 +337,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         cliente.obtenerListaCliente();
-
+        document.getElementById("codigo").disabled = true;
     });
 </script>
 
