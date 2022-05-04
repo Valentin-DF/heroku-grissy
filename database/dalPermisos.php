@@ -41,7 +41,7 @@
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "iiiiiiii", $idpersonal,$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor
+            "siiiiiii", $idpersonal,$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor
         );
 
         if ($stmt->execute()) {
@@ -63,7 +63,7 @@
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "iiiiiiii",$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor,$idpersonal
+            "iiiiiiis",$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor,$idpersonal
         );
 
         if ($stmt->execute()) {
@@ -83,7 +83,7 @@
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
-            "i",
+            "s",
             $idpersonal
         );
         $stmt->execute();

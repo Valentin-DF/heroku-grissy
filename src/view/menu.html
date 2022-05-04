@@ -4,19 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-
-    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-
-
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
     <title>Grissy</title>
 
 </head>
@@ -29,7 +25,7 @@
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a href="menu.html"><img src="assets/images/logo/logo.png" class="img-fluid" srcset="" aria-label="logo"></a>
+                            <a href="menu.html"><img src="assets/images/logo/logo.png" class="img-fluid"  aria-label="logo"></a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">
@@ -85,19 +81,19 @@
                                 <div class="submenu ">
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
-                                            <li class="submenu-item  ">
+                                            <li class="personal submenu-item  ">
                                                 <a href="personal.html" class='submenu-link'>Personal</a>
                                             </li>
-                                            <li class="submenu-item  ">
+                                            <li class="producto submenu-item  ">
                                                 <a href="producto.html" class='submenu-link'>Producto Empresa</a>
                                             </li>
-                                            <li class="submenu-item  ">
+                                            <li class="cliente submenu-item  ">
                                                 <a href="cliente.html" class='submenu-link'>Cliente</a>
                                             </li>
-                                            <li class="submenu-item  ">
+                                            <li class="area submenu-item  ">
                                                 <a href="area.html" class='submenu-link'>Area</a>
                                             </li>
-                                            <li class="submenu-item  ">
+                                            <li class="proveedor submenu-item  ">
                                                 <a href="proveedor.html" class='submenu-link'>Proveedor</a>
                                             </li>
                                         </ul>
@@ -112,12 +108,11 @@
                                 <div class="submenu ">
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
-                                            <li class="submenu-item  ">
-                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                            <li class="venta submenu-item  ">
+                                                <a href="venta.html" class='submenu-link'>Venta</a>
                                             </li>
-                                            <li class="submenu-item  ">
-                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
-                                                    Column</a>
+                                            <li class="compra submenu-item  ">
+                                                <a href="compra.html" class='submenu-link'>Compra</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -132,11 +127,13 @@
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
                                             <li class="submenu-item  ">
-                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                                <a href="#" class='submenu-link'>En proceso</a>
                                             </li>
                                             <li class="submenu-item  ">
-                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
-                                                    Column</a>
+                                                <a href="#" class='submenu-link'>En proceso</a>
+                                            </li>
+                                            <li class="submenu-item  ">
+                                                <a href="#" class='submenu-link'>En proceso</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -151,17 +148,30 @@
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
                                             <li class="submenu-item  ">
-                                                <a href="layout-default.html" class='submenu-link'>Default Layout</a>
+                                                <a href="#" class='submenu-link'>En proceso</a>
                                             </li>
                                             <li class="submenu-item  ">
-                                                <a href="layout-vertical-1-column.html" class='submenu-link'>1
-                                                    Column</a>
+                                                <a href="#" class='submenu-link'>En proceso</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-
+                            <li class="configuraciones menu-item  has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-table"></i>
+                                    <span>Configuraciones</span>
+                                </a>
+                                <div class="submenu ">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item  ">
+                                                <a href="permisos.html" class='submenu-link'>Permisos</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -171,16 +181,22 @@
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
-
-    <script src="assets/js/pages/horizontal-layout.js"></script>
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/fontawesome/js/all.min.js"></script>
+    <script src="assets/js/mazer.js"></script>
 </body>
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+</script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js">
+</script>
+
 <script src="scripts/menu.js"></script>
+<script src="scripts/permisos.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -190,7 +206,8 @@
         $('#nombreDelUsuario').replaceWith('<h6 class="user-dropdown-name text-end text-break text-capitalize" id="nombreDelUsuario">' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</h6>');
         $('#fotoDelUsuario').replaceWith('<img class="img-fluid" src="' + obj.foto + '" alt="Avatar" id="fotoDelUsuario">');
         $('#cargoDelUsuario').replaceWith('<p class="user-dropdown-status text-sm text-muted text-end" id="cargoDelUsuario">' + obj.cargo + '</p>');
-
+        permisos.configurarAcceso(obj.codigo);
+        
     });
 </script>
 <script>

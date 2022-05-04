@@ -14,7 +14,7 @@ var permisos = function () {
                     $(objListado).each(function (i, obj) {
                         if (obj.estado == 1) {
                             var personal = '';
-                            personal = '<option value="' + obj.id + '">' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</option>';
+                            personal = '<option value="' + obj.codigo + '">' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</option>';
 
                             $("#lst-personal").append(personal);
                         }

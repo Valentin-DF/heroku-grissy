@@ -299,10 +299,10 @@
                                 <label for="cargo">Cargo</label>
                                 <fieldset class="form-group">
                                     <select class="form-select" id="cargo">
-                                        <option>Gerente</option>
-                                        <option>Vendedor</option>
-                                        <option>Alamcenero</option>
-                                        <option>Administracion</option>
+                                        <option value = "0">Gerente</option>
+                                        <option value = "1">Vendedor</option>
+                                        <option value = "2">Alamcenero</option>
+                                        <option value = "3">Administracion</option>
                                     </select>
                                 </fieldset>
 
@@ -362,7 +362,7 @@
         personal.obtenerListaPersonal();
         document.getElementById("codigo").disabled = true;
 
-        permisos.configurarAcceso(obj.id);
+        permisos.configurarAcceso(obj.codigo);
     });
 </script>
 
