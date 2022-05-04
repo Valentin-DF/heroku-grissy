@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
@@ -27,7 +27,8 @@
                             <img src="assets/images/logo/logo.png" alt="Logo">
                         </div>
                         <div class="toggler">
-                            <a aria-label="sidebar-hide" href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            <a aria-label="sidebar-hide" href="#" class="sidebar-hide d-xl-none d-block"><i
+                                    class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
                 </div>
@@ -43,73 +44,84 @@
                         </li>
 
                         <li class="sidebar-item active has-sub">
-                            <a href="#" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Administracion</span>
                             </a>
                             <ul class="submenu active">
-                                <li class="submenu-item ">
+                                <li class="personal submenu-item ">
                                     <a href="personal.html">Personal</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="producto submenu-item ">
                                     <a href="producto.html">Producto</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="cliente submenu-item ">
                                     <a href="cliente.html">Cliente</a>
                                 </li>
-                                <li class="submenu-item active">
+                                <li class="area submenu-item active">
                                     <a href="area.html">Area</a>
+                                </li>
+                                <li class="proveedor submenu-item">
+                                    <a href="proveedor.html">Proveedor</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="bi bi-pentagon-fill"></i>
                                 <span>Gestor</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-chatbox.html">Chatbox</a>
+                                <li class="venta submenu-item ">
+                                    <a href="venta.html">Venta</a>
                                 </li>
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-pricing.html">Pricing</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="ui-widgets-todolist.html">To-do List</a>
+                                <li class="compra submenu-item ">
+                                    <a href="compra.html">Compra</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="bi bi-egg-fill"></i>
                                 <span>Almacen</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="ui-icons-bootstrap-icons.html">Bootstrap Icons </a>
+                                    <a href="">En proceso </a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="ui-icons-fontawesome.html">Fontawesome</a>
+                                    <a href="">En proceso </a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="ui-icons-dripicons.html">Dripicons</a>
+                                    <a href="">En proceso </a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="bi bi-bar-chart-fill"></i>
                                 <span>Reporte</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="ui-chart-chartjs.html">ChartJS</a>
+                                    <a href="">En proceso</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="ui-chart-apexcharts.html">Apexcharts</a>
+                                    <a href="">En proceso</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="configuracion sidebar-item  has-sub">
+                            <a href="" class='sidebar-link'>
+                                <span class="fa-fw select-all fas"></span>
+                                <span>Configuraciones</span>
+                            </a>
+                            <ul class="submenu">
+                                <li class="submenu-item ">
+                                    <a href="permisos.html">Permisos</a>
                                 </li>
                             </ul>
                         </li>
@@ -117,12 +129,13 @@
 
                     </ul>
                 </div>
-                <button aria-label="sidebar"  type="button" class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                <button aria-label="sidebar" type="button" class="sidebar-toggler btn x"><i
+                        data-feather="x"></i></button>
             </div>
         </div>
         <div id="main">
             <header class="mb-3">
-                <a  aria-label="burger" href="#" class="burger-btn d-block d-xl-none">
+                <a aria-label="burger" href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
@@ -137,7 +150,8 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item " aria-current="page">Administracion</li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="area.html">Area</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="area.html">Area</a>
+                                    </li>
                                 </ol>
                             </nav>
                         </div>
@@ -151,8 +165,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-header">
-                                        <button class="btn btn-outline-success" data-bs-toggle="modal" type="button" onclick="area.en_guardar()"
-                                            data-bs-target="#agregarArea"><span
+                                        <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
+                                            onclick="area.en_guardar()" data-bs-target="#agregarArea"><span
                                                 class="fa-fw select-all fas"></span>Agregar</button>
                                     </div>
                                     <div class="row gallery " id="lst-area">
@@ -249,11 +263,22 @@
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+</script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js">
+</script>
 <script src="scripts/area.js"></script>
+<script src="scripts/permisos.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        const storedToDos = localStorage.getItem("empleado");
+        const obj = JSON.parse(storedToDos);
+
         area.obtenerListaArea();
 
+        permisos.configurarAcceso(obj.id);
     });
 </script>
 

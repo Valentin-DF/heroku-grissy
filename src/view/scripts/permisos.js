@@ -128,7 +128,7 @@ var permisos = function () {
             document.getElementById("p_grissyArea").checked = 0;
             document.getElementById("p_grissyConfiguraciones").checked = 0;
         },
-        desabilitar: function() {
+        desabilitar: function () {
             document.getElementById("p_grissyCliente").disabled = true;
             document.getElementById("p_grissyPersonal").disabled = true;
             document.getElementById("p_grissyProductoEmp").disabled = true;
@@ -138,7 +138,7 @@ var permisos = function () {
             document.getElementById("p_grissyConfiguraciones").disabled = true;
             document.getElementById("guardar").disabled = true;
         },
-        habilitar: function() {
+        habilitar: function () {
             document.getElementById("p_grissyCliente").disabled = false;
             document.getElementById("p_grissyPersonal").disabled = false;
             document.getElementById("p_grissyProductoEmp").disabled = false;
@@ -147,6 +147,58 @@ var permisos = function () {
             document.getElementById("p_grissyArea").disabled = false;
             document.getElementById("p_grissyConfiguraciones").disabled = false;
             document.getElementById("guardar").disabled = false;
+        },
+
+        configurarAcceso: function (id) {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Permisos/buscarPermisosPorPersonal.php",
+                method: "GET",
+                data: {
+                    idpersonal: id
+                },
+                timeout: 0,
+                success: function (response) {
+                    console.log(response);
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+
+
+                        if (obj.p_grissyCliente == 0) {
+                            $('li .cliente').hide();
+                        } else {
+                            $('li .cliente').show();
+                        }
+                        if (obj.p_grissyPersonal == 0) {
+                            $('li .personal').hide();
+                        }else{
+                            $('li .personal').show();
+
+                        }
+                        if (obj.p_grissyProductoEmp == 0) {
+                            $('li .producto').hide();
+                        } else {
+                            $('li .producto').show();
+                        }
+                        if (obj.p_grissyProveedor == 0) {
+                            $('li .proveedor').hide();
+                        } else {
+                            $('li .proveedor').show();
+                        }
+                        if (obj.p_grissyArea == 0) {
+                            $('li .area').hide();
+                        } else {
+                            $('li .area').show();
+                        }
+                        if (obj.p_grissyConfiguraciones == 0) {
+                            $('li .configuracion').hide();
+                        } else {
+                            $('li .configuracion').show();
+                        }
+                    });
+                }
+            })
+
         },
 
     }
