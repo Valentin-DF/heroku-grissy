@@ -49,14 +49,14 @@ var cliente = function () {
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "data": "codigo" },
-                    { "data": "docIdentidad" },
-                    { "data": "nombre" },
-                    { "data": "apellidoPaterno" },
-                    { "data": "apellidoMaterno" },
-                    { "data": "fechaRegistro" },
-                    { "data": "estado" },
-                    { "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                    { "title":"Codigo","data": "codigo" },
+                    { "title":"Doc. Identidad","data": "docIdentidad" },
+                    { "title":"Nombre","data": "nombre" },
+                    { "title":"Apellido Paterno","data": "apellidoPaterno" },
+                    { "title":"Apellido Materno","data": "apellidoMaterno" },
+                    { "title":"Fecha Registro","data": "fechaRegistro" },
+                    { "title":"Estado","data": "estado" },
+                    { "title":"Acciones","defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"

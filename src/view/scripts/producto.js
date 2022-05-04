@@ -11,13 +11,13 @@ var producto = function () {
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "data": "codigo" },
-                    { "data": "nombre" },
-                    { "data": "cantidad" },
-                    { "data": "precio" },
-                    { "data": "talla" },
-                    { "data": "estado" },
-                    { "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarProducto' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                    { "title":"Codigo","data": "codigo" },
+                    { "title":"Nombre", "data": "nombre" },
+                    { "title":"Cantidad","data": "cantidad" },
+                    { "title":"Precio","data": "precio" },
+                    { "title":"Talla","data": "talla" },
+                    { "title":"Estado","data": "estado" },
+                    { "title":"Acciones","defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarProducto' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"

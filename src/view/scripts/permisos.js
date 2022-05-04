@@ -195,6 +195,11 @@ var permisos = function () {
                         } else {
                             $('li .configuracion').show();
                         }
+                        if (obj.p_grissyVenta == 0) {
+                            $('li .venta').hide();
+                        } else {
+                            $('li .venta').show();
+                        }
                     });
                 }
             })

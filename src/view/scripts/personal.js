@@ -142,6 +142,23 @@ var personal = function () {
                     personal.limpiar();
                 }
             });
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Permisos/guardarPermisos.php',
+                method: "POST",
+                data: {
+                    idpersonal: codigo,
+                    p_grissyCliente: 0,
+                    p_grissyPersonal: 0,
+                    p_grissyProductoEmp: 0,
+                    p_grissyProveedor: 0,
+                    p_grissyVenta: 0,
+                    p_grissyArea: 0,
+                    p_grissyConfiguraciones: 0
+                },
+                complete: function (response) {
+                    console.log(response);
+                }
+            });
         },
         obtenerPorId: function(id) {
             var btn_2 = document.getElementById('editar');
