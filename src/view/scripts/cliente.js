@@ -40,7 +40,8 @@ var cliente = function () {
             });
         },
         obtenerListaCliente: function () {
-
+            $('#example').DataTable().destroy();
+            $('#example').empty();
             var table = $('#example').DataTable({
                 "ajax": {
                     "method": "GET",
@@ -62,8 +63,8 @@ var cliente = function () {
                 },
 
             });
-            this.obtener_data_editar("#example tbody", table);
-            this.obtener_data_eliminar("#example tbody", table);
+            cliente.obtener_data_editar("#example tbody", table);
+            cliente.obtener_data_eliminar("#example tbody", table);
         },
 
         obtener_data_editar: function (tbody, table) {
@@ -78,7 +79,6 @@ var cliente = function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
                 cliente.eliminarCliente(data.id);
-                cliente.obtenerListaCliente();
             });
         },
 
@@ -109,7 +109,6 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                     cliente.limpiar();
 
@@ -125,7 +124,6 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                 }
             });
@@ -157,7 +155,6 @@ var cliente = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     cliente.obtenerListaCliente();
                     cliente.limpiar();
                 }

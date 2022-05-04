@@ -40,7 +40,8 @@ var proveedor = function () {
             });
         },
         obtenerListaProveedor: function () {
-
+            $('#example').DataTable().destroy();
+            $('#example').empty(); 
             var table = $('#example').DataTable({
 
                 "ajax": {
