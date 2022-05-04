@@ -43,7 +43,7 @@ var proveedor = function () {
             $('#example').DataTable().destroy();
             $('#example').empty(); 
             var table = $('#example').DataTable({
-
+                "responsive": true,
                 "ajax": {
                     "method": "GET",
                     "url": "http://localhost:8080/Grissy/controllers/Proveedor/obtenerListaProveedor.php",
@@ -111,7 +111,6 @@ var proveedor = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     proveedor.obtenerListaProveedor();
                     proveedor.limpiar();
 
@@ -127,7 +126,6 @@ var proveedor = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     proveedor.obtenerListaProveedor();
                 }
             });
@@ -159,7 +157,6 @@ var proveedor = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-cliente").empty();
                     proveedor.obtenerListaProveedor();
                     proveedor.limpiar();
                 }

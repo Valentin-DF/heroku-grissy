@@ -2,7 +2,8 @@ var producto = function () {
 
     return {
         obtenerListaProductos: function () {
-
+            $('#example').DataTable().destroy();
+            $('#example').empty();
             var table = $('#example').DataTable({
                 "ajax": {
                     "method": "GET",
@@ -40,7 +41,6 @@ var producto = function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
                 producto.eliminarProducto(data.id);
-                producto.obtenerListaProductos();
             });
         },
 
@@ -66,7 +66,6 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                     producto.limpiar();
                 }
@@ -81,7 +80,6 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                 }
             });
@@ -107,7 +105,6 @@ var producto = function () {
                 },
                 complete: function (response) {
                     console.log(response);
-                    // $("#lst-producto").empty();
                     producto.obtenerListaProductos();
                     producto.limpiar();
                 }
@@ -142,8 +139,6 @@ var producto = function () {
                         $("#cantidad").val(obj.cantidad);
                         $("#precio").val(obj.precio);
                         $("#idarea").val(obj.idarea);
-
-
                     });
                 }
             })
