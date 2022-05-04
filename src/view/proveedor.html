@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
@@ -49,17 +49,20 @@
                                 <span>Administracion</span>
                             </a>
                             <ul class="submenu active">
-                                <li class="submenu-item ">
+                                <li class="submenu-item">
                                     <a href="personal.html">Personal</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <li class="submenu-item">
                                     <a href="producto.html">Producto</a>
                                 </li>
-                                <li class="submenu-item active">
+                                <li class="submenu-item">
                                     <a href="cliente.html">Cliente</a>
                                 </li>
                                 <li class="submenu-item">
                                     <a href="area.html">Area</a>
+                                </li>
+                                <li class="submenu-item active">
+                                    <a href="proveedor.html">Proveedor</a>
                                 </li>
                             </ul>
                         </li>
@@ -132,15 +135,15 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Clientes</h3>
-                            <p class="text-subtitle text-muted">Lista general de los clientes</p>
+                            <h3>Proveedores</h3>
+                            <p class="text-subtitle text-muted">Lista de los proveedores de la empresa</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item " aria-current="page">Administracion</li>
                                     <li class="breadcrumb-item active" aria-current="page"><a
-                                            href="cliente.html">Cliente</a></li>
+                                            href="proveedor.html">Proveedor</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -153,35 +156,26 @@
                             <div class="row">
                                 <div class="col-9 col-md-9 order-md-1 order-last">
                                     <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
-                                        onclick="cliente.en_guardar()" data-bs-target="#agregarCliente"><span
+                                        onclick="proveedor.en_guardar()" data-bs-target="#agregarProveedor"><span
                                             class="fa-fw select-all fas"></span>
                                         Agregar</button>
-                                </div>
-                                <div class="col-3 col-md-3 order-md-1 order-last">
-                                    <div class="input-group">
-                                        <span class="input-group-text">Buscar</span>
-                                        <input type="text" class="form-control" id="documento"
-                                            aria-describedby="buscardocumento" aria-label="buscar"
-                                            oninput="cliente.buscarPorDocumentoIdentidad()">
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table " id="table1">
+                            <table class="table " id="example" style="width:100%" >
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Doc. Identidad</th>
                                         <th>Nombre</th>
-                                        <th>Apellido</th>
+                                        <th>Apellido Paterno</th>
+                                        <th>Apellido Materno</th>
                                         <th>Fecha Registro</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody id="lst-cliente">
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -202,24 +196,23 @@
             </footer>
         </div>
     </div>
-    <!--  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
-    <!--AGREGAR AREA EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    <!--AGREGAR PROVEEDOR EN UN MODAL-->
+    <div class="modal fade text-left" id="agregarProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
         data-bs-backdrop="stactic" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Cliente</h5>
+                    <h5 class="modal-title" id="myModalLabel1">Proveedor</h5>
                     <div class="row">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni"
-                                onclick="cliente.oninputDni_Ruc()" checked>
+                                onclick="proveddor.oninputDni_Ruc()" checked>
                             <label class="form-check-label" for="dni"> DNI </label>
 
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc"
-                                onclick="cliente.oninputDni_Ruc()">
+                                onclick="proveedor.oninputDni_Ruc()">
                             <label class="form-check-label" for="ruc"> RUC </label>
                         </div>
                     </div>
@@ -244,7 +237,7 @@
                             <div class="form-group">
                                 <label></label>
                                 <button type="button" class="form-control"
-                                    onclick="cliente.consultarDocIdentidad()">Buscar</button>
+                                    onclick="proveedor.consultarDocIdentidad()">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -309,12 +302,12 @@
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar"
-                        onclick="cliente.editarCliente()">
+                        onclick="proveedor.editarProveedor()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Editar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
-                        onclick="cliente.guardarCliente()">
+                        onclick="proveedor.guardarProveedor()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
@@ -332,12 +325,18 @@
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
+</script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js">
+</script>
 <script src="scripts/proveedor.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        proveedor.obtenerListaCliente();
-        provvedor.getElementById("codigo").disabled = true;
+        proveedor.obtenerListaProveedor();
+        document.getElementById("codigo").disabled = true;
     });
 </script>
 
