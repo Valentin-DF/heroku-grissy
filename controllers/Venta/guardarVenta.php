@@ -4,7 +4,8 @@ require_once('/xampp/htdocs/Grissy/logic/gestorVenta.php');
 
 try {
 
-    if (isset($_POST['idCliente']) && isset($_POST['total']) && isset($_POST['igv']) && isset($_POST['subTotal'])&& isset($_POST['idPersonal'])&& isset($_POST['codigo'])) {
+    if (isset($_POST['idCliente']) && isset($_POST['total']) && isset($_POST['igv']) &&
+     isset($_POST['subTotal'])&& isset($_POST['idPersonal'])&& isset($_POST['codigo'])) {
 
         $idCliente = $_POST['idCliente'];
         $total = $_POST['total'];

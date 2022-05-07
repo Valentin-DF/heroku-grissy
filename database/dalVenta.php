@@ -11,7 +11,7 @@
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "idddi", $idCliente,$total,$igv,$subTotal,$idPersonal,$codigo
+            "idddis", $idCliente,$total,$igv,$subTotal,$idPersonal,$codigo
         );
 
         if ($stmt->execute()) {

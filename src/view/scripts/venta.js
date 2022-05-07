@@ -55,8 +55,23 @@ var venta = function () {
                 ]
 
             });
-            cliente.obtener_data_editar("#example tbody", table);
-            cliente.obtener_data_eliminar("#example tbody", table);
+            venta.obtener_data_editar("#example tbody", table);
+            venta.obtener_data_eliminar("#example tbody", table);
+        },
+
+        obtener_data_editar: function (tbody, table) {
+            $(tbody).on("click", "button.editar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                // cliente.obtenerPorId(data.id);
+            });
+        },
+        obtener_data_eliminar: function (tbody, table) {
+            $(tbody).on("click", "button.eliminar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                // cliente.eliminarCliente(data.id);
+            });
         },
 
         consultaDocumento: function () {
@@ -153,6 +168,7 @@ var venta = function () {
                         $(objListado).each(function (i, obj) {
 
                             if (obj.estado == 1) {
+                                $("#idCliente").val(obj.id);
                                 $("#apellidoPaterno").val(obj.apellidoPaterno);
                                 $("#apellidoMaterno").val(obj.apellidoMaterno);
                                 $("#codigo").val(obj.codigo);
@@ -416,7 +432,7 @@ var venta = function () {
         listarDetalleVenta: function(){
             $("#lst-detalle").empty();
             codigo = $("#codigoVenta").val();
-
+            
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Venta/listarVentaDetalle.php",
                 method: "GET",
@@ -427,10 +443,12 @@ var venta = function () {
                 success: function (response) {
 
                     console.log(response);
-
+                    var total = 0.00;
+                    var igv = 0.00;
+                    var subTotal = 0.00;
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
-
+                        total = parseFloat(obj.total) + total;
                         var detalleventa = '';
                         detalleventa += '<tr>';
 
@@ -445,8 +463,52 @@ var venta = function () {
                         $("#lst-detalle").append(detalleventa);
 
                     });
+                    $("#total").val(total.toFixed(2));
+                    igv=total*0.18;
+                    $("#igv").val(igv.toFixed(2));
+                    subTotal = total-igv;
+                    $("#subTotal").val(subTotal.toFixed(2));
                 }
             })
+        },
+        guardarVenta: function(){
+            const storedToDos = localStorage.getItem("empleado");
+            const objec = JSON.parse(storedToDos);
+
+            codigoVenta = $("#codigoVenta").val();
+            idPersonal = objec.id;
+            idCliente = $("#idCliente").val();
+            total = $("#total").val();
+            igv = $("#igv").val();
+            subTotal =  $("#subTotal").val();
+
+            if( $("#idCliente").val() != ""){
+
+                $.ajax({
+                    url: 'http://localhost:8080/Grissy/controllers/Venta/guardarVenta.php',
+                    method: "POST",
+                    data: {
+                        codigo:codigoVenta,
+                        idPersonal: idPersonal,
+                        idCliente: idCliente,
+                        total: total,
+                        igv: igv,
+                        subTotal: subTotal
+                    },
+                    complete: function (response) {
+                        console.log(response);
+                        venta.obtenerListaVenta();
+                    }
+                });
+            }else{
+                Toastify({
+                    text: "No Cuenta con un cliente",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
+            
         }
 
 
