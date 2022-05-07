@@ -28,5 +28,8 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
     function buscarProductoPorNombre2($nombrePro){
         return ObtenerProductoPorNombre2($nombrePro);
     }
+    function actualizarStock($id,$cantidad){
+        return ActualizarStockProducto($id,$cantidad);
+    }
 
 ?>

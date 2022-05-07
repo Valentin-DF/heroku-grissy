@@ -3,7 +3,8 @@
     class detalleVenta {
         public $id;
         public $idProducto;
-        public $idVenta;
+        public $nombreProducto;
+        public $codigoVenta;
         public $cantidad;
         public $precio;
         public $total;

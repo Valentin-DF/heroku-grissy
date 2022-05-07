@@ -198,5 +198,27 @@
     
         return $lista; 
     }
+    function ActualizarStockProducto($id,$cantidad){
+        $mysqli = conexion();
+        $resultado = 0;
+    
+        $consultaSQL = "UPDATE producto_e SET cantidad = ? WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+    
+        $stmt->bind_param(
+            "ii",
+            $cantidad,$id
+        );
+    
+        if ($stmt->execute()) {
+            $stmt->bind_result($resultado);
+            $stmt->fetch();
+        }
+    
+        $stmt->close();
+        $mysqli->close();
+    
+        return $resultado;
+    }
 
 ?>

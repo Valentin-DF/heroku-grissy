@@ -11,6 +11,10 @@
         public $codigo;
         public $estado;
         public $fechaAprobado;
+
+        //--------------------
+        public $cliente;
+        public $personal;
     }
 
 ?>
