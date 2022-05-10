@@ -16,4 +16,17 @@ require_once('/xampp/htdocs/Grissy/database/dalVenta.php');
     function obtenerListaDeVentaPorPersonal($idempleado){
         return listarVentaPorPersonal($idempleado);
     }
+
+    function obtenerCodigoVenta($idempleado){
+        return generarCodigo($idempleado);
+    }
+
+    function editarVenta($total,$igv,$subTotal,$codigo){
+        return actualizarVenta($total,$igv,$subTotal,$codigo);
+    }
+
+    function borrarDetalleVenta($id){
+        return eliminarDetalleVenta($id);
+    }
+
 ?>

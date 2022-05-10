@@ -121,4 +121,77 @@
         return $lista;
     }
 
+    function generarCodigo($idPersonal){
+        $mysqli = conexion();
+        $consultaSQL = 'CALL grissy_GenerarCodigoVenta( ? )';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+
+        $stmt->bind_param(
+            "i", $idPersonal
+        );
+
+        $stmt->execute();
+        $lista = array();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new codigo();
+            $obj->codigo = $row['codigo'];
+            array_push($lista, $obj);
+        }
+        $stmt->close();
+        $mysqli->close();
+
+        return $lista;
+    }
+
+    function ActualizarVenta($total,$igv,$subTotal,$codigo){
+        $mysqli = conexion();
+        $resultado = 0;
+    
+        $consultaSQL = "UPDATE venta SET total = ?,igv = ?, subTotal = ?  WHERE codigo = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+    
+        $stmt->bind_param(
+            "ddds",
+            $total,$igv,$subTotal,$codigo
+        );
+    
+        if ($stmt->execute()) {
+            $stmt->bind_result($resultado);
+            $stmt->fetch();
+        }
+    
+        $stmt->close();
+        $mysqli->close();
+    
+        return $resultado;
+    }
+
+
+
+    function eliminarDetalleVenta($id){
+        $mysqli = conexion();
+        $resultado = 0;
+    
+        $consultaSQL = "DELETE FROM detalleventa WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+    
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+    
+        if ($stmt->execute()) {
+            $stmt->bind_result($resultado);
+            $stmt->fetch();
+        }
+    
+        $stmt->close();
+        $mysqli->close();
+    
+        return $resultado;
+    }
+
 ?>

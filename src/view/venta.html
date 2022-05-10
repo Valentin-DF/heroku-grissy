@@ -19,6 +19,19 @@
     <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
     <title>Grissy</title>
 
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -169,14 +182,15 @@
                             <div class="row">
                                 <div class="col-9 col-md-9 order-md-1 order-last">
                                     <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
-                                        data-bs-target="#agregarVenta"><span class="fa-fw select-all fas"></span>
+                                    onclick="venta.en_guardar();"  data-bs-target="#agregarVenta"><span
+                                            class="fa-fw select-all fas"></span>
                                         Agregar</button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table " id="example" style="width:100%">
-                                <thead>
+                            <table class="table table-striped" id="example" style="width:100%">
+                                <thead class="table-dark">
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Fecha</th>
@@ -215,7 +229,7 @@
 
     <div class="modal fade text-left" id="agregarVenta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
         data-bs-backdrop="stactic" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -224,7 +238,8 @@
                         <h2 class="modal-title">Venta</h3>
                     </div>
                     <div class="col-3">
-                        <input type="text" class="form-control" placeholder="Codigo" id="codigoVenta" aria-label="text">
+                        <input type="text" class="form-control" placeholder="Codigo" id="codigoVenta" aria-label="text"
+                            disabled>
                     </div>
 
                 </div>
@@ -249,10 +264,11 @@
                                 </div>
                                 <input type="number" class="form-control"
                                     placeholder="Documento de identidad del cliente" id="docIdentidad" aria-label="text"
-                                    oninput="venta.consultaDocumento();">
+                                    oninput="venta.consultaDocumento();" onchange="venta.validarCantidades();">
                                 <button aria-label="visualizarCliente" data-bs-toggle="modal"
-                                    data-bs-target="#datoCliente" class="btn btn-outline-primary " type="button"
-                                    id="vizualizarCliente"><span class="fa-fw select-all fas"></span></button>
+                                    onclick="venta.consultaDocumento();" data-bs-target="#datoCliente"
+                                    class="btn btn-outline-primary " type="button" id="vizualizarCliente"><span
+                                        class="fa-fw select-all fas"></span></button>
                                 <button aria-label="guardarCliente" class="btn btn-outline-success" id="agregarCliente"
                                     type="button" onclick="venta.agregarCliente();"><span
                                         class="fa-fw select-all fas"></span></button>
@@ -274,7 +290,7 @@
 
                     <div class="row" style="margin-top: 10px;" id="tabla-producto">
                         <div class="col-sm-12">
-                            <table class="table table-bordered mb-0" id="table1">
+                            <table class="table table-striped mb-0" id="table1">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -313,22 +329,22 @@
                                 </button>
                                 <button aria-label="limpiarCliente" class="btn btn-outline-danger "
                                     onclick="venta.limpiarSeleccion()" type="button" id="limpiarSeleccion"><span
-                                        class="fa-fw select-all fas"></span>
+                                        class="fa-fw select-all fas"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div style="margin-top: 10px;">
                         <h5 class="text-center">Detalle Venta</h5>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="row" style="margin-top: 10px;" id="tabla-dettalleventa">
+                            <div class="row" id="tabla-dettalleventa">
                                 <div class="col-sm-12">
-                                    <table class="table table-bordered mb-0" id="table2">
+                                    <table class="table table-striped" id="table2">
                                         <thead>
                                             <tr>
-                                                <th>id</th>
+                                                <!-- <th>id</th> -->
                                                 <th>Producto</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio</th>
@@ -342,10 +358,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <p>SubTotal:</p><input id="subTotal" disabled>
-                            <p>IGV (18%):</p><input id="igv" disabled>
-                            <p>Total:</p><input id="total" disabled>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">SubTotal</span>
+                                    </div>
+                                    <input type="number" id="subTotal" class="form-control" pattern="(d{3})([.])(d{2})"
+                                        disabled>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">IGV (18%)</span>
+                                    </div>
+                                    <input type="number" id="igv" class="form-control" pattern="(d{3})([.])(d{2})"
+                                        disabled>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="">Total</span>
+                                    </div>
+                                    <input type="number" id="total" class="form-control" pattern="(d{3})([.])(d{2})"
+                                        disabled>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -360,15 +403,12 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Editar</span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
-                        onclick="venta.guardarVenta()">
+                    <button type="button" class="btn btn-outline-primary" id="guardar" onclick="venta.guardarVenta()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>
-
-
-
+                </form>
             </div>
         </div>
     </div>

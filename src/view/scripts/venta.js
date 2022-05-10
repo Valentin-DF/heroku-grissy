@@ -20,37 +20,37 @@ var venta = function () {
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "title":"Codigo","data": "codigo" },
-                    { "title":"Fecha","data": "fecha" },
-                    { "title":"Cliente","data": "cliente" },
-                    { "title":"Vendedor","data": "personal" },
-                    { "title":"Total","data": "total" },
-                    { "title":"Estado","data": "estado" },
-                    { "title":"Acciones","defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                    { "title": "Codigo", "data": "codigo" },
+                    { "title": "Fecha", "data": "fecha" },
+                    { "title": "Cliente", "data": "cliente" },
+                    { "title": "Vendedor", "data": "personal" },
+                    { "title": "Total", "data": "total" },
+                    { "title": "Estado", "data": "estado" },
+                    { "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 },
-                "responsive":"true",
+                "responsive": "true",
                 "dom": "Bfrtilp",
-                "buttons":[
+                "buttons": [
                     {
-                        "extend":"excelHtml5",
-                        "text":"<i class='fas fa-file-excel'></i>",
-                        "titleAttr":"Exportar a Excel",
-                        "className":"btn btn-success"
+                        "extend": "excelHtml5",
+                        "text": "<i class='fas fa-file-excel'></i>",
+                        "titleAttr": "Exportar a Excel",
+                        "className": "btn btn-success"
                     },
                     {
-                        "extend":"pdfHtml5",
-                        "text":"<i class='fas fa-file-pdf'></i>",
-                        "titleAttr":"Exportar a PDF",
-                        "className":"btn btn-danger"
+                        "extend": "pdfHtml5",
+                        "text": "<i class='fas fa-file-pdf'></i>",
+                        "titleAttr": "Exportar a PDF",
+                        "className": "btn btn-danger"
                     },
                     {
-                        "extend":"print",
-                        "text":"<i class='fa fa-print'></i>",
-                        "titleAttr":"Imprimir",
-                        "className":"btn btn-info"
+                        "extend": "print",
+                        "text": "<i class='fa fa-print'></i>",
+                        "titleAttr": "Imprimir",
+                        "className": "btn btn-info"
                     }
                 ]
 
@@ -63,13 +63,14 @@ var venta = function () {
             $(tbody).on("click", "button.editar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                // cliente.obtenerPorId(data.id);
+                venta.obtenerPorCodigo(data.codigo, data.idCliente);
             });
         },
         obtener_data_eliminar: function (tbody, table) {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
+                
                 // cliente.eliminarCliente(data.id);
             });
         },
@@ -85,11 +86,29 @@ var venta = function () {
                         if (doc.length == 8) {
                             venta.buscarClientePorDocIdentidad(doc);
                         }
+                        if (doc.length > 8) {
+                            $("#docIdentidad").val('');
+                            Toastify({
+                                text: "El DNI ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
                     }
                     if (radios[i].value == "ruc") {
                         console.log("ruc: ", doc);
                         if (doc.length == 11) {
                             venta.buscarClientePorDocIdentidad(doc);
+                        }
+                        if (doc.length > 11) {
+                            $("#docIdentidad").val('');
+                            Toastify({
+                                text: "El ruc ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
                         }
                     }
                     break;
@@ -223,25 +242,42 @@ var venta = function () {
             $("#telefono").val("");
         },
         agregarCliente: function () {
+            if ($("#docIdentidad").val() != "") {
+                if ($("#idCliente").val() == "") {
+                    const radios = document.getElementsByName('esDocumento');
+                    console.log(radios);
+                    for (var i = 0; i < radios.length; i++) {
+                        if (radios[i].checked) {
+                            if (radios[i].value == "dni") {
+                                // console.log("dni: ", doc);
+                                // if (doc.length == 8) {
+                                venta.consultarDNI();
 
-            const radios = document.getElementsByName('esDocumento');
-            console.log(radios);
-            for (var i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    if (radios[i].value == "dni") {
-                        // console.log("dni: ", doc);
-                        // if (doc.length == 8) {
-                        venta.consultarDNI();
-
+                            }
+                            if (radios[i].value == "ruc") {
+                                // console.log("ruc: ", doc);
+                                // if (doc.length == 11) {
+                                venta.consultarRUC();
+                                // }
+                            }
+                            break;
+                        }
                     }
-                    if (radios[i].value == "ruc") {
-                        // console.log("ruc: ", doc);
-                        // if (doc.length == 11) {
-                        venta.consultarRUC();
-                        // }
-                    }
-                    break;
+                } else {
+                    Toastify({
+                        text: "El cliente ya se encuentra registrado",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
                 }
+            } else {
+                Toastify({
+                    text: "Ingrese el documento del cliente",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
             }
         },
         guardarCliente: function () {
@@ -388,51 +424,70 @@ var venta = function () {
         },
 
         IngresarProductoVenta: function () {
-            //---------------------------------------------------
-            codigoVenta = $("#codigoVenta").val();
-            idProducto = $("#idPro").val();
-            cantidad = $("#cantidadEditable").val();
-            precio = $("#precioPro").val();
-            total = parseFloat(precio)*parseInt(cantidad);
-            //---------------------------------------------------
-            cantidadActualizar = parseInt( $("#cantidadPro").val()) - parseInt( $("#cantidadEditable").val());
-            //---------------------------------------------------
+            if ($("#idPro").val() != "") {
+                if ($("#cantidadEditable").val() != "") {
+                    //---------------------------------------------------
+                    codigoVenta = $("#codigoVenta").val();
+                    idProducto = $("#idPro").val();
+                    cantidad = $("#cantidadEditable").val();
+                    precio = $("#precioPro").val();
+                    total = parseFloat(precio) * parseInt(cantidad);
+                    //---------------------------------------------------
+                    cantidadActualizar = parseInt($("#cantidadPro").val()) - parseInt($("#cantidadEditable").val());
+                    //---------------------------------------------------
 
-            //Detalle Venta
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Venta/ingresarDetalleVenta.php',
-                method: "POST",
-                data: {
-                    codigoVenta: codigoVenta,
-                    idProducto: idProducto,
-                    cantidad: cantidad,
-                    precio: precio,
-                    total: total
-                },
-                complete: function (response) {
-                    console.log(response);
-                    venta.listarDetalleVenta();
+                    //Detalle Venta
+                    $.ajax({
+                        url: 'http://localhost:8080/Grissy/controllers/Venta/ingresarDetalleVenta.php',
+                        method: "POST",
+                        data: {
+                            codigoVenta: codigoVenta,
+                            idProducto: idProducto,
+                            cantidad: cantidad,
+                            precio: precio,
+                            total: total
+                        },
+                        complete: function (response) {
+                            console.log(response);
+                            venta.listarDetalleVenta();
+                        }
+                    });
+                    //Actualizar Cantidad Producto
+                    $.ajax({
+                        url: 'http://localhost:8080/Grissy/controllers/Producto/actualizarStockProducto.php',
+                        method: "POST",
+                        data: {
+                            idProducto: idProducto,
+                            cantidad: cantidadActualizar,
+                        },
+                        complete: function (response) {
+                            console.log(response);
+                            venta.obtenerPorNombre();
+                        }
+                    });
+                    this.limpiarSeleccion();
+                } else {
+                    Toastify({
+                        text: "Ingrese la cantidad a vender",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
                 }
-            });
-            //Actualizar Cantidad Producto
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Producto/actualizarStockProducto.php',
-                method: "POST",
-                data: {
-                    idProducto: idProducto,
-                    cantidad: cantidadActualizar,
-                },
-                complete: function (response) {
-                    console.log(response);
-                    venta.obtenerPorNombre();
-                }
-            });
-            this.limpiarSeleccion();
+            } else {
+                Toastify({
+                    text: "Seleccione un producto",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+                this.limpiarSeleccion();
+            }
         },
-        listarDetalleVenta: function(){
+        listarDetalleVenta: function () {
             $("#lst-detalle").empty();
             codigo = $("#codigoVenta").val();
-            
+
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Venta/listarVentaDetalle.php",
                 method: "GET",
@@ -452,26 +507,26 @@ var venta = function () {
                         var detalleventa = '';
                         detalleventa += '<tr>';
 
-                        detalleventa += '<td>' + obj.id + '</td>';
+                       // detalleventa += '<td>' + obj.id + '</td>';
                         detalleventa += '<td>' + obj.nombreProducto + '</td>';
                         detalleventa += '<td>' + obj.cantidad + '</td>';
                         detalleventa += '<td>' + obj.precio + '</td>';
                         detalleventa += '<td>' + obj.total + '</td>';
-                        detalleventa += '<td><button class="btn btn-outline-primary" type="button"><span class="fa-fw select-all fas"></span></button></button></td>';
+                        detalleventa += '<td><button class="btn btn-outline-primary" type="button" onclick="venta.eliminarVenta(' + obj.id +','+obj.idProducto + ')"><span class="fa-fw select-all fas"></span></button></button></td>';
                         detalleventa += '</tr>';
 
                         $("#lst-detalle").append(detalleventa);
 
                     });
                     $("#total").val(total.toFixed(2));
-                    igv=total*0.18;
+                    igv = total * 0.18;
                     $("#igv").val(igv.toFixed(2));
-                    subTotal = total-igv;
+                    subTotal = total - igv;
                     $("#subTotal").val(subTotal.toFixed(2));
                 }
             })
         },
-        guardarVenta: function(){
+        guardarVenta: function () {
             const storedToDos = localStorage.getItem("empleado");
             const objec = JSON.parse(storedToDos);
 
@@ -480,37 +535,236 @@ var venta = function () {
             idCliente = $("#idCliente").val();
             total = $("#total").val();
             igv = $("#igv").val();
-            subTotal =  $("#subTotal").val();
+            subTotal = $("#subTotal").val();
+            if ($("#docIdentidad").val().length == 8 || $("#docIdentidad").val().length == 11) {
+                if ($("#idCliente").val() != "") {
 
-            if( $("#idCliente").val() != ""){
 
-                $.ajax({
-                    url: 'http://localhost:8080/Grissy/controllers/Venta/guardarVenta.php',
-                    method: "POST",
-                    data: {
-                        codigo:codigoVenta,
-                        idPersonal: idPersonal,
-                        idCliente: idCliente,
-                        total: total,
-                        igv: igv,
-                        subTotal: subTotal
-                    },
-                    complete: function (response) {
-                        console.log(response);
-                        venta.obtenerListaVenta();
-                    }
-                });
-            }else{
+                    $.ajax({
+                        url: 'http://localhost:8080/Grissy/controllers/Venta/guardarVenta.php',
+                        method: "POST",
+                        data: {
+                            codigo: codigoVenta,
+                            idPersonal: idPersonal,
+                            idCliente: idCliente,
+                            total: total,
+                            igv: igv,
+                            subTotal: subTotal
+                        },
+                        complete: function (response) {
+                            console.log(response);
+                            venta.obtenerListaVenta();
+                        }
+                    });
+                    $('#agregarVenta').modal('hide');
+                } else {
+                    Toastify({
+                        text: "Registre al cliente",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
+                }
+            } else {
                 Toastify({
-                    text: "No Cuenta con un cliente",
+                    text: "El documento ingresado es invalido",
                     duration: 3000,
                     close: true,
                     backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
                 }).showToast();
             }
+
+        },
+        generarCodigo: function () {
+            const storedToDos = localStorage.getItem("empleado");
+            const objec = JSON.parse(storedToDos);
+
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Venta/generarCodigo.php",
+                method: "POST",
+                data: {
+                    idempleado: objec.id
+                },
+                timeout: 0,
+                success: function (response) {
+                    console.log(response);
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        $("#codigoVenta").val(obj.codigo);
+                    });
+                }
+            })
+        },
+        validarCantidades: function () {
+            var doc = $("#docIdentidad").val();
+            const radios = document.getElementsByName('esDocumento');
+
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    if (radios[i].value == "dni") {
+                        console.log("dni: ", doc);
+                        if (doc.length < 8) {
+                            Toastify({
+                                text: "El DNI ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+                        if (doc.length > 8) {
+                            $("#docIdentidad").val('');
+                            Toastify({
+                                text: "El DNI ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+
+                    }
+                    if (radios[i].value == "ruc") {
+                        console.log("ruc: ", doc);
+                        if (doc.length < 11) {
+                            Toastify({
+                                text: "El RUC ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+                        if (doc.length > 11) {
+                            $("#docIdentidad").val('');
+                            Toastify({
+                                text: "El RUC ingresado es invalido",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+                    }
+                    break;
+                }
+            }
+        },
+        limpiarModal: function () {
+            $("#docIdentidad").val('');
+            this.limpiarSeleccion();
+        },
+        en_guardar: function () {
+            this.generarCodigo();
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'none';
+            btn_1.style.display = 'inline';
+            this.limpiar();
+            $("#lst-detalle").empty();
+            $("#total").val("");
+            $("#igv").val("");
+            $("#subTotal").val("");
+
+
+        },
+        obtenerPorCodigo: function (codigo, idCliente) {
+            var btn_2 = document.getElementById('editar');
+            var btn_1 = document.getElementById('guardar');
+            btn_2.style.display = 'inline';
+            btn_1.style.display = 'none';
+            console.log(codigo);
+            $("#codigoVenta").val(codigo);
+            this.listarDetalleVenta();
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorId.php",
+                method: "GET",
+                data: {
+                    id: idCliente
+                },
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        $("#apellidoPaterno").val(obj.apellidoPaterno);
+                        $("#apellidoMaterno").val(obj.apellidoMaterno);
+                        $("#codigo").val(obj.codigo);
+                        $("#condicionSunat").val(obj.condicionSunat);
+                        $("#direccion").val(obj.direccion);
+                        $("#docIdentidad").val(obj.docIdentidad);
+                        $("#estadoSunat").val(obj.estadoSunat);
+                        $("#nombre").val(obj.nombre);
+                        $("#telefono").val(obj.telefono);
+                        $("#idCliente").val(obj.id);
+                    });
+                }
+            })
+
+        },
+        editarVenta: function(){
+            codigoVenta = $("#codigoVenta").val();
+            total = $("#total").val();
+            igv = $("#igv").val();
+            subTotal = $("#subTotal").val();
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Venta/editarVenta.php',
+                method: "POST",
+                data: {
+                    codigo: codigoVenta,
+                    total: total,
+                    igv: igv,
+                    subTotal: subTotal
+                },
+                complete: function (response) {
+                    console.log(response);
+                    venta.obtenerListaVenta();
+                }
+            });
+        },
+
+        eliminarVenta: function(id,idProducto,cantidad){
+            var cantidadEstable;
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Venta/eliminarDetalleVenta.php',
+                method: "POST",
+                data: {
+                    id:id
+                },
+                complete: function (response) {
+                    console.log(response);
+                    venta.listarDetalleVenta();
+                }
+            });
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Producto/buscarProductoPorId.php",
+                method: "GET",
+                data: {
+                    id: id
+                },
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        cantidadEstable = obj.cantidad;
+                    });
+                }
+            })
             
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Producto/actualizarStockProducto.php',
+                method: "POST",
+                data: {
+                    idProducto: idProducto,
+                    cantidad: cantidad + cantidadEstable,
+                },
+                complete: function (response) {
+                    console.log(response);
+                    venta.obtenerPorNombre();
+                }
+            });
         }
-
-
     }
 }();

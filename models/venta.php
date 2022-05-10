@@ -16,5 +16,8 @@
         public $cliente;
         public $personal;
     }
+    class codigo {
+        public $codigo;
+    }
 
 ?>
