@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
     <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
     <title>Grissy</title>
 
@@ -204,13 +205,13 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label for="codigo">Codigo</label>
+                                <label for="codigo">Codigo*</label>
                                 <input type="text" id="codigo" class="form-control " placeholder="Codigo">
                             </div>
                         </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">Nombre*</label>
                                 <input type="text" id="nombre" class="form-control " placeholder="Nombre">
                             </div>
                         </div>
@@ -238,12 +239,12 @@
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Cancelar</span>
                         </button>
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar"
+                        <button type="button" class="btn btn-outline-primary"  id="editar"
                             onclick="area.editarArea()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Editar</span>
                         </button>
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="guardar"
+                        <button type="button" class="btn btn-outline-primary"  id="guardar"
                             onclick="area.guardarArea()">
                             <i class="bx bx-x d-block d-sm-none"></i>
                             <span class="d-none d-sm-block">Guardar</span>
@@ -259,6 +260,7 @@
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/vendors/fontawesome/js/all.min.js"></script>
     <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
 </body>
 <!-- Javascript -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="

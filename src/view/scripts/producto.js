@@ -11,37 +11,37 @@ var producto = function () {
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "title":"Codigo","data": "codigo" },
-                    { "title":"Nombre", "data": "nombre" },
-                    { "title":"Cantidad","data": "cantidad" },
-                    { "title":"Precio","data": "precio" },
-                    { "title":"Talla","data": "talla" },
-                    { "title":"Estado","data": "estado" },
-                    { "title":"Acciones","defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarProducto' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
+                    { "title": "Codigo", "data": "codigo" },
+                    { "title": "Nombre", "data": "nombre" },
+                    { "title": "Cantidad", "data": "cantidad" },
+                    { "title": "Precio", "data": "precio" },
+                    { "title": "Talla", "data": "talla" },
+                    { "title": "Estado", "data": "estado" },
+                    { "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#agregarProducto' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger' ><span class='fa-fw select-all fas'></span></button>" }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 },
-                "responsive":"true",
+                "responsive": "true",
                 "dom": "Bfrtilp",
-                "buttons":[
+                "buttons": [
                     {
-                        "extend":"excelHtml5",
-                        "text":"<i class='fas fa-file-excel'></i>",
-                        "titleAttr":"Exportar a Excel",
-                        "className":"btn btn-success"
+                        "extend": "excelHtml5",
+                        "text": "<i class='fas fa-file-excel'></i>",
+                        "titleAttr": "Exportar a Excel",
+                        "className": "btn btn-success"
                     },
                     {
-                        "extend":"pdfHtml5",
-                        "text":"<i class='fas fa-file-pdf'></i>",
-                        "titleAttr":"Exportar a PDF",
-                        "className":"btn btn-danger"
+                        "extend": "pdfHtml5",
+                        "text": "<i class='fas fa-file-pdf'></i>",
+                        "titleAttr": "Exportar a PDF",
+                        "className": "btn btn-danger"
                     },
                     {
-                        "extend":"print",
-                        "text":"<i class='fa fa-print'></i>",
-                        "titleAttr":"Imprimir",
-                        "className":"btn btn-info"
+                        "extend": "print",
+                        "text": "<i class='fa fa-print'></i>",
+                        "titleAttr": "Imprimir",
+                        "className": "btn btn-info"
                     }
                 ]
 
@@ -74,24 +74,62 @@ var producto = function () {
             var precio = $("#precio").val();
             var idArea = $("#idarea").val();
             var estado = 1;
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Producto/guardarProducto.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    talla: talla,
-                    cantidad: cantidad,
-                    precio: precio,
-                    estado: estado,
-                    idArea: idArea
-                },
-                complete: function (response) {
-                    console.log(response);
-                    producto.obtenerListaProductos();
-                    producto.limpiar();
+            if ($("#codigo").val() != "") {
+                if ($("#nombre").val() != "") {
+                    if ($("#cantidad").val() != "" && parseInt($("#cantidad").val()) > 0) {
+                        if ($("#precio").val() != "" && parsefloat($("#precio").val()) > 0) {
+
+                            $.ajax({
+                                url: 'http://localhost:8080/Grissy/controllers/Producto/guardarProducto.php',
+                                method: "POST",
+                                data: {
+                                    codigo: codigo,
+                                    nombre: nombre,
+                                    talla: talla,
+                                    cantidad: cantidad,
+                                    precio: precio,
+                                    estado: estado,
+                                    idArea: idArea
+                                },
+                                complete: function (response) {
+                                    console.log(response);
+                                    producto.obtenerListaProductos();
+                                    producto.limpiar();
+                                }
+                            });
+                            $('#agregarCliente').modal('hide');
+                        } else {
+                            Toastify({
+                                text: "Se debe ingregsar un precio al producto",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+                    } else {
+                        Toastify({
+                            text: "Se debe ingregsar una cantidad validad",
+                            duration: 3000,
+                            close: true,
+                            backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                        }).showToast();
+                    }
+                } else {
+                    Toastify({
+                        text: "Se debe registrar un nombre como referencia",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
                 }
-            });
+            } else {
+                Toastify({
+                    text: "No cuenta con un codigo",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
         },
         eliminarProducto: function (id) {
             $.ajax({
@@ -113,24 +151,61 @@ var producto = function () {
             var talla = $("#talla").val();
             var cantidad = $("#cantidad").val();
             var precio = $("#precio").val();
+            if ($("#codigo").val() != "") {
+                if ($("#nombre").val() != "") {
+                    if ($("#cantidad").val() != "" && parseInt($("#cantidad").val()) > 0) {
+                        if ($("#precio").val() != "" && parsefloat($("#precio").val()) > 0) {
 
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Producto/editarProducto.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    talla: talla,
-                    cantidad: cantidad,
-                    precio: precio,
+                            $.ajax({
+                                url: 'http://localhost:8080/Grissy/controllers/Producto/editarProducto.php',
+                                method: "POST",
+                                data: {
+                                    codigo: codigo,
+                                    nombre: nombre,
+                                    talla: talla,
+                                    cantidad: cantidad,
+                                    precio: precio,
 
-                },
-                complete: function (response) {
-                    console.log(response);
-                    producto.obtenerListaProductos();
-                    producto.limpiar();
+                                },
+                                complete: function (response) {
+                                    console.log(response);
+                                    producto.obtenerListaProductos();
+                                    producto.limpiar();
+                                }
+                            });
+                            $('#agregarCliente').modal('hide');
+                        } else {
+                            Toastify({
+                                text: "Se debe ingregsar un precio al producto",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                            }).showToast();
+                        }
+                    } else {
+                        Toastify({
+                            text: "Se debe ingregsar una cantidad validad",
+                            duration: 3000,
+                            close: true,
+                            backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                        }).showToast();
+                    }
+                } else {
+                    Toastify({
+                        text: "Se debe registrar un nombre como referencia",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
                 }
-            });
+            } else {
+                Toastify({
+                    text: "No cuenta con un codigo",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
         },
         obtenerPorId: function (id) {
 

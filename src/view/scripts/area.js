@@ -72,23 +72,38 @@ var area = function () {
             var nombre = $("#nombre").val();
             var foto = $("#foto").val();
             var descripcion = $("#descripcion").val();
-
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Area/guardarArea.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    descripcion: descripcion,
-                    foto: foto
-                },
-                complete: function (response) {
-                    console.log(response);
-                    $("#lst-area").empty();
-                    area.obtenerListaArea();
-                    area.limpiar();
+            if ($("#codigo").val() != "" && $("#nombre").val() != "") {
+                if ($("#foto").val() == "") {
+                    var foto = "http://localhost:8080/Grissy/src/view/assets/images/fondo-tecnologico-preferido-selectores.jpg"
                 }
-            });
+                $.ajax({
+                    url: 'http://localhost:8080/Grissy/controllers/Area/guardarArea.php',
+                    method: "POST",
+                    data: {
+                        codigo: codigo,
+                        nombre: nombre,
+                        descripcion: descripcion,
+                        foto: foto
+                    },
+                    complete: function (response) {
+                       
+                        console.log(response);
+                        $("#lst-area").empty();
+                        area.obtenerListaArea(); 
+                        area.limpiar(); 
+                        $('#agregarArea').modal('hide');
+                    }
+                    
+                });
+
+            } else {
+                Toastify({
+                    text: "Se requiere un codigo y un nombre para poder registrar",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
         },
         eliminarArea: function (id) {
             $.ajax({
@@ -140,7 +155,7 @@ var area = function () {
             var nombre = $("#nombre").val();
             var foto = $("#foto").val();
             var descripcion = $("#descripcion").val();
-
+            if ($("#nombre").val() != "") {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Area/editarArea.php',
                 method: "POST",
@@ -156,7 +171,14 @@ var area = function () {
                     area.obtenerListaArea();
                     area.limpiar();
                 }
-            });
+            });} else {
+                Toastify({
+                    text: "El nombre no puede estar en blanco",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
         },
         reintegrarArea: function (id) {
             $.ajax({
