@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Grissy</title>
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+
+</head>
+
+<body class="sb-nav-fixed">
+
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Principal</div>
+                <a class="nav-link" href="menu.php">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Menu
+                </a>
+                <div class="sb-sidenav-menu-heading">Administracion</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#registros"
+                    aria-expanded="false" aria-controls="registros">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Registros
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="registros" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavRegistros">
+                        <a class="nav-link" href="area.php">Area</a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#producto"
+                            aria-expanded="false" aria-controls="producto">
+                            Producto
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="producto" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavRegistros">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="producto_general.php">Producto</a>
+                                <a class="nav-link" href="producto_empresa.php">Producto Empresa</a>
+                            </nav>
+                        </div>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#usuarios"
+                    aria-expanded="false" aria-controls="usuarios">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Usuarios
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="usuarios" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        <a class="nav-link" href="cliente.php">Cliente</a>
+                        <a class="nav-link" href="personal.php">Personal</a>
+                        <a class="nav-link" href="proveedor.php">Proveedor</a>
+                    </nav>
+                </div>
+
+                <div class="sb-sidenav-menu-heading">Gestor</div>
+                <a class="nav-link" href="venta.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    Ventas
+                </a>
+                <a class="nav-link" href="compra.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                    Compras
+                </a>
+
+                <div class="sb-sidenav-menu-heading">Reporte</div>
+                <a class="nav-link" href="reportes.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    En proceso
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:<p id="usuario"></p></div>
+            
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="assets/js/datatables-simple-demo.js"></script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="assets/js/scripts.js"></script>
+
+<script src="scripts/permisos.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        const storedToDos = localStorage.getItem("empleado");
+        const obj = JSON.parse(storedToDos);
+
+        console.log(obj);
+        permisos.configurarAcceso(obj.codigo);
+        // $("#usuario").val(obj.nombre);
+        document.getElementById("usuario").innerHTML = obj.nombre+" "+obj.apellidoPaterno+" "+obj.apellidoMaterno;
+    });
+</script>
+
+
+</html>

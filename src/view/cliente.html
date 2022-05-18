@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
 
     <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.css" />
 
     <title>Grissy</title>
 
@@ -27,7 +28,6 @@
             -webkit-appearance: none;
             margin: 0;
         }
-
     </style>
 
 
@@ -182,36 +182,31 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-9 col-md-9 order-md-1 order-last">
-                                    <button class="btn btn-outline-success" data-bs-toggle="modal" type="button"
-                                        onclick="cliente.en_guardar()" data-bs-target="#agregarCliente"><span
-                                            class="fa-fw select-all fas"></span>
-                                        Agregar</button>
+
                                 </div>
-                                <!-- <div class="col-3 col-md-3 order-md-1 order-last">
-                                    <div class="input-group">
-                                        <span class="input-group-text">Buscar</span>
-                                        <input type="text" class="form-control" id="documento"
-                                            aria-describedby="buscardocumento" aria-label="buscar"
-                                            oninput="cliente.buscarPorDocumentoIdentidad()">
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
-                        <div class="card-body">
-                            <table class="table " id="example" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Doc. Identidad</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Fecha Registro</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table class="table " id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Doc. Identidad</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Materno</th>
+                                            <th>Fecha Registro</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -232,125 +227,7 @@
         </div>
     </div>
     <!--  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
-    <!--AGREGAR AREA EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-        data-bs-backdrop="stactic" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Cliente</h5>
-                    <div class="row">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni"
-                                onclick="cliente.oninputDni_Ruc()" checked>
-                            <label class="form-check-label" for="dni"> DNI </label>
-
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc"
-                                onclick="cliente.oninputDni_Ruc()">
-                            <label class="form-check-label" for="ruc"> RUC </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="codigo">Codigo</label>
-                                <input type="text" id="codigo" class="form-control " placeholder="Codigo">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="docIdentidad">Doc Identidad*</label>
-                                <input type="number"   id="docIdentidad" class="form-control " placeholder="Doc Identidad"
-                                onchange="cliente.validarCantidades();" oninput="cliente.consultarDocIdentidad();">
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label></label>
-                                <button type="button" class="form-control"
-                                    onclick="cliente.consultarDocIdentidad()">Buscar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="nombre">Nombre*</label>
-                                <input type="text" id="nombre" class="form-control " placeholder="Nombre">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="apellidoPaterno">Apellido Paterno</label>
-                                <input type="text" id="apellidoPaterno" class="form-control "
-                                    placeholder="Apellido Paterno">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="apellidoMaterno">Apellido Materno</label>
-                                <input type="text" id="apellidoMaterno" class="form-control "
-                                    placeholder="ApellidoMaterno">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="estadoSunat">Estado Sunat</label>
-                                <input type="text" id="estadoSunat" class="form-control " placeholder="Estado Sunat"
-                                    disabled>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="condicionSunat">Condicion Sunat</label>
-                                <input type="text" id="condicionSunat" class="form-control "
-                                    placeholder="Condicion Sunat" disabled>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="telefono">Telefono</label>
-                                <input type="number" id="telefono" class="form-control " placeholder="Telefono" onchange="cliente.validarTelefono();">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" id="direccion" class="form-control " placeholder="Direccion">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Cancelar</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary" id="editar"
-                        onclick="cliente.editarCliente()">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Editar</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary" id="guardar"
-                        onclick="cliente.guardarCliente()">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Guardar</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    >
 
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -372,7 +249,8 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/cr-1.5.5/date-1.1.2/fc-4.0.2/fh-3.2.2/kt-2.6.4/r-2.2.9/rg-1.1.4/rr-1.2.8/sc-2.0.5/sb-1.3.2/sp-2.0.0/sl-1.3.4/sr-1.1.0/datatables.min.js"></script>
 
 
 
