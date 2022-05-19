@@ -194,4 +194,39 @@
         return $resultado;
     }
 
+    function obtenerVentasEstado($idempleado,$estado){
+        $mysqli = conexion();
+        $consultaSQL = 'CALL grissy_ListarVentaPorEstado( ? , ? )';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+
+        $stmt->bind_param(
+            "ii", $idempleado,$estado
+        );
+
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new venta();
+            $obj->id = $row['id'];
+            $obj->total =  $row['total'];
+            $obj->fecha = $row['fecha'];
+            $obj->igv = $row['igv'];
+            $obj->subTotal = $row['subTotal'];
+            $obj->codigo = $row['codigo'];
+            $obj->cliente = $row['cliente'];
+
+            array_push($lista, $obj);
+        }
+    
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista;
+    }
+
 ?>

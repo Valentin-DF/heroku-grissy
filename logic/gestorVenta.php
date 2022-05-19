@@ -29,4 +29,8 @@ require_once('/xampp/htdocs/Grissy/database/dalVenta.php');
         return eliminarDetalleVenta($id);
     }
 
+    function obtenerVentasPorEstado($idempleado,$estado){
+        return obtenerVentasEstado($idempleado,$estado);
+    }
+
 ?>
