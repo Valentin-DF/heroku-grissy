@@ -17,6 +17,7 @@
         public $correo;
         public $contrasena;
         public $foto;
+        public $descripcion;
     }
 
 ?>

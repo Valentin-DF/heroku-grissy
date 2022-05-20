@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Sidevar</title>
+
+</head>
+
+<body class="nav-fixed">
+
+    <nav class="sidenav shadow-right sidenav-dark">
+        <div class="sidenav-menu">
+            <div class="nav accordion" id="accordionSidenav">
+                <!-- Sidenav Menu Heading (Account)-->
+                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                <div class="sidenav-menu-heading ">Principal</div>
+
+                <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                    <li class=""><a class="nav-link" href="menu.php">
+                            <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                            Menu Principal
+                        </a></li>
+                </ul>
+
+                <div class="sidenav-menu-heading">Administracion</div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                    data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="nav-link-icon"><i data-feather="layout"></i></div>
+                    Registros
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                            <li class=""><a class="area nav-link" href="area.php">Area</a></li>
+                            <li class=""><a class="cargo nav-link" href="cargo.php">Cargo</a></li>
+                            <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
+                                    data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
+                                    Producto
+                                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError"
+                                    data-bs-parent="#accordionSidenavPagesMenu">
+                                    <nav class="sidenav-menu-nested nav">
+                                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                                            <li class=""><a class="producto_general nav-link"
+                                                    href="producto_general.php">Productos</a>
+                                            </li>
+                                            <li class=""><a class="producto nav-link"
+                                                    href="producto_empresa.php">Productos
+                                                    Empresa</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                    data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
+                    <div class="nav-link-icon"><i data-feather="user"></i></div>
+                    Usuarios
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
+                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                            <li class=""><a class="cliente nav-link" href="cliente.html">Cliente</a></li>
+                            <li class=""><a class="personal nav-link" href="personal.html">Personal</a></li>
+                            <li class=""><a class="proveedor nav-link" href="proveedor.php">Proveedor</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="sidenav-menu-heading">Gestor</div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                    data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="nav-link-icon"><i data-feather="layout"></i></div>
+                    Venta
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                            <li class=""><a class="venta nav-link" href="venta.php">Realizar Venta</a></li>
+                            <li class=""><a class="venta nav-link" href="seguimiento_venta.php">Seguimiento</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                    data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
+                    <div class="nav-link-icon"><i data-feather="package"></i></div>
+                    Compra
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseComponents" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav">
+                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                            <li class=""><a class="compra nav-link" href="compra.html">Registrar Compra</a></li>
+                            <li class=""><a class="compra nav-link" href="seguimiento_compra.php">Seguimiento</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="sidenav-menu-heading">Reporte</div>
+                <a class="nav-link" href="menu.php">
+                    <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
+                    En proceso
+                </a>
+
+            </div>
+        </div>
+        <!-- Sidenav Footer-->
+        <div class="sidenav-footer">
+            <div class="sidenav-footer-content">
+                <div class="sidenav-footer-subtitle">Logged in as:</div>
+                <div class="sidenav-footer-title"><span id="usuario2U"></span></div>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>

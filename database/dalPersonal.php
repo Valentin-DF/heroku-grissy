@@ -138,6 +138,7 @@
         return $resultado;
     }
 
+
     function ObtenerPersonalPorID($id){
         $mysqli = conexion();
         $consultaSQL = 'SELECT * FROM personal WHERE id = ?';
