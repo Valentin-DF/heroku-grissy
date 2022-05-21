@@ -36,32 +36,28 @@
         return $lista;
     }
 
-    function borrarProveedor($id){
+
+
+
+    function borrarProveedor($id,$estado){
         $mysqli = conexion();
-        $resultado = 0;
-    
-        $consultaSQL = "UPDATE proveedor SET estado = 0 WHERE id = ?";
+
+        $consultaSQL = "UPDATE proveedor SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
-            "i",
-            $id
+            "ii",$estado,$id
         );
-    
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
+
 
     function insertarProveedor($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "INSERT INTO proveedor ( codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -70,20 +66,16 @@
             "ssssisiss", $codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-
+        $stmt->execute();
+        $stmt->get_result();
+        
         $stmt->close();
         $mysqli->close();
 
-        return $resultado;
     }
     
     function actualizarProveedor($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "UPDATE proveedor SET apellidoMaterno = ?,apellidoPaterno = ?,condicionSunat = ?,direccion = ?,docIdentidad = ?,estadoSunat = ?,nombre = ?,telefono = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -92,16 +84,12 @@
             "ssssissss",
             $apellidoMaterno,$apellidoPaterno,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono,$codigo
         );
-
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
 
-        return $resultado;
     }
 
     function ObtenerProveedorPorID($id){
@@ -182,5 +170,31 @@
         return $lista; 
     }
     
+    function validarExistencia($docIdentidad){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT * FROM proveedor WHERE docIdentidad = ? ;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $docIdentidad
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
 
 ?>

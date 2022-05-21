@@ -22,41 +22,50 @@ var cliente = function () {
             var estadoSunat = $("#estadoSunat").val();
             var nombre = $("#nombre").val();
             var telefono = $("#telefono").val();
+            if (telefono.length == 9 || telefono == '') {
 
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Cliente/guardarCliente.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    apellidoMaterno: apellidoMaterno,
-                    apellidoPaterno: apellidoPaterno,
-                    condicionSunat: condicionSunat,
-                    direccion: direccion,
-                    docIdentidad: docIdentidad,
-                    estadoSunat: estadoSunat,
-                    telefono: telefono
-                },
-                success: function (response) {
-                    console.log(response);
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-                        Toastify({
-                            text: obj.msj,
-                            duration: 3000,
-                            close: true,
-                            backgroundColor: obj.color,
-                        }).showToast();
-                        if (obj.warning == "true") {
-                            cliente.obtenerListaCliente();
-                            cliente.limpiar();
-                            $('#agregarCliente').modal('hide');
+                $.ajax({
+                    url: 'http://localhost:8080/Grissy/controllers/Cliente/guardarCliente.php',
+                    method: "POST",
+                    data: {
+                        codigo: codigo,
+                        nombre: nombre,
+                        apellidoMaterno: apellidoMaterno,
+                        apellidoPaterno: apellidoPaterno,
+                        condicionSunat: condicionSunat,
+                        direccion: direccion,
+                        docIdentidad: docIdentidad,
+                        estadoSunat: estadoSunat,
+                        telefono: telefono
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        var objListado = JSON.parse(response);
+                        $(objListado).each(function (i, obj) {
+                            Toastify({
+                                text: obj.msj,
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: obj.color,
+                            }).showToast();
+                            if (obj.warning == "true") {
+                                cliente.obtenerListaCliente();
+                                cliente.limpiar();
+                                $('#agregarCliente').modal('hide');
 
-                        }
+                            }
 
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            } else {
+                Toastify({
+                    text: "El telefono es incorrecto",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,  #e30e2e )",
+                }).showToast();
+            }
         },
 
         obtenerListaCliente: function () {
@@ -76,9 +85,11 @@ var cliente = function () {
                     { "title": "Apellido Materno", "data": "apellidoMaterno" },
                     { "title": "Fecha Registro", "data": "fechaRegistro" },
 
-                    { "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button>"
-                                                            +"<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>" 
-                                                            +"<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>" }
+                    {
+                        "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button>"
+                            + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>"
+                            + "<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
+                    }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
@@ -133,7 +144,7 @@ var cliente = function () {
                         $("#nombre").val(obj.nombre);
                         $("#telefono").val(obj.telefono);
                         if (obj.estado == 1) {
-           
+
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
@@ -141,7 +152,7 @@ var cliente = function () {
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 
                         }
-                        
+
 
 
                     });
@@ -213,7 +224,7 @@ var cliente = function () {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                cliente.eliminarCliente(data.id,0);
+                cliente.eliminarCliente(data.id, 0);
             });
         },
 
@@ -221,17 +232,17 @@ var cliente = function () {
             $(tbody).on("click", "button.restablecer", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                cliente.eliminarCliente(data.id,1);
+                cliente.eliminarCliente(data.id, 1);
             });
         },
 
-        eliminarCliente: function (id,estado) {
+        eliminarCliente: function (id, estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Cliente/eliminarCliente.php',
                 method: "POST",
                 data: {
                     id: id,
-                    estado:estado
+                    estado: estado
                 },
                 success: function (response) {
                     console.log(response);
@@ -251,7 +262,7 @@ var cliente = function () {
         },
 
 
-      
+
 
         limpiar: function () {
             $("#apellidoPaterno").val("");

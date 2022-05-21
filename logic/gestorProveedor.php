@@ -5,8 +5,8 @@ require_once('/xampp/htdocs/Grissy/database/dalProveedor.php');
         return listaDeProveedor();
     }
 
-    function eliminarProveedor($id){
-        return borrarProveedor($id);
+    function eliminarProveedor($id,$estado){
+        return borrarProveedor($id,$estado);
     }
 
     function guardarProveedor($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
@@ -24,5 +24,9 @@ require_once('/xampp/htdocs/Grissy/database/dalProveedor.php');
         return ObtenerProveedorPorDocIdentidad($docIdentidad);
     }
 
+    function exixtenciaProveedor($docIdentidad){
+        return validarExistencia($docIdentidad);
+
+    }
 
 ?>

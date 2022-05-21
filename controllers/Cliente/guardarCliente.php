@@ -27,6 +27,13 @@ try {
                 "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
             );
             echo json_encode($mensaje);
+        } if ($_POST['nombre'] == "") {
+            $mensaje  = array(
+                "warning" => "false",
+                "msj" => "Asigne un nombre al cliente",
+                "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
+            );
+            echo json_encode($mensaje);
         } else {
 
             $apellidoMaterno = $_POST['apellidoMaterno'];

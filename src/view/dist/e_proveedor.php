@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grissy - Clientes</title>
+    <title>Grissy - Proveedores</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/carga.css">
@@ -48,17 +48,17 @@
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><i data-feather="user"></i></div>
-                                        Cliente
+                                        Proveedor
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
-                                    <a class="btn btn-sm btn-light text-primary" href="e_proveedor.php">
-                                        <i class="me-1" data-feather="arrow-left"></i>
-                                        Proveedor
-                                    </a>
                                     <a class="btn btn-sm btn-light text-primary" href="e_personal.php">
-
+                                        <i class="me-1" data-feather="arrow-left"></i>
                                         Personal
+                                    </a>
+                                    <a class="btn btn-sm btn-light text-primary" href="e_cliente.php">
+
+                                        Cliente
 
                                         <i data-feather="arrow-right"></i>
                                     </a>
@@ -71,7 +71,7 @@
                     <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
                         <div class="me-4 mb-3 mb-sm-0">
-                            <h1 class="mb-0"> Registro de clientes</h1>
+                            <h1 class="mb-0"> Registro de proveedores</h1>
                         </div>
                         <!-- Date range picker example-->
                         <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
@@ -85,10 +85,10 @@
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
                                     <i class="fas fa-table me-1"></i>
-                                    Lista General de clientes
+                                    Lista General de proveedores
                                 </div>
                                 <div class="border-0 shadow">
-                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="cliente.en_guardar()" data-bs-target="#agregarCliente">
+                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="proveedor.en_guardar()" data-bs-target="#agregarProveedor">
                                         <i class="fa-solid fa-plus me-1"></i> Agregar
                                     </button>
                                 </div>
@@ -121,14 +121,14 @@
     </div>
 
     <!--AGREGAR AREA EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-backdrop="stactic" aria-hidden="true">
+    <div class="modal fade text-left" id="agregarProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-backdrop="stactic" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
 
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                         <div class="me-4 mb-3 mb-sm-0">
-                            Registro de cliente
+                            Registro de proveedor
                         </div>
                         <div class=" shadow">
                             <span class="badge rounded-pill" id="estadoC"></span>
@@ -137,19 +137,16 @@
 
                     <div class="row">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni" onclick="cliente.oninputDni_Ruc()" checked>
+                            <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni" onclick="proveedor.oninputDni_Ruc()" checked>
                             <label class="form-check-label" for="dni"> DNI </label>
 
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc" onclick="cliente.oninputDni_Ruc()">
+                            <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc" onclick="proveedor.oninputDni_Ruc()">
                             <label class="form-check-label" for="ruc"> RUC </label>
                         </div>
 
                     </div>
-
-                    <!-- <h5 class="modal-title" id="myModalLabel1">Cliente</h5><td>></td>
-                     -->
                 </div>
 
                 <div class="modal-body">
@@ -163,13 +160,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="docIdentidad">Doc Identidad*</label>
-                                <input type="number" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" id="docIdentidad" class="form-control " placeholder="Doc Identidad" onchange="cliente.validarCantidades();" oninput="cliente.consultarDocIdentidad();">
+                                <input type="number" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" id="docIdentidad" class="form-control " placeholder="Doc Identidad" onchange="proveedor.validarCantidades();" oninput="proveedor.consultarDocIdentidad();">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label></label>
-                                <button type="button" class="form-control" onclick="cliente.consultarDocIdentidad()">Buscar</button>
+                                <button type="button" class="form-control" onclick="proveedor.consultarDocIdentidad()">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -212,7 +209,6 @@
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
                                 <input type="number" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" id="telefono" class="form-control " placeholder="Telefono">
-                                <!-- onchange="cliente.validarTelefono();"> -->
                             </div>
                         </div>
                     </div>
@@ -230,11 +226,11 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary" id="editar" onclick="cliente.editarCliente()">
+                    <button type="button" class="btn btn-outline-primary" id="editar" onclick="proveedor.editarProveedor()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Editar</span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary" id="guardar" onclick="cliente.guardarCliente()">
+                    <button type="button" class="btn btn-outline-primary" id="guardar" onclick="proveedor.guardarProveedor()">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
@@ -263,11 +259,11 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/cliente.js"></script>
+<script src="scripts/proveedor.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
-        cliente.obtenerListaCliente();
+        proveedor.obtenerListaProveedor();
         document.getElementById("codigo").disabled = true;
 
     });
