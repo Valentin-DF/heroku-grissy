@@ -28,4 +28,9 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
         return ObtenerClientePorDocIdentidad2($docIdentidad);
     }
 
+    function exixtenciaCliente($docIdentidad){
+        return validarExistencia($docIdentidad);
+
+    }
+
 ?>

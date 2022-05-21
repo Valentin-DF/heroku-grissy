@@ -38,52 +38,66 @@
 
     function borrarCliente($id){
         $mysqli = conexion();
-        $resultado = 0;
-    
+
         $consultaSQL = "UPDATE cliente SET estado = 0 WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
-            "i",
-            $id
+            "i",$id
         );
-    
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
     function insertarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
-        $resultado = 0;
-
+       
         $consultaSQL = "INSERT INTO cliente ( codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
             "ssssisiss", $codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat
         );
+        $stmt->execute();
+        $stmt->get_result();
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
+        $stmt->close();
+        $mysqli->close();
+    }
+
+    function validarExistencia($docIdentidad){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT * FROM cliente WHERE docIdentidad = ? ;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $docIdentidad
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
         }
 
         $stmt->close();
         $mysqli->close();
 
-        return $resultado;
+    return $estado;
+      
     }
+
     
     function actualizarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "UPDATE cliente SET apellidoMaterno = ?,apellidoPaterno = ?,condicionSunat = ?,direccion = ?,docIdentidad = ?,estadoSunat = ?,nombre = ?,telefono = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -93,15 +107,13 @@
             $apellidoMaterno,$apellidoPaterno,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono,$codigo
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
 
-        return $resultado;
+
     }
 
     function ObtenerClientePorID($id){

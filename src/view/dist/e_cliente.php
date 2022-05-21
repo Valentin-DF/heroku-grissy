@@ -10,13 +10,30 @@
     <title>Modals - SB Admin Pro</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/carga.css">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
     <link rel="stylesheet" href="assets/toastify/toastify.css">
+
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
 
 <body class="nav-fixed">
+    <div id="contenedor_carga">
+        <div id="carga">
+        </div>
+    </div>
     <?php include "eP_nav.html"; ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -30,11 +47,22 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="file"></i></div>
+                                        <div class="page-header-icon"><i data-feather="user"></i></div>
                                         Cliente
                                     </h1>
                                 </div>
-                                <div class="col-12 col-xl-auto mb-3">Optional page header content</div>
+                                <div class="col-12 col-xl-auto mb-3">
+                                    <a class="btn btn-sm btn-light text-primary" href="e_proveedor.php">
+                                        <i class="me-1" data-feather="arrow-left"></i>
+                                        Proveedor
+                                    </a>
+                                    <a class="btn btn-sm btn-light text-primary" href="e_personal.php">
+
+                                        Personal
+                                        <p class="me-1"></p>
+                                        <i data-feather="arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +89,7 @@
                                 </div>
                                 <div class="border-0 shadow">
                                     <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="cliente.en_guardar()" data-bs-target="#agregarCliente">
-                                        <i class="fa-solid fa-plus"></i> Agregar
+                                        <i class="fa-solid fa-plus me-1"></i> Agregar
                                     </button>
                                 </div>
                             </div>
@@ -76,7 +104,7 @@
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
                                         <th>Fecha Registro</th>
-                                        <th>Estado</th>
+                                        <!-- <th>Estado</th> -->
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -170,7 +198,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
-                                <input type="number" id="telefono" class="form-control " placeholder="Telefono" onchange="cliente.validarTelefono();">
+                                <input type="number" id="telefono" class="form-control " placeholder="Telefono">
+                                 <!-- onchange="cliente.validarTelefono();"> -->
                             </div>
                         </div>
                     </div>
@@ -214,6 +243,8 @@
 
     <script src="js/litepicker.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/configuracion_general.js"></script>
+
 
     <script src="assets/toastify/toastify.js"></script>
 </body>
@@ -222,16 +253,6 @@
 <script src="scripts/cliente.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
-        const storedToDos = localStorage.getItem("empleado");
-        const obj = JSON.parse(storedToDos);
-
-        console.log(obj);
-        permisos.configurarAcceso(obj.codigo);
-        // $("#usuario").val(obj.nombre);
-        document.getElementById("usuario1U").innerHTML = obj.nombre + " " + obj.apellidoPaterno + " " + obj.apellidoMaterno;
-        document.getElementById("usuario2U").innerHTML = obj.nombre + " " + obj.apellidoPaterno + " " + obj.apellidoMaterno;
-        document.getElementById("correosU").innerHTML = obj.correo;
 
         cliente.obtenerListaCliente();
         document.getElementById("codigo").disabled = true;

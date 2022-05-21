@@ -125,7 +125,6 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/configuracion_general.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="assets/js/scripts.js"></script>
@@ -152,7 +151,7 @@
 
 
 <script src="assets/js/scripts.js"></script>
-
+<script src="js/configuracion_general.js"></script>
 <script src="scripts/menu.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

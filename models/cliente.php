@@ -15,4 +15,8 @@
         public $telefono;
     }
 
+    class clienteEstado{
+        public $estado;
+    }
+
 ?>
