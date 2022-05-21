@@ -5,8 +5,8 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
         return listaDeClientes();
     }
 
-    function eliminarCliente($id){
-        return borrarCliente($id);
+    function eliminarCliente($id,$estado){
+        return borrarCliente($id,$estado);
     }
 
     function guardarCliente($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){

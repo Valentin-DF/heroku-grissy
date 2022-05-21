@@ -36,14 +36,14 @@
         return $lista;
     }
 
-    function borrarCliente($id){
+    function borrarCliente($id,$estado){
         $mysqli = conexion();
 
-        $consultaSQL = "UPDATE cliente SET estado = 0 WHERE id = ?";
+        $consultaSQL = "UPDATE cliente SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
-            "i",$id
+            "ii",$estado,$id
         );
         $stmt->execute();
         $stmt->get_result();

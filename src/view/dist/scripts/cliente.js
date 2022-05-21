@@ -76,8 +76,9 @@ var cliente = function () {
                     { "title": "Apellido Materno", "data": "apellidoMaterno" },
                     { "title": "Fecha Registro", "data": "fechaRegistro" },
 
-                    { "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button><button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>" }
-
+                    { "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCliente' ><span class='fa-fw select-all fas'></span></button>"
+                                                            +"<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>" 
+                                                            +"<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>" }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
@@ -89,6 +90,7 @@ var cliente = function () {
             });
             cliente.obtener_data_editar("#example tbody", table);
             cliente.obtener_data_eliminar("#example tbody", table);
+            cliente.obtener_data_restaurar("#example tbody", table);
         },
 
         obtener_data_editar: function (tbody, table) {
@@ -104,6 +106,7 @@ var cliente = function () {
             document.getElementById("ruc").style.display = 'none';
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
+            var estadoC;
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
             $.ajax({
@@ -129,6 +132,17 @@ var cliente = function () {
                         $("#estadoSunat").val(obj.estadoSunat);
                         $("#nombre").val(obj.nombre);
                         $("#telefono").val(obj.telefono);
+                        if (obj.estado == 1) {
+           
+                            document.getElementById("estadoC").innerHTML = "Activo";
+                            document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
+                        } else {
+                            document.getElementById("estadoC").innerHTML = "Inactivo";
+                            document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
+
+                        }
+                        
+
 
                     });
                 }
@@ -199,16 +213,25 @@ var cliente = function () {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                cliente.eliminarCliente(data.id);
+                cliente.eliminarCliente(data.id,0);
             });
         },
 
-        eliminarCliente: function (id) {
+        obtener_data_restaurar: function (tbody, table) {
+            $(tbody).on("click", "button.restablecer", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                cliente.eliminarCliente(data.id,1);
+            });
+        },
+
+        eliminarCliente: function (id,estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Cliente/eliminarCliente.php',
                 method: "POST",
                 data: {
-                    id: id
+                    id: id,
+                    estado:estado
                 },
                 success: function (response) {
                     console.log(response);
@@ -227,6 +250,9 @@ var cliente = function () {
             });
         },
 
+
+      
+
         limpiar: function () {
             $("#apellidoPaterno").val("");
             $("#apellidoMaterno").val("");
@@ -237,6 +263,8 @@ var cliente = function () {
             $("#estadoSunat").val("");
             $("#nombre").val("");
             $("#telefono").val("");
+            document.getElementById("estadoC").innerHTML = "";
+            document.getElementById("estadoC").style.backgroundColor = "transparent";
         },
 
         consultarDocIdentidad: function () {

@@ -4,15 +4,27 @@ require_once('/xampp/htdocs/Grissy/logic/gestorCliente.php');
 
 try {
 
-    if (isset($_POST['id'])) {
+    if (isset($_POST['id']) && isset($_POST['estado'])) {
         $id = $_POST['id'];
-        eliminarCliente($id);
-        $mensaje  = array(
-            "warning" => "true",
-            "msj" => "Se inhabilito al cliente",
-            "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
-        );
-        echo json_encode($mensaje);
+        $estado = $_POST['estado'];
+
+        if ($_POST['estado'] == 1) {
+            $mensaje  = array(
+                "warning" => "true",
+                "msj" => "Se habilito al cliente",
+                "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
+            );
+            eliminarCliente($id, $estado);
+            echo json_encode($mensaje);
+        } else {
+            $mensaje  = array(
+                "warning" => "true",
+                "msj" => "Se inhabilito al cliente",
+                "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
+            );
+            eliminarCliente($id, $estado);
+            echo json_encode($mensaje);
+        }
     } else {
         $mensaje  = array(
             "warning" => "false",

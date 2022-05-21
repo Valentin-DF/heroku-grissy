@@ -125,7 +125,16 @@
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Cliente</h5>
+
+                    <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
+                        <div class="me-4 mb-3 mb-sm-0">
+                            Registro de cliente
+                        </div>
+                        <div class=" shadow" >
+                            <span class="badge rounded-pill" id="estadoC"></span>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="esDocumento" id="dni" value="dni" onclick="cliente.oninputDni_Ruc()" checked>
@@ -136,7 +145,11 @@
                             <input class="form-check-input" type="radio" name="esDocumento" id="ruc" value="ruc" onclick="cliente.oninputDni_Ruc()">
                             <label class="form-check-label" for="ruc"> RUC </label>
                         </div>
+
                     </div>
+
+                    <!-- <h5 class="modal-title" id="myModalLabel1">Cliente</h5><td>></td>
+                     -->
                 </div>
 
                 <div class="modal-body">
@@ -199,7 +212,7 @@
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
                                 <input type="number" id="telefono" class="form-control " placeholder="Telefono">
-                                 <!-- onchange="cliente.validarTelefono();"> -->
+                                <!-- onchange="cliente.validarTelefono();"> -->
                             </div>
                         </div>
                     </div>
