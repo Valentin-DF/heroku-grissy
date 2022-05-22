@@ -9,7 +9,7 @@
         public $dni;
         public $contacto;
         public $direccion;
-        public $cargo;
+        public $idcargo;
         public $estado;
         public $sueldo;
         public $fechaContrato;

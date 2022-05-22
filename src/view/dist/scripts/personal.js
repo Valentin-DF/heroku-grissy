@@ -12,66 +12,105 @@ var personal = function () {
 
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
-                        var personal = '';
-
-                        personal += '<div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">';
-                        personal += '    <div class="btn icon icon-left" data-bs-toggle="modal"  >';
-                        personal += '           <div class="row">';
-                        personal += '            <img width="200" height="200" src="' + obj.foto + '">';
-                        personal += '           </div>';
-                        personal += '           <div class="row">';
-                        personal += '            <span class="text-center">' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</span>';
-                        personal += '           </div>';
-                        personal += '           <div class="col">';
-                        personal += '               <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"  data-bs-target="#cartillaPersonal-' + obj.id + '" ><span class="fa-fw select-all fas"></span></button>';
-                        personal += '               <button type="button" class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#agregarPersonal" onclick="personal.obtenerPorId(' + obj.id + ')" ><span class="fa-fw select-all fas"></span> </button>';
-                        personal += '               <button type="button" class="btn btn-outline-danger " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ')" ><span class="fa-fw select-all fas"></span></button>';
-                        personal += '           </div>';
-                        personal += '        </div>';
-                        personal += '</div>';
+                        var personals = '';
 
 
-                        personal += '<div class="modal fade text-left"  id="cartillaPersonal-' + obj.id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">';
-                        personal += '<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">';
-                        personal += '    <div class="modal-content">';
-                        personal += '        <div class="modal-header">';
-                        personal += '           <h5 class="modal-title" id="myModalLabel1">' + obj.nombre + '</h5>';
+
+
+
+
+                        personals += '<div class="col-4 mb-4">';
+                        personals += '<div class="card">';
+                        personals += '    <div class="row g-0">';
+                        personals += '        <div class="caja col-md-5"><img class="img-fluid" src="' + obj.foto + '" alt="..." /></div>';
+                        personals += '        <div class="col-md-7">';
+                        personals += '            <div class="card-body">';
+                        personals += '                <h5 class="card-title text-center mb-3"><i>' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</i></h5>';
+
+                        personals += '                 <p class="card-text text-center mb-3"><i>(' + personal.nombreDeCargo(obj.idcargo) + ')</i></p>';
+
+
+
+                        personals += '                <div class="card-footer  text-center">';
+                        personals += '                    <div >';
+                        personals += '                        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#cartillaPersonal-' + obj.id + '"><span class="fa-fw select-all fas"></span></button>';
+                        personals += '                        <button type="button" class="btn btn-outline-primary btn-sm " data-bs-toggle="modal" data-bs-target="#agregarPersonal" onclick="personal.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> </button>';
+                        personals += '                    </div>';
+                        personals += '                    <div>';
+                        personals += '                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ', 0)"><span class="fa-fw select-all fas"></span></button>';
+                        personals += '                        <button type="button" class="btn btn-outline-success btn-sm " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ', 1)"><i class="far fa-check-circle"></i></button>';
+                        personals += '                    </div>';
+                        personals += '                </div>';
+                        personals += '            </div>';
+                        personals += '        </div>';
+                        personals += '    </div>';
+                        personals += '</div>';
+                        personals += '</div>';
+                        personals += '<div class="modal fade text-left"  id="cartillaPersonal-' + obj.id + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">';
+                        personals += '<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">';
+                        personals += '    <div class="modal-content">';
+                        personals += '        <div class="modal-header">';
+                        personals += '           <h5 class="modal-title" id="myModalLabel1">' + obj.nombre + '</h5>';
                         if (obj.estado == 1) {
-                            personal += '<td><span class="badge bg-success rounded-pill">Activo</span></td>';
+                            personals += '<td><span class="badge bg-success rounded-pill">Activo</span></td>';
                         } else {
-                            personal += '<td><span class="badge bg-danger rounded-pill">Inactive</span></td>';
+                            personals += '<td><span class="badge bg-danger rounded-pill">Inactive</span></td>';
                         }
-                        personal += '        </div>';
-                        personal += '        <div class="modal-body">';
-                        personal += '            <div class="row">';
-                        personal += '                <div class="col-sm-8">';
-                        personal += '                    <p> NOMBRE:     ' + obj.nombre + '</p>';
-                        personal += '                    <p> APELLIDOS:  ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</p>';
-                        personal += '                    <p> CARGO:      ' + obj.cargo + '</p>';
-                        personal += '                    <p> TELEFONO:   ' + obj.contacto + '</p>';
-                        personal += '                    <p> DIRECCION:  ' + obj.direccion + '</p>';
-                        personal += '                    <p> CORREO:     ' + obj.correo + '</p>';
-                        personal += '                </div>';
-                        personal += '                <div class="col-sm-4">';
-                        personal += '                   <img width="200" height="200" src="' + obj.foto + '">';
-                        personal += '                </div>';
-                        personal += '            </div>';
-                        personal += '        </div>';
-                        personal += '       <div class="modal-footer" >';
-                        personal += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
-                        personal += '       </div>';
-                        personal += '    </div>';
-                        personal += '</div>';
-                        personal += '</div>';
+                        personals += '        </div>';
+                        personals += '        <div class="modal-body">';
+                        personals += '            <div class="row">';
+                        personals += '                <div class="col-sm-8">';
+                        personals += '                    <p> NOMBRE:     ' + obj.nombre + '</p>';
+                        personals += '                    <p> APELLIDOS:  ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</p>';
+                        personals += '                    <p> CARGO:      ' + personal.nombreDeCargo(obj.idcargo) + '</p>';
+                        personals += '                    <p> TELEFONO:   ' + obj.contacto + '</p>';
+                        personals += '                    <p> DIRECCION:  ' + obj.direccion + '</p>';
+                        personals += '                    <p> CORREO:     ' + obj.correo + '</p>';
+                        personals += '                </div>';
+                        personals += '                <div class="col-sm-4">';
+                        personals += '                   <img width="200" height="200" src="' + obj.foto + '">';
+                        personals += '                </div>';
+                        personals += '            </div>';
+                        personals += '        </div>';
+                        personals += '       <div class="modal-footer" >';
+                        personals += '           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><span class="d-none d-sm-block">Close</span></button>';
+                        personals += '       </div>';
+                        personals += '    </div>';
+                        personals += '</div>';
+                        personals += '</div>';
 
 
 
-                        $("#lst-personal").append(personal);
+                        $("#lst-personal").append(personals);
                     });
                 }
             })
 
         },
+
+        nombreDeCargo: function (id) {
+            var nombre = '';
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Cargo/buscarCargoPorId.php",
+                method: "GET",
+                timeout: 0,
+                data: {
+                    id: id
+                },
+                success: function (responses) {
+                    var objListadoC = JSON.parse(responses);
+                    $(objListadoC).each(function (i, objsC) {
+                        nombre = objsC.nombre;
+                        console.log(nombre);
+
+                    });
+                }
+                
+            });
+           return nombre;
+        },
+
+
         consultarDocIdentidad: function () {
             var docIdentidad = $("#dni").val();
             if (docIdentidad.length == 8) {
@@ -102,17 +141,28 @@ var personal = function () {
             }
 
         },
-        eliminarPersonal: function (id) {
+        eliminarPersonal: function (id, estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Personal/eliminarPersonal.php',
                 method: "POST",
                 data: {
-                    id: id
+                    id: id,
+                    estado: estado
                 },
-                complete: function (response) {
-                    console.log(response);
-                    $("#lst-personal").empty();
-                    personal.obtenerListaPersonal();
+                success: function (response) {
+
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        Toastify({
+                            text: obj.msj,
+                            duration: 3000,
+                            close: true,
+                            backgroundColor: obj.color,
+                        }).showToast();
+                        $("#lst-personal").empty();
+                        personal.obtenerListaPersonal();
+                    });
                 }
             });
         },
@@ -126,76 +176,71 @@ var personal = function () {
             var dni = $("#dni").val();
             var contrasena = $("#contrasena").val();
             var foto = $("#foto").val();
-            var cargo = $("#cargo").val();
+            var idcargo = $("#idcargo").val();
             var sueldo = $("#sueldo").val();
             var contacto = $("#contacto").val();
             var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-            if ($("#dni").val() != "" && $("#dni").val().length == 8) {
-                if ($("#nombre").val() != "") {
-                    if (emailRegex.test($("#correo").val())) {
-                        if ($("#contacto").val().length == 9) {
-                            $.ajax({
-                                url: 'http://localhost:8080/Grissy/controllers/Personal/guardarPersonal.php',
-                                method: "POST",
-                                data: {
-                                    codigo: codigo,
-                                    nombre: nombre,
-                                    apellidoMaterno: apellidoMaterno,
-                                    apellidoPaterno: apellidoPaterno,
-                                    correo: correo,
-                                    direccion: direccion,
-                                    dni: dni,
-                                    contrasena: contrasena,
-                                    foto: foto,
-                                    cargo: cargo,
-                                    sueldo: sueldo,
-                                    contacto: contacto
-                                },
-                                complete: function (response) {
-                                    console.log(response);
+            if (emailRegex.test($("#correo").val())) {
+                if (contacto.length == 9 || contacto == '') {
+
+                    $.ajax({
+                        url: 'http://localhost:8080/Grissy/controllers/Personal/guardarPersonal.php',
+                        method: "POST",
+                        data: {
+                            codigo: codigo,
+                            nombre: nombre,
+                            apellidoMaterno: apellidoMaterno,
+                            apellidoPaterno: apellidoPaterno,
+                            correo: correo,
+                            direccion: direccion,
+                            dni: dni,
+                            contrasena: contrasena,
+                            foto: foto,
+                            idcargo: idcargo,
+                            sueldo: sueldo,
+                            contacto: contacto
+                        },
+                        success: function (response) {
+
+                            console.log(response);
+                            var objListado = JSON.parse(response);
+                            $(objListado).each(function (i, obj) {
+                                Toastify({
+                                    text: obj.msj,
+                                    duration: 3000,
+                                    close: true,
+                                    backgroundColor: obj.color,
+                                }).showToast();
+                                if (obj.warning == "true") {
                                     $("#lst-personal").empty();
                                     personal.obtenerListaPersonal();
                                     personal.limpiar();
+                                    $.ajax({
+                                        url: 'http://localhost:8080/Grissy/controllers/Permisos/guardarPermisos.php',
+                                        method: "POST",
+                                        data: {
+                                            idpersonal: codigo,
+                                            p_grissyCliente: 0,
+                                            p_grissyPersonal: 0,
+                                            p_grissyProductoEmp: 0,
+                                            p_grissyProveedor: 0,
+                                            p_grissyVenta: 0,
+                                            p_grissyArea: 0,
+                                            p_grissyConfiguraciones: 0
+                                        },
+                                        success: function (response) {
+                                            console.log(response);
+                                        }
+                                    });
+                                    $('#agregarPersonal').modal('hide');
                                 }
                             });
-                            $.ajax({
-                                url: 'http://localhost:8080/Grissy/controllers/Permisos/guardarPermisos.php',
-                                method: "POST",
-                                data: {
-                                    idpersonal: codigo,
-                                    p_grissyCliente: 0,
-                                    p_grissyPersonal: 0,
-                                    p_grissyProductoEmp: 0,
-                                    p_grissyProveedor: 0,
-                                    p_grissyVenta: 0,
-                                    p_grissyArea: 0,
-                                    p_grissyConfiguraciones: 0
-                                },
-                                complete: function (response) {
-                                    console.log(response);
-                                }
-                            });
-                            $('#agregarPersonal').modal('hide');
-                        } else {
-                            Toastify({
-                                text: "Telefono Invalido",
-                                duration: 3000,
-                                close: true,
-                                backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                            }).showToast();
                         }
-                    } else {
-                        Toastify({
-                            text: "Correo Invalido",
-                            duration: 3000,
-                            close: true,
-                            backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                        }).showToast();
-                    }
+                    });
                 } else {
                     Toastify({
-                        text: "Se debe registrar un nombre de referencia",
+                        text: "Telefono Invalido",
                         duration: 3000,
                         close: true,
                         backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
@@ -203,19 +248,28 @@ var personal = function () {
                 }
             } else {
                 Toastify({
-                    text: "Ingrese un documento de identidad valido",
+                    text: "Correo Invalido",
                     duration: 3000,
                     close: true,
                     backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
                 }).showToast();
             }
-
         },
+
         obtenerPorId: function (id) {
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
+            var inpt1 = document.getElementById('sueldo');
+            var inpt2 = document.getElementById('contrasena');
+            var label1 = document.getElementById('noEdit1');
+            var label2 = document.getElementById('noEdit2');
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
+            inpt1.style.display = 'none'
+            inpt2.style.display = 'none';
+            label1.style.display = 'none';
+            label2.style.display = 'none';
+            document.getElementById("dni").disabled = true;
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Personal/buscarPersonalPorId.php",
                 method: "GET",
@@ -239,13 +293,14 @@ var personal = function () {
                         $("#dni").val(obj.dni);
                         $("#contrasena").val(obj.contrasena);
                         $("#foto").val(obj.foto);
-                        $("#cargo").val(obj.cargo);
+                        $("#idcargo").val(obj.idcargo);
                         $("#sueldo").val(obj.sueldo);
                         $("#contacto").val(obj.contacto);
 
                     });
                 }
-            })
+            });
+
         },
         editarPersonal: function () {
 
@@ -257,34 +312,69 @@ var personal = function () {
             var direccion = $("#direccion").val();
             var dni = $("#dni").val();
             var foto = $("#foto").val();
-            var cargo = $("#cargo").val();
+            var idcargo = $("#idcargo").val();
             var sueldo = $("#sueldo").val();
             var contacto = $("#contacto").val();
+            var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Personal/editarPersonal.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    apellidoMaterno: apellidoMaterno,
-                    apellidoPaterno: apellidoPaterno,
-                    correo: correo,
-                    direccion: direccion,
-                    dni: dni,
-                    foto: foto,
-                    cargo: cargo,
-                    sueldo: sueldo,
-                    contacto: contacto
-                },
-                complete: function (response) {
-                    console.log(response);
-                    $("#lst-personal").empty();
-                    personal.obtenerListaPersonal();
-                    personal.limpiar();
+            if (emailRegex.test($("#correo").val())) {
+                if (contacto.length == 9 || contacto == '') {
+                    $.ajax({
+                        url: 'http://localhost:8080/Grissy/controllers/Personal/editarPersonal.php',
+                        method: "POST",
+                        data: {
+                            codigo: codigo,
+                            nombre: nombre,
+                            apellidoMaterno: apellidoMaterno,
+                            apellidoPaterno: apellidoPaterno,
+                            correo: correo,
+                            direccion: direccion,
+                            dni: dni,
+                            foto: foto,
+                            idcargo: idcargo,
+                            sueldo: sueldo,
+                            contacto: contacto
+                        },
+                        success: function (response) {
+
+                            console.log(response);
+                            var objListado = JSON.parse(response);
+                            $(objListado).each(function (i, obj) {
+                                Toastify({
+                                    text: obj.msj,
+                                    duration: 3000,
+                                    close: true,
+                                    backgroundColor: obj.color,
+                                }).showToast();
+                                if (obj.warning == "true") {
+                                    $("#lst-personal").empty();
+                                    personal.obtenerListaPersonal();
+                                    personal.limpiar();
+                                    $('#agregarPersonal').modal('hide');
+                                }
+
+                            });
+
+                        }
+                    });
+                } else {
+                    Toastify({
+                        text: "Telefono Invalido",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
                 }
-            });
+            } else {
+                Toastify({
+                    text: "Correo Invalido",
+                    duration: 3000,
+                    close: true,
+                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                }).showToast();
+            }
         },
+
         limpiar: function () {
             $("#codigo").val("");
             $("#nombre").val("");
@@ -295,36 +385,31 @@ var personal = function () {
             $("#dni").val("");
             $("#contrasena").val("");
             $("#foto").val("");
-            $("#cargo").val("");
+            $("#idcargo").val("");
             $("#sueldo").val("");
             $("#contacto").val("");
         },
+
         en_guardar: function () {
             this.limpiar();
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
+            var inpt1 = document.getElementById('sueldo');
+            var inpt2 = document.getElementById('contrasena');
+            var label1 = document.getElementById('noEdit1');
+            var label2 = document.getElementById('noEdit2');
+
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
-        },
-        validarCorreo: function () {
+            inpt1.style.display = 'inline'
+            inpt2.style.display = 'inline';
+            label1.style.display = 'inline';
+            label2.style.display = 'inline';
+            document.getElementById("dni").disabled = false;
 
-            emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-            if (emailRegex.test($("#correo").val())) {
-                Toastify({
-                    text: "Correo correctamente Ingresado",
-                    duration: 3000,
-                    close: true,
-                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                }).showToast();
-            } else {
-                Toastify({
-                    text: "Correo incorrecto",
-                    duration: 3000,
-                    close: true,
-                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                }).showToast();
-            }
+
         },
+
         validarCantidades: function () {
             var doc = $("#dni").val();
 
@@ -348,35 +433,38 @@ var personal = function () {
             }
 
         },
+
         validarTelefono: function () {
             var telefono = $("#contacto").val();
             if (telefono.length > 9) {
                 $("#contacto").val('');
-                Toastify({
-                    text: "El telefono ingresado es invalido",
-                    duration: 3000,
-                    close: true,
-                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                }).showToast();
             }
             if (telefono.length < 9) {
                 $("#contacto").val('');
-                Toastify({
-                    text: "El telefono ingresado es invalido",
-                    duration: 3000,
-                    close: true,
-                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                }).showToast();
             }
-            if (telefono.length == 9) {
-                Toastify({
-                    text: "Correcto",
-                    duration: 3000,
-                    close: true,
-                    backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-                }).showToast();
-            }
-        }
+        },
+
+        obtenerListaCargo: function () {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Cargo/obtenerListaCargo.php",
+                method: "GET",
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        if (obj.estado == 1) {
+                            var cargo = '';
+                            cargo = '<option value="' + obj.id + '">' + obj.nombre + '</option>';
+
+                            $("#idcargo").append(cargo);
+                        }
+                    });
+                }
+            })
+        },
 
     }
 }();

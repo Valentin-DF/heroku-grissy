@@ -23,7 +23,7 @@
             $obj->dni = $row['dni'];
             $obj->contacto = $row['contacto'];
             $obj->direccion = $row['direccion'];
-            $obj->cargo = $row['cargo'];
+            $obj->idcargo = $row['idcargo'];
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
@@ -58,7 +58,7 @@
             $obj->dni = $row['dni'];
             $obj->contacto = $row['contacto'];
             $obj->direccion = $row['direccion'];
-            $obj->cargo = $row['cargo'];
+            $obj->idcargo = $row['idcargo'];
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
@@ -71,71 +71,55 @@
         return $lista;
     }
 
-    function borrarPersonal($id){
+    function borrarPersonal($id,$estado){
         $mysqli = conexion();
-        $resultado = 0;
     
-        $consultaSQL = "UPDATE personal SET estado = 0 WHERE id = ?";
+        $consultaSQL = "UPDATE personal SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
-            "i",
-            $id
+            "ii",$estado,$id
         );
-    
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
-    function insertarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto){
+    function insertarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$contrasena,$foto){
         $mysqli = conexion();
-        $resultado = 0;
     
-        $consultaSQL = "INSERT INTO personal (codigo,nombre, apellidoPaterno, apellidoMaterno, dni, contacto,direccion,cargo,estado,sueldo,fechaContrato,correo,contrasena,foto) VALUES(?,?,?,?,?,?,?,?,1,?,now(),?,?,?)";
+        $consultaSQL = "INSERT INTO personal (codigo,nombre, apellidoPaterno, apellidoMaterno, dni, contacto,direccion,idcargo,estado,sueldo,fechaContrato,correo,contrasena,foto) VALUES(?,?,?,?,?,?,?,?,1,?,now(),?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
         $encriptar = md5($contrasena);
+
         $stmt->bind_param(
-            "ssssiissdsss", $codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$encriptar,$foto
+            "ssssiisidsss", $codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo,$correo,$encriptar,$foto
         );
     
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
-    function ActualizarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto){
+    function ActualizarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$foto){
         $mysqli = conexion();
-        $resultado = 0;
 
-        $consultaSQL = "UPDATE personal SET nombre = ?, apellidoPaterno = ?, apellidoMaterno  = ?, dni = ?, contacto = ?,direccion = ?,cargo = ?,sueldo = ?,correo = ?,foto = ? WHERE codigo = ?";
+        $consultaSQL = "UPDATE personal SET nombre = ?, apellidoPaterno = ?, apellidoMaterno  = ?, dni = ?, contacto = ?,direccion = ?,idcargo = ?,sueldo = ?,correo = ?,foto = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssiissdsss", $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo,$correo,$foto,$codigo
+            "sssiisidsss", $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo,$correo,$foto,$codigo
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
 
@@ -164,7 +148,7 @@
             $obj->dni = $row['dni'];
             $obj->contacto = $row['contacto'];
             $obj->direccion = $row['direccion'];
-            $obj->cargo = $row['cargo'];
+            $obj->idcargo = $row['idcargo'];
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
@@ -175,6 +159,32 @@
         $mysqli->close();
     
         return $lista; 
+    }
+    function validarExistencia($dni){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT * FROM personal WHERE dni = ? ;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $dni
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
     }
 
 ?>

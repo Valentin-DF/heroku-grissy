@@ -9,20 +9,25 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
         return obtenerDatosDeInicioSeccion($correo,$contraseña);
     }
 
-    function eliminarPersonal($id){
-        return borrarPersonal($id);
+    function eliminarPersonal($id,$estado){
+        return borrarPersonal($id,$estado);
     }
 
-    function guardarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto){
-        return insertarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto);
+    function guardarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$contrasena,$foto){
+        return insertarPersonal($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$contrasena,$foto);
     }
   
-    function editarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto){
-        return ActualizarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto);
+    function editarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$foto){
+        return ActualizarPersonal($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$idcargo,$sueldo, $correo,$foto);
     }
 
     function buscarPersonalPorId($id){
         return ObtenerPersonalPorID($id);
+    }
+
+    function exixtenciaPersonal($dni){
+        return validarExistencia($dni);
+
     }
 
 ?>
