@@ -2,9 +2,11 @@
 
     class cargo {
         public $id;
-        public $cargo;
+        public $codigo;
         public $nombre;
         public $principal;
+        public $nombreSecundario;
+        public $nombrePrincipal;
         public $secundario;
         public $estado;
     

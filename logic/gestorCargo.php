@@ -9,12 +9,12 @@ require_once('/xampp/htdocs/Grissy/database/dalCargo.php');
         return borrarCargo($id,$estado);
     }
 
-    function guardarCargo($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto){
-        return insertarCargo($codigo,$nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$contrasena,$foto);
+    function guardarCargo($codigo,$nombre, $principal,$secundario){
+        return insertarCargo($codigo,$nombre, $principal,$secundario);
     }
   
-    function editarCargo($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto){
-        return ActualizarCargo($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $dni, $contacto,$direccion,$cargo,$sueldo, $correo,$foto);
+    function editarCargo($codigo, $nombre, $principal,$secundario){
+        return ActualizarCargo($codigo, $nombre, $principal,$secundario);
     }
 
     function buscarCargoPorId($id){

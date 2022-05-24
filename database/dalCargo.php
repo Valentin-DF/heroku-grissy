@@ -4,7 +4,7 @@
 
     function listaDeCargo(){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM cargo';
+        $consultaSQL = 'SELECT codigo,id,nombre,principal,(if(principal = 1,"Activo","Desactivado")) AS nombrePrincipal,secundario,(if(secundario = 1,"Activo","Desactivado")) AS nombreSecundario,estado FROM cargo;';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->execute();
@@ -19,7 +19,9 @@
             $obj->codigo = $row['codigo'];
             $obj->nombre = $row['nombre'];
             $obj->principal = $row['principal'];
+            $obj->nombrePrincipal = $row['nombrePrincipal'];
             $obj->secundario = $row['secundario'];
+            $obj->nombreSecundario = $row['nombreSecundario'];
             $obj->estado = $row['estado'];
 
             array_push($lista, $obj);
@@ -36,7 +38,7 @@
     function borrarCargo($id,$estado){
         $mysqli = conexion();
     
-        $consultaSQL = "UPDATE personal SET estado = ? WHERE id = ?";
+        $consultaSQL = "UPDATE cargo SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
@@ -69,11 +71,11 @@
     function ActualizarCargo($codigo,$nombre,$principal,$secundario){
         $mysqli = conexion();
 
-        $consultaSQL = "UPDATE personal SET nombre = ?, principal = ? ,secundario = ? WHERE codigo = ?";
+        $consultaSQL = "UPDATE cargo SET nombre = ?, principal = ? ,secundario = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sii", $nombre,$principal,$secundario,$codigo
+            "siis", $nombre,$principal,$secundario,$codigo
         );
 
         $stmt->execute();
