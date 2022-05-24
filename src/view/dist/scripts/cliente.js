@@ -9,6 +9,15 @@ var cliente = function () {
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
             this.limpiar();
+            this.desblockGuardar();
+            this.oninputDni_Ruc();
+        },
+
+        desblockGuardar: function () {
+            document.getElementById("docIdentidad").disabled = false;
+            document.getElementById("nombre").disabled = false;
+            document.getElementById("apellidoPaterno").disabled = false;
+            document.getElementById("apellidoMaterno").disabled = false;
         },
 
         guardarCliente: function () {
@@ -113,11 +122,13 @@ var cliente = function () {
         },
 
         obtenerPorId: function (id) {
+            cliente.blockEditar();
+
             document.getElementById("dni").style.display = 'none';
             document.getElementById("ruc").style.display = 'none';
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
-            var estadoC;
+
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
             $.ajax({
@@ -158,6 +169,16 @@ var cliente = function () {
                     });
                 }
             })
+        },
+
+        blockEditar: function () {
+            document.getElementById("docIdentidad").disabled = true;
+            document.getElementById("nombre").disabled = true;
+            document.getElementById("apellidoPaterno").disabled = true;
+            document.getElementById("apellidoMaterno").disabled = true;
+            document.getElementById("condicionSunat").disabled = true;
+            document.getElementById("estadoSunat").disabled = true;
+
         },
 
         editarCliente: function () {
@@ -433,30 +454,15 @@ var cliente = function () {
                 }
             }
         },
-        // validarTelefono: function () {
-        //     var telefono = $("#telefono").val();
-        //     if (telefono.length > 9) {
-        //         $("#telefono").val('');
-        //         Toastify({
-        //             text: "El telefono ingresado es invalido",
-        //             duration: 3000,
-        //             close: true,
-        //             backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-        //         }).showToast();
-        //     }
-        //     if (telefono.length < 9) {
-        //         $("#telefono").val('');
-        //         Toastify({
-        //             text: "El telefono ingresado es invalido",
-        //             duration: 3000,
-        //             close: true,
-        //             backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-        //         }).showToast();
-        //     }
-        //     if (telefono == ""){
+        validarTelefono: function () {
+            var telefono = $("#telefono").val();
+            if (telefono.length > 9) {
+                $("#telefono").val('');
 
-        //     }
-
-        // }
+            }
+            if (telefono.length < 9) {
+                $("#telefono").val('');
+            }
+        }
     }
 }();

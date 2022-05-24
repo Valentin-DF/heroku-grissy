@@ -18,6 +18,7 @@
         public $contrasena;
         public $foto;
         public $descripcion;
+        public $nombreCargo;
     }
 
 ?>

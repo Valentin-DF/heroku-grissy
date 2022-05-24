@@ -5,12 +5,12 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
         return listaDeProductos();
     }
 
-    function eliminarProducto($id){
-        return borrarProducto($id);
+    function eliminarProducto($id, $estado){
+        return borrarProducto($id, $estado);
     }
 
-    function guardarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea){
-        return insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea);
+    function guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto){
+        return insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto);
     }
 
     function editarProducto($codigo,$nombre,$talla,$cantidad,$precio){

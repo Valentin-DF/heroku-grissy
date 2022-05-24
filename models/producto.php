@@ -9,6 +9,9 @@
         public $talla;
         public $estado;
         public $idarea;
+        public $nombreArea;
+        public $idproducto;
+        public $nombreProducto;
     }
 
 ?>

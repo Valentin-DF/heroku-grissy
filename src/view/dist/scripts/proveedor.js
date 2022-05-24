@@ -9,7 +9,18 @@ var proveedor = function () {
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
             this.limpiar();
+            this.desblockGuardar();
+            this.oninputDni_Ruc();
+
         },
+
+        desblockGuardar: function(){
+            document.getElementById("docIdentidad").disabled = false;
+            document.getElementById("nombre").disabled = false;
+            document.getElementById("apellidoPaterno").disabled = false;
+            document.getElementById("apellidoMaterno").disabled = false;
+        },
+
 
         guardarProveedor: function () {
 
@@ -119,6 +130,7 @@ var proveedor = function () {
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
+            this.blockEditar();
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Proveedor/buscarProveedorPorId.php",
                 method: "GET",
@@ -155,6 +167,16 @@ var proveedor = function () {
                     });
                 }
             })
+        },
+
+        blockEditar: function(){
+            document.getElementById("docIdentidad").disabled = true;
+            document.getElementById("nombre").disabled = true;
+            document.getElementById("apellidoPaterno").disabled = true;
+            document.getElementById("apellidoMaterno").disabled = true;
+            document.getElementById("condicionSunat").disabled = true;
+            document.getElementById("estadoSunat").disabled = true;
+
         },
 
         editarProveedor: function () {
@@ -426,35 +448,16 @@ var proveedor = function () {
             }
         },
         
-        //   validarTelefono: function () {
-        //     var telefono = $("#telefono").val();
-        //     if (telefono.length > 9) {
-        //         $("#telefono").val('');
-        //         Toastify({
-        //             text: "El telefono ingresado es invalido",
-        //             duration: 3000,
-        //             close: true,
-        //             backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-        //         }).showToast();
-        //     }
-        //     if (telefono.length < 9) {
-        //         $("#telefono").val('');
-        //         Toastify({
-        //             text: "El telefono ingresado es invalido",
-        //             duration: 3000,
-        //             close: true,
-        //             backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-        //         }).showToast();
-        //     }
-        //     if (telefono.length == 9) {
-        //         Toastify({
-        //             text: "Correcto",
-        //             duration: 3000,
-        //             close: true,
-        //             backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
-        //         }).showToast();
-        //     }
-        // }
+        validarTelefono: function () {
+            var telefono = $("#telefono").val();
+            if (telefono.length > 9) {
+                $("#telefono").val('');
+               
+            }
+            if (telefono.length < 9) {
+                $("#telefono").val('');
+            }
+        }
 
     }
 }();

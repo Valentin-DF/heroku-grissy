@@ -211,8 +211,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
-                                <input type="number" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" id="telefono" class="form-control " placeholder="Telefono">
-                                <!-- onchange="cliente.validarTelefono();"> -->
+                                <input type="number" ondrop="return false;" onpaste="return false;" onkeypress="return event.charCode>=48 && event.charCode<=57" id="telefono" class="form-control " placeholder="Telefono" onchange="cliente.validarTelefono();">
                             </div>
                         </div>
                     </div>

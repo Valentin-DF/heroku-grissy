@@ -1,10 +1,10 @@
 <?php
 
-require_once('/xampp/htdocs/Grissy/logic/gestorProducto.php');
+require_once('/xampp/htdocs/Grissy/logic/gestorProductoG.php');
 
 try {
 
-    if (isset($_POST['codigo']) && isset($_POST['nombre']) && isset($_POST['talla']) && isset($_POST['cantidad']) && isset($_POST['precio'])) {
+    if (isset($_POST['codigo']) && isset($_POST['nombre']) ) {
 
         if ($_POST['codigo'] == "") {
             $mensaje  = array(
@@ -20,20 +20,6 @@ try {
                 "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
             );
             echo json_encode($mensaje);
-        } else if ($_POST['cantidad'] == "") {
-            $mensaje  = array(
-                "warning" => "false",
-                "msj" => "Necesita Colocar la cantidad al producto",
-                "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
-            );
-            echo json_encode($mensaje);
-        } else if ($_POST['precio'] == "") {
-            $mensaje  = array(
-                "warning" => "false",
-                "msj" => "Necesita Colocar el precio al producto",
-                "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
-            );
-            echo json_encode($mensaje);
         } else {
             $codigo = $_POST['codigo'];
             $nombre = $_POST['nombre'];
@@ -41,11 +27,11 @@ try {
             $cantidad = $_POST['cantidad'];
             $precio = $_POST['precio'];
 
-            editarProducto($codigo, $nombre, $talla, $cantidad, $precio);
+            editarProductoG($codigo, $nombre);
 
             $mensaje  = array(
                 "warning" => "true",
-                "msj" => "Se guardo correctamente",
+                "msj" => "Se edito correctamente",
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
             echo json_encode($mensaje);
@@ -54,7 +40,7 @@ try {
     } else {
         $mensaje  = array(
             "warning" => "false",
-            "msj" => "No se guardo los datos",
+            "msj" => "No se edito los datos",
             "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
         );
         echo json_encode($mensaje);    }

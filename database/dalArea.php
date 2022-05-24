@@ -29,6 +29,33 @@
     
         return $lista;
     }
+    function listaDeAreaActivo(){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM area WHERE estado=1';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new area();
+            $obj->id = $row['id'];
+            $obj->codigo = $row['codigo'];
+            $obj->nombre = $row['nombre'];
+            $obj->estado = $row['estado'];
+            $obj->foto = $row['foto'];
+            $obj->descripcion = $row['descripcion'];
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista;
+    }
 
     function borrarArea($id,$estado){
         $mysqli = conexion();

@@ -4,6 +4,9 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
     function obtenerListaDeArea(){
         return listaDeArea();
     }
+    function obtenerListaDeAreaActivo(){
+        return listaDeAreaActivo();
+    }
 
     function eliminarArea($id,$estado){
         return borrarArea($id,$estado);

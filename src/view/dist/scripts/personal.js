@@ -2,6 +2,7 @@ var personal = function () {
 
     return {
         obtenerListaPersonal: function () {
+            var pers;
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Personal/obtenerListaPersonal.php",
                 method: "GET",
@@ -14,11 +15,6 @@ var personal = function () {
                     $(objListado).each(function (i, obj) {
                         var personals = '';
 
-
-
-
-
-
                         personals += '<div class="col-4 mb-4">';
                         personals += '<div class="card">';
                         personals += '    <div class="row g-0">';
@@ -26,19 +22,15 @@ var personal = function () {
                         personals += '        <div class="col-md-7">';
                         personals += '            <div class="card-body">';
                         personals += '                <h5 class="card-title text-center mb-3"><i>' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</i></h5>';
-
-                        personals += '                 <p class="card-text text-center mb-3"><i>(' + personal.nombreDeCargo(obj.idcargo) + ')</i></p>';
-
-
-
+                        personals += '                 <p class="card-text text-center mb-3"><i>(' + obj.nombreCargo + ')</i></p>';
                         personals += '                <div class="card-footer  text-center">';
                         personals += '                    <div >';
                         personals += '                        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#cartillaPersonal-' + obj.id + '"><span class="fa-fw select-all fas"></span></button>';
                         personals += '                        <button type="button" class="btn btn-outline-primary btn-sm " data-bs-toggle="modal" data-bs-target="#agregarPersonal" onclick="personal.obtenerPorId(' + obj.id + ')"><span class="fa-fw select-all fas"></span> </button>';
                         personals += '                    </div>';
                         personals += '                    <div>';
-                        personals += '                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ', 0)"><span class="fa-fw select-all fas"></span></button>';
-                        personals += '                        <button type="button" class="btn btn-outline-success btn-sm " data-bs-dismiss="modal" onclick="personal.eliminarPersonal(' + obj.id + ', 1)"><i class="far fa-check-circle"></i></button>';
+                        personals += '                        <button type="button" class="btn btn-outline-danger btn-sm " onclick="personal.eliminarPersonal(' + obj.id + ', 0)"><span class="fa-fw select-all fas"></span></button>';
+                        personals += '                        <button type="button" class="btn btn-outline-success btn-sm "  onclick="personal.eliminarPersonal(' + obj.id + ', 1)"><i class="far fa-check-circle"></i></button>';
                         personals += '                    </div>';
                         personals += '                </div>';
                         personals += '            </div>';
@@ -62,7 +54,7 @@ var personal = function () {
                         personals += '                <div class="col-sm-8">';
                         personals += '                    <p> NOMBRE:     ' + obj.nombre + '</p>';
                         personals += '                    <p> APELLIDOS:  ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</p>';
-                        personals += '                    <p> CARGO:      ' + personal.nombreDeCargo(obj.idcargo) + '</p>';
+                        personals += '                    <p> CARGO:      ' + obj.nombreCargo + '</p>';
                         personals += '                    <p> TELEFONO:   ' + obj.contacto + '</p>';
                         personals += '                    <p> DIRECCION:  ' + obj.direccion + '</p>';
                         personals += '                    <p> CORREO:     ' + obj.correo + '</p>';
@@ -105,9 +97,9 @@ var personal = function () {
 
                     });
                 }
-                
+
             });
-           return nombre;
+            return nombre;
         },
 
 
@@ -181,7 +173,7 @@ var personal = function () {
             var contacto = $("#contacto").val();
             var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
-            if (emailRegex.test($("#correo").val())) {
+            if (emailRegex.test($("#correo").val()) || correo == '') {
                 if (contacto.length == 9 || contacto == '') {
 
                     $.ajax({
@@ -269,6 +261,7 @@ var personal = function () {
             inpt2.style.display = 'none';
             label1.style.display = 'none';
             label2.style.display = 'none';
+            this.blockEditar();
             document.getElementById("dni").disabled = true;
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Personal/buscarPersonalPorId.php",
@@ -296,12 +289,29 @@ var personal = function () {
                         $("#idcargo").val(obj.idcargo);
                         $("#sueldo").val(obj.sueldo);
                         $("#contacto").val(obj.contacto);
+                        if (obj.estado == 1) {
+
+                            document.getElementById("estadoC").innerHTML = "Activo";
+                            document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
+                        } else {
+                            document.getElementById("estadoC").innerHTML = "Inactivo";
+                            document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
+
+                        }
 
                     });
                 }
             });
 
         },
+        blockEditar: function () {
+            document.getElementById("dni").disabled = true;
+            document.getElementById("nombre").disabled = true;
+            document.getElementById("apellidoPaterno").disabled = true;
+            document.getElementById("apellidoMaterno").disabled = true;
+
+        },
+
         editarPersonal: function () {
 
             var codigo = $("#codigo").val();
@@ -388,6 +398,8 @@ var personal = function () {
             $("#idcargo").val("");
             $("#sueldo").val("");
             $("#contacto").val("");
+            document.getElementById("estadoC").innerHTML = "";
+            document.getElementById("estadoC").style.backgroundColor = "transparent";
         },
 
         en_guardar: function () {
@@ -407,8 +419,16 @@ var personal = function () {
             label2.style.display = 'inline';
             document.getElementById("dni").disabled = false;
 
-
+            this.desblockGuardar();
         },
+
+        desblockGuardar: function () {
+            document.getElementById("dni").disabled = false;
+            document.getElementById("nombre").disabled = false;
+            document.getElementById("apellidoPaterno").disabled = false;
+            document.getElementById("apellidoMaterno").disabled = false;
+        },
+
 
         validarCantidades: function () {
             var doc = $("#dni").val();
@@ -444,7 +464,8 @@ var personal = function () {
             }
         },
 
-        obtenerListaCargo: function () {
+        obtenerListaCargo: function () {var cargo = '';
+        
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Cargo/obtenerListaCargo.php",
                 method: "GET",
@@ -456,11 +477,21 @@ var personal = function () {
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
                         if (obj.estado == 1) {
-                            var cargo = '';
-                            cargo = '<option value="' + obj.id + '">' + obj.nombre + '</option>';
+                            
+                            cargo = '<option class="text-blue" value="' + obj.id + '">' + obj.nombre + '</option>';
 
-                            $("#idcargo").append(cargo);
+
+                        } else {
+                            cargo = '<option disabled class="text-pink" value="' + obj.id + '">' + obj.nombre + '</option>';
+
                         }
+                        $("#idcargo").append(cargo);
+                        // if (obj.estado == 1) {
+                        //     area = '<option class="text-blue" value="' + obj.id + '">' + obj.nombre + '</option>';
+                        // } else {
+                        //     area = '<option disabled class="text-pink" value="' + obj.id + '">' + obj.nombre + '</option>';
+                        // }
+
                     });
                 }
             })

@@ -118,7 +118,14 @@
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel1">Personal</h5>
+                <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
+                        <div class="me-4 mb-3 mb-sm-0">
+                            Registro de personal
+                        </div>
+                        <div class=" shadow">
+                            <span class="badge rounded-pill" id="estadoC"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -207,8 +214,7 @@
 
                             <div class="form-group ">
                             <label for="idcargo">Cargo</label>
-                                <select class="form-select" id="idcargo"">
-                                    <option value="0" selected>Seleccionar</option>
+                                <select class="form-control form-selec" id="idcargo"">
                                 </select>
                             </div>
                         </div>

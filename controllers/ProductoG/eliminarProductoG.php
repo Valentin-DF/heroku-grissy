@@ -1,6 +1,6 @@
 <?php
 
-require_once('/xampp/htdocs/Grissy/logic/gestorProducto.php');
+require_once('/xampp/htdocs/Grissy/logic/gestorProductoG.php');
 
 try {
 
@@ -15,7 +15,7 @@ try {
                 "msj" => "Se habilito el producto",
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
-            eliminarProducto($id, $estado);
+            eliminarProductoG($id, $estado);
             echo json_encode($mensaje);
         } else {
             $mensaje  = array(
@@ -23,7 +23,7 @@ try {
                 "msj" => "Se inhabilito el producto",
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
-            eliminarProducto($id, $estado);
+            eliminarProductoG($id, $estado);
             echo json_encode($mensaje);
         }
     } else {

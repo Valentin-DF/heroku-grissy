@@ -4,7 +4,7 @@
 
     function listaDePersonal(){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM personal';
+        $consultaSQL = 'CALL emp_ListarPersonal();';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->execute();
@@ -27,6 +27,8 @@
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
+            $obj->nombreCargo =  $row['nombreCargo'];
+
             array_push($lista, $obj);
         }
     
@@ -62,6 +64,7 @@
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
+            // $obj->nombreCargo =  $row['nombreCargo'];
             array_push($lista, $obj);
         }
 
@@ -152,6 +155,8 @@
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
+            // $obj->nombreCargo =  $row['nombreCargo'];
+
             array_push($lista, $obj);
         }
 

@@ -23,6 +23,7 @@
             $obj->talla = $row['talla'];
             $obj->estado = $row['estado'];
             $obj->idarea = $row['idarea'];
+            $obj->idproducto = $row['idproducto'];
             array_push($lista, $obj);
         }
     
@@ -32,54 +33,42 @@
         return $lista;
     }
 
-    function borrarProducto($id){
+    function borrarProducto($id, $estado){
         $mysqli = conexion();
-        $resultado = 0;
     
-        $consultaSQL = "UPDATE producto_e SET estado = 0 WHERE id = ?";
+        $consultaSQL = "UPDATE producto_e SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
-            "i",
-            $id
+            "ii",$estado,$id
         );
     
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
-    function insertarProducto($codigo,$nombre,$talla,$cantidad,$estado,$precio,$idArea){
+    function insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto){
         $mysqli = conexion();
-        $resultado = 0;
 
-        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, precio, estado, idArea) VALUES(?,?,?,?,?,1,?)";
+        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, estado, precio, idarea, idproducto) VALUES(?,?,?,?,1,?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssidi", $codigo,$nombre,$talla,$cantidad,$precio,$idArea
+            "sssidii", $codigo, $nombre, $talla, $cantidad,$precio, $idArea, $idProducto
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function ActualizarProducto($codigo,$nombre,$talla,$cantidad,$precio){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "UPDATE producto_e SET nombre = ?,talla = ?,cantidad = ?,precio = ? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -88,15 +77,11 @@
             "ssids",$nombre,$talla,$cantidad,$precio,$codigo
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function ObtenerProductoPorID($id){
@@ -220,5 +205,3 @@
     
         return $resultado;
     }
-
-?>
