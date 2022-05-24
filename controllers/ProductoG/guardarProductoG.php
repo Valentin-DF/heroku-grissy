@@ -4,12 +4,7 @@ require_once('/xampp/htdocs/Grissy/logic/gestorProductoG.php');
 
 try {
 
-    if (isset($_POST['codigo']) && isset($_POST['nombre']) && isset($_POST['talla']) && isset($_POST['cantidad']) && isset($_POST['estado']) && isset($_POST['precio']) && isset($_POST['idArea'])) {
-
-        // if ($("#codigo").val() != "") {
-        //     if ($("#nombre").val() != "") {
-        //         if ($("#cantidad").val() != "") {
-        //             if ($("#precio").val() != "" ) {
+    if (isset($_POST['codigo']) && isset($_POST['nombre'])) {
 
         if ($_POST['codigo'] == "") {
             $mensaje  = array(
@@ -29,7 +24,6 @@ try {
 
             $codigo = $_POST['codigo'];
             $nombre = $_POST['nombre'];
-
 
             guardarProductoG($codigo, $nombre);
             

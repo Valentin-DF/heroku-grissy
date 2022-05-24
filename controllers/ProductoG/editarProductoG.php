@@ -23,9 +23,7 @@ try {
         } else {
             $codigo = $_POST['codigo'];
             $nombre = $_POST['nombre'];
-            $talla = $_POST['talla'];
-            $cantidad = $_POST['cantidad'];
-            $precio = $_POST['precio'];
+
 
             editarProductoG($codigo, $nombre);
 

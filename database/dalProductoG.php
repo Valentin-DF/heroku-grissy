@@ -75,11 +75,11 @@
     function insertarProductoG($codigo, $nombre){
         $mysqli = conexion();
 
-        $consultaSQL = "INSERT INTO producto_g($codigo, $nombre VALUES(?,?)";
+        $consultaSQL = "INSERT INTO producto_g(codigo, nombre ,estado)VALUES(?,?,1)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssidii", $codigo, $nombre
+            "ss", $codigo, $nombre
         );
 
         $stmt->execute();
@@ -96,7 +96,7 @@
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "ssids",$nombre,$talla,$cantidad,$precio,$codigo
+            "ss",$nombre,$codigo
         );
 
         $stmt->execute();
@@ -104,4 +104,34 @@
 
         $stmt->close();
         $mysqli->close();
+    }
+    function ObtenerProductoGPorID($id){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM producto_g WHERE id = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new productoG();
+            $obj->id = $row['id'];
+            $obj->nombre = $row['nombre'];
+            $obj->codigo = $row['codigo'];
+            $obj->estado = $row['estado'];
+     
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
     }
