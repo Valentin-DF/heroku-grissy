@@ -128,7 +128,7 @@
 
     function ObtenerPersonalPorID($id){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM personal WHERE id = ?';
+        $consultaSQL = 'CALL emp_ListarPersonalID( ? )';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
@@ -155,7 +155,7 @@
             $obj->estado = $row['estado'];
             $obj->correo = $row['correo'];
             $obj->foto = $row['foto'];
-            // $obj->nombreCargo =  $row['nombreCargo'];
+            $obj->nombreCargo =  $row['nombreCargo'];
 
             array_push($lista, $obj);
         }
@@ -190,6 +190,23 @@
 
     return $estado;
       
+    }
+
+    function ActualizarPerfil($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $contacto, $direccion,  $correo, $foto, $contrasena){
+        $mysqli = conexion();
+
+        $consultaSQL = "UPDATE personal SET nombre = ?, apellidoPaterno = ?, apellidoMaterno  = ?,  contacto = ?,direccion = ?,correo = ?,foto = ?,contrasena = ? WHERE codigo = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $encriptar = md5($contrasena);
+        $stmt->bind_param(
+            "sssisssss", $nombre, $apellidoPaterno, $apellidoMaterno, $contacto, $direccion,  $correo, $foto, $encriptar,$codigo
+        );
+
+        $stmt->execute();
+        $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
     }
 
 ?>

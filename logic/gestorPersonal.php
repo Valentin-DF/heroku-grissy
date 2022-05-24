@@ -30,4 +30,8 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
 
     }
 
+    function editarPerfil($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $contacto, $direccion,  $correo, $foto, $contrasena){
+        return actualizarPerfil($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $contacto, $direccion,  $correo, $foto, $contrasena);
+    }
+
 ?>
