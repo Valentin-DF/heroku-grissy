@@ -59,7 +59,6 @@
 
     function borrarArea($id,$estado){
         $mysqli = conexion();
-        $resultado = 0;
     
         $consultaSQL = "UPDATE area SET estado = ? WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -69,20 +68,15 @@
             $estado,$id
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
     function insertarArea($codigo,$nombre,$descripcion,$foto){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "INSERT INTO area(codigo,nombre,descripcion,foto,estado) VALUES(?,?,?,?,1)";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -91,20 +85,16 @@
             "ssss", $codigo,$nombre,$descripcion,$foto
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function ActualizarArea($codigo,$nombre,$descripcion,$foto){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "UPDATE area SET nombre = ?,descripcion = ?, foto =? WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -113,15 +103,11 @@
             "ssss",$nombre,$descripcion,$foto,$codigo
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function ObtenerAreaPorID($id){

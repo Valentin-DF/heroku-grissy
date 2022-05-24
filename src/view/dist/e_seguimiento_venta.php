@@ -2,31 +2,32 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>GRISSY</title>
-    <link href="assets/css/styles.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Grissy - Seguimiento Venta</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/carga.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+    <link rel="stylesheet" href="assets/toastify/toastify.css">
+
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="assets/css/carga.css">
-
+    
 </head>
 
 <body>
-    <div id="contenedor_carga">
+<div id="contenedor_carga">
         <div id="carga">
         </div>
     </div>
-
-    <?php include "nav.html"; ?>
+    <?php include "eP_nav.html"; ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <?php include "sidevar.html"; ?>
+            <?php include "eP_sidevar.html"; ?>
         </div>
         <div id="layoutSidenav_content">
             <main>
@@ -122,42 +123,36 @@
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <?php include "footer.html"; ?>
+            <footer class="footer-admin mt-auto footer-light">
+                <?php include "eP_footer.html"; ?>
             </footer>
         </div>
     </div>
 
-    <script src="assets/js/configuracion_general.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="assets/js/datatables-simple-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
+
+    <script src="js/litepicker.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/configuracion_general.js"></script>
+
+
+    <script src="assets/toastify/toastify.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 </body>
-<!-- Javascript -->
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<!-- DATATABLES -->
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js">
-</script>
-<!-- BOOTSTRAP -->
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.js"></script>
-
-
-<script src="assets/js/scripts.js"></script>
-
+<script src="scripts/permisos.js"></script>
 <script src="scripts/seguimiento_venta.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

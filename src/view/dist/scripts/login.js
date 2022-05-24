@@ -21,7 +21,7 @@ var login = function () {
 
                             if (obj.estado == 1) {
                                 localStorage.setItem("empleado", JSON.stringify(obj));
-                                window.location.replace('http://localhost:8080/Grissy/src/view/menu.php');
+                                window.location.replace('e_menu.php');
                                 console.log(response);
                             } else {
                                 Toastify({
