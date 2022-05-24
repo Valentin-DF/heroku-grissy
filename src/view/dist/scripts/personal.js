@@ -173,6 +173,10 @@ var personal = function () {
             var contacto = $("#contacto").val();
             var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
+            if ($("#foto").val() == "") {
+                var foto = "http://localhost:8080/Grissy/src/view/dist/assets/img/ES_121355.gif";
+            }
+
             if (emailRegex.test($("#correo").val()) || correo == '') {
                 if (contacto.length == 9 || contacto == '') {
 
@@ -326,6 +330,10 @@ var personal = function () {
             var sueldo = $("#sueldo").val();
             var contacto = $("#contacto").val();
             var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+            if ($("#foto").val() == "") {
+                var foto = "http://localhost:8080/Grissy/src/view/dist/assets/img/ES_121355.gif";
+            }
 
             if (emailRegex.test($("#correo").val())) {
                 if (contacto.length == 9 || contacto == '') {
