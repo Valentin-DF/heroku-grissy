@@ -6,7 +6,7 @@ try {
 
     if (isset($_POST['idpersonal'])) {
         $id = $_POST['idpersonal'];
-        echo json_encode(GraficoSemanalDelPersonal($id), JSON_PRETTY_PRINT);
+        echo json_encode(GraficoSeguimientoVentaDelPersonal($id), JSON_PRETTY_PRINT);
     }else {
         echo json_encode('No se obtuvo data');
     }

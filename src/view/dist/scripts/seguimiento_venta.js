@@ -1,68 +1,12 @@
 var seguimiento_venta = function () {
 
     return {
-        cerrarSeccion: function () {
-            window.localStorage.removeItem("empleado");
-        },
-        mapaSemanal: function () {
+        mapSeguimiento: function () {
             const storedToDos = localStorage.getItem("empleado");
             const empleado = JSON.parse(storedToDos);
             var tmp = null;
             $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Grafico/graficaSemanalDelEmpleado.php",
-                method: "POST",
-                data: {
-                    idpersonal: empleado.id
-                },
-
-                success: function (response) {
-
-                    console.log(response);
-
-                    var objListado = JSON.parse(response);
-
-                    // console.log( 'data2, ',objListado);
-                    tmp = new CanvasJS.Chart("chartContainer", {
-                        theme: "light2",
-                        exportEnabled: true,
-                        animationEnabled: true,
-                        title: {
-                            text: " Ventas Durante la Semana"
-                        },
-                        axisY: {
-                            includeZero: true,
-                            prefix: "S/",
-                            lineThickness: 0
-                        },
-                        toolTip: {
-                            shared: true
-                        },
-                        legend: {
-                            fontSize: 13
-                        },
-                        data: [
-                            {
-                                name: empleado.nombre + " " + empleado.apellidoPaterno,
-                                showInLegend: "true",
-                                yValueFormatString: "S/#,##0",
-                                type: "splineArea",
-                                dataPoints: objListado
-                            }
-                        ]
-                    });
-                    tmp.render();
-
-                }
-            });
-            return tmp;
-
-        },
-        mapaMensual: function () {
-            const storedToDos = localStorage.getItem("empleado");
-            const empleado = JSON.parse(storedToDos);
-            var tmp = null;
-            $.ajax({
-                url: "http://localhost:8080/Grissy/controllers/Grafico/graficaMensualDelEmpleado.php",
+                url: "http://localhost:8080/Grissy/controllers/Grafico/graficaSeguimientoVenta.php",
                 method: "POST",
                 data: {
                     idpersonal: empleado.id
@@ -79,7 +23,7 @@ var seguimiento_venta = function () {
                         exportEnabled: true,
                         animationEnabled: true,
                         title: {
-                            text: " Ventas Durante el Mes"
+                            text: ""
                         },
                         axisY: {
                             includeZero: true,
@@ -110,6 +54,7 @@ var seguimiento_venta = function () {
             return tmp;
         },
         tablaDetealles: function (estados) {
+            console.log(estados);
             const storedToDos = localStorage.getItem("empleado");
             const empleado = JSON.parse(storedToDos);
             $('#example').DataTable().destroy();

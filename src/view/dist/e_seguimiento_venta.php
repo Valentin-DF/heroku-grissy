@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
@@ -16,11 +16,11 @@
 
     <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-    
+
 </head>
 
 <body>
-<div id="contenedor_carga">
+    <div id="contenedor_carga">
         <div id="carga">
         </div>
     </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-xl-4 col-md-6">
                             <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Ventas Anuladas</div>
+                                <div class="card-body">Ventas Deshabilitadas</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" onclick="seguimiento_venta.tablaDetealles(0);">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -80,21 +80,11 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area me-1"></i>
-                                    Venta Semanales
-                                </div>
-                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
+                        <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    Venta Mensual
+                                    Totalizado Diario
                                 </div>
                                 <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
 
@@ -129,6 +119,8 @@
         </div>
     </div>
 
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -143,11 +135,7 @@
     <script src="js/litepicker.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/configuracion_general.js"></script>
-
-
     <script src="assets/toastify/toastify.js"></script>
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 </body>
 
@@ -156,8 +144,7 @@
 <script src="scripts/seguimiento_venta.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        seguimiento_venta.mapaSemanal();
-        seguimiento_venta.mapaMensual();
+        seguimiento_venta.mapSeguimiento();
     });
 </script>
 

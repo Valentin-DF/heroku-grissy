@@ -29,7 +29,7 @@
         $mysqli = conexion();
         $resultado = 0;
 
-        $consultaSQL = "INSERT INTO detalleventa (codigoVenta, idProducto, cantidad, precio,total) VALUES(?,?,?,?,?)";
+        $consultaSQL = "INSERT INTO detalleventa (codigoVenta, idProducto, cantidad, precio,total,estado) VALUES(?,?,?,?,?,0)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
@@ -227,6 +227,17 @@
         $mysqli->close();
     
         return $lista;
+    }
+
+    function cancelar($codigoVenta){
+        $mysqli = conexion();
+        $consultaSQL = 'DELETE FROM detalleventa WHERE codigoVenta = ? and  estado = 0';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+
+        $stmt->bind_param(
+            "s", $codigoVenta
+        ); 
     }
 
 ?>

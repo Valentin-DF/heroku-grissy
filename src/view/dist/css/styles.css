@@ -21044,3 +21044,18 @@ pre[class*=language-] {
 .token.variable {
   color: #ff6666;
 }
+
+
+.table thead {
+  background-color: #272f3b !important;
+  color: #fff;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 11px
+}
+
+.table  td {
+
+  padding: .5rem;
+}
+

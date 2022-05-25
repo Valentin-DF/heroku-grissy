@@ -31,9 +31,9 @@
         return $lista;
     }
 
-    function GraficoMensualIdPersonal($idpersonal){
+    function GraficoSeguimientoVentaIdPersonal($idpersonal){
         $mysqli = conexion();
-        $consultaSQL = 'CALL GraficaVentaMes_Perfil( ? )';
+        $consultaSQL = 'CALL GraficaSeguimientoVentaEmpleado( ? )';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
