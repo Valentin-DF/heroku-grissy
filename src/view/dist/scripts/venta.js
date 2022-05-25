@@ -2,6 +2,31 @@
 var venta = function () {
 
     return {
+        inabilitarVenta: function(id,estado){
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Venta/eliminarVenta.php',
+                method: "POST",
+                data: {
+                    id: id,
+                    estado: estado
+                },
+                success: function (response) {
+                    console.log(response);
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        Toastify({
+                            text: obj.msj,
+                            duration: 3000,
+                            close: true,
+                            backgroundColor: obj.color,
+                        }).showToast();
+                        venta.obtenerListaVenta();
+                    });
+
+                }
+            });
+        },
+
         obtenerListaVenta: function () {
             const storedToDos = localStorage.getItem("empleado");
             const objec = JSON.parse(storedToDos);
@@ -27,6 +52,7 @@ var venta = function () {
                     {
                         "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button>"
                             + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>"
+                            + "<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
                     }
                 ],
                 "language": {
@@ -37,6 +63,8 @@ var venta = function () {
             });
             venta.obtener_data_editar("#example tbody", table);
             venta.obtener_data_eliminar("#example tbody", table);
+            venta.obtener_data_restaurar("#example tbody", table);
+
         },
         obtener_data_editar: function (tbody, table) {
             $(tbody).on("click", "button.editar", function () {
@@ -49,8 +77,14 @@ var venta = function () {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-
-                // cliente.eliminarCliente(data.id);
+                venta.inabilitarVenta(data.id,0);
+            });
+        }, 
+        obtener_data_restaurar: function (tbody, table) {
+            $(tbody).on("click", "button.restablecer", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                venta.inabilitarVenta(data.id,1);
             });
         },
         consultaDocumento: function () {
@@ -655,6 +689,7 @@ var venta = function () {
             this.limpiarSeleccion();
         },
         en_guardar: function () {
+
             this.generarCodigo();
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
@@ -665,10 +700,13 @@ var venta = function () {
             $("#total").val("");
             $("#igv").val("");
             $("#subTotal").val("");
+            document.getElementById("docIdentidad").disabled = false;
 
 
         },
         obtenerPorCodigo: function (codigo, idCliente) {
+            document.getElementById("docIdentidad").disabled = true;
+
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'inline';

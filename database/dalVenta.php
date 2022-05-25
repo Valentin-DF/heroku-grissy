@@ -14,20 +14,15 @@
             "idddis", $idCliente,$total,$igv,$subTotal,$idPersonal,$codigo
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function insertarDetalleVenta($codigoVenta, $idProducto, $cantidad, $precio,$total){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "INSERT INTO detalleventa (codigoVenta, idProducto, cantidad, precio,total,estado) VALUES(?,?,?,?,?,0)";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -36,15 +31,11 @@
             "siidd", $codigoVenta, $idProducto, $cantidad, $precio,$total
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
     
     function listarDetalleVenta($codigoVenta){
@@ -148,7 +139,6 @@
 
     function ActualizarVenta($total,$igv,$subTotal,$codigo){
         $mysqli = conexion();
-        $resultado = 0;
     
         $consultaSQL = "UPDATE venta SET total = ?,igv = ?, subTotal = ?  WHERE codigo = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -158,22 +148,17 @@
             $total,$igv,$subTotal,$codigo
         );
     
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
 
 
     function eliminarDetalleVenta($id){
         $mysqli = conexion();
-        $resultado = 0;
     
         $consultaSQL = "DELETE FROM detalleventa WHERE id = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -183,15 +168,11 @@
             $id
         );
     
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
-    
+        $stmt->execute();
+        $stmt->get_result();
+
         $stmt->close();
         $mysqli->close();
-    
-        return $resultado;
     }
 
     function obtenerVentasEstado($idempleado,$estado){
@@ -238,6 +219,28 @@
         $stmt->bind_param(
             "s", $codigoVenta
         ); 
+
+        $stmt->execute();
+        $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
     }
 
+
+    function eliminarVentaG($id,$estado){
+        $mysqli = conexion();
+
+        $consultaSQL = "UPDATE venta SET estado = ? WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+    
+        $stmt->bind_param(
+            "ii",$estado,$id
+        );
+        $stmt->execute();
+        $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
+    }
 ?>

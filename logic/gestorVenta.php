@@ -33,4 +33,8 @@ require_once('/xampp/htdocs/Grissy/database/dalVenta.php');
         return obtenerVentasEstado($idempleado,$estado);
     }
 
+    function eliminarVenta($id, $estado){
+        return eliminarVentaG($id, $estado);
+    }
+
 ?>

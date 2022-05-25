@@ -20,7 +20,7 @@ window.onload = function () {
         contenedor.style.opacity = 0;
     } else {
 
-        window.location.replace('http://localhost:8080/Grissy/src/view/login.html');
+        window.location.replace('http://localhost:8080/Grissy/src/view/dist/e_401.html');
 
     }
 
