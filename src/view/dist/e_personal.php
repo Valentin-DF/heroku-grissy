@@ -138,7 +138,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="dni">Doc Identidad*</label>
-                                <input type="number" id="dni" class="form-control " placeholder="Doc Identidad" onchange="personal.validarCantidades();" oninput="personal.consultarDocIdentidad()">
+                                <input type="number" id="dni" class="form-control " placeholder="Doc Identidad"  onkeypress="return event.charCode>=48 && event.charCode<=57" onchange="personal.validarCantidades();" oninput="personal.consultarDocIdentidad()">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -174,7 +174,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="contacto">Telefono</label>
-                                <input type="number" id="contacto" class="form-control " placeholder="Telefono" onchange="personal.validarTelefono();">
+                                <input type="number" id="contacto" class="form-control"  onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Telefono" onchange="personal.validarTelefono();">
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label id="noEdit2" for="sueldo">Sueldo</label>
-                                <input type="text" id="sueldo" class="form-control " placeholder="Sueldo">
+                                <input type="number" id="sueldo" class="form-control " placeholder="Sueldo" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
                             </div>
                         </div>
                     </div>

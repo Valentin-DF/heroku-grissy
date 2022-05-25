@@ -109,7 +109,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="contacto">Telefono</label>
-                                                            <input type="text" id="contacto" placeholder="123 456 7890" onchange="perfil.validarTelefono();" class="form-control form-control-line">
+                                                            <input type="number" id="contacto" placeholder="123 456 7890"  onkeypress="return event.charCode>=48 && event.charCode<=57" onchange="perfil.validarTelefono();" class="form-control form-control-line">
                                                         </div>
                                                     </div>
                                                 </div>

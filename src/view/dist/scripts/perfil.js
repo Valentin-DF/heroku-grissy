@@ -70,7 +70,7 @@ var perfil = function () {
                 var foto = "http://localhost:8080/Grissy/src/view/dist/assets/img/ES_121355.gif";
             }
 
-            if (emailRegex.test($("#correo").val())) {
+            if (emailRegex.test($("#correo").val()) || correo == '' ) {
                 if (contacto.length == 9 || contacto == '') {
                     $.ajax({
                         url: 'http://localhost:8080/Grissy/controllers/Personal/editarPerfil.php',

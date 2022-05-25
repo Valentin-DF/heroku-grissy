@@ -183,7 +183,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="cantidad">Cantidad*</label>
-                                <input type="text" id="cantidad" class="form-control " placeholder="Cantidad" onkeypress="return event.charCode>=48 && event.charCode<=57">
+                                <input type="number" id="cantidad" class="form-control " placeholder="Cantidad" onkeypress="return event.charCode>=48 && event.charCode<=57">
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="precio">Precio*</label>
-                                <input type="text" id="precio" class="form-control " placeholder="Precio" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
+                                <input type="number" id="precio" class="form-control " placeholder="Precio" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
                             </div>
                         </div>
                     </div>

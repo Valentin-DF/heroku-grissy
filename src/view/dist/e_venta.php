@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-sm-11">
                             <div class="input-group ">
-                                <input type="number" class="form-control" placeholder="Documento de identidad del cliente" id="docIdentidad" aria-label="text" oninput="venta.consultaDocumento();" onchange="venta.validarCantidades();">
+                                <input type="number" class="form-control" placeholder="Documento de identidad del cliente" id="docIdentidad" aria-label="text" oninput="venta.consultaDocumento();" onchange="venta.validarCantidades();" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
                                 <button aria-label="visualizarCliente" data-bs-toggle="collapse" onclick="venta.consultaDocumento();" data-bs-target="#datoCliente" aria-expanded="false" class="btn btn-outline-primary btn-sm " type="button" id="vizualizarCliente"><span class="fa-fw select-all fas"></span></button>
                                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" id="agregarCliente" type="button" onclick="venta.agregarCliente();"><span class="fa-fw select-all fas"></span></button>
                             </div>
@@ -193,7 +193,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="telefono">Telefono</label>
-                                        <input type="text" id="telefono" class="form-control" placeholder="Telefono" disabled>
+                                        <input type="text" id="telefono" class="form-control" placeholder="Telefono" disabled >
                                     </div>
                                 </div>
                                 <div class="col-sm-9">
@@ -244,7 +244,7 @@
                                 <input type="hidden" class="form-control" disabled id="precioPro">
                                 <input type="hidden" class="form-control" disabled id="cantidadPro">
                                 <input type="text" placeholder="Codigo del producto" class="form-control" disabled id="codigoPro" aria-label="text">
-                                <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" oninput="venta.validarCantidad()">
+                                <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" oninput="venta.validarCantidad()" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
                                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="venta.IngresarProductoVenta()" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
                                 </button>
                                 <button aria-label="limpiarCliente" class="btn btn-outline-danger btn-sm" onclick="venta.limpiarSeleccion()" type="button" id="limpiarSeleccion"><span class="fa-fw select-all fas"></span>
