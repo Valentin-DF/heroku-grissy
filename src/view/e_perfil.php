@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../assets/toastify/toastify.css">
 
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     <style>
         input[type=number]::-webkit-inner-spin-button,
@@ -49,11 +49,10 @@
                                 <div class="col-lg-4 col-xlg-3 col-md-5">
                                     <div class="card">
                                         <div class="card-body">
-                                            <center class="m-t-30"> <img id="foto" src="../assets/img/ES_121355.gif" class="rounded-circle" width="150" height="150" />
+                                            <div class="text-center m-t-30"> <img id="foto" alt="" src="../assets/img/ES_121355.gif" class="rounded-circle" width="150" height="150" />
                                                 <h4 class="card-title m-t-10"><span id="nombreCompleto"></span></h4>
                                                 <h6 class="card-subtitle"><span id="nombreCargo"></span></h6>
-
-                                            </center>
+                                            </div>
                                         </div>
                                         <div>
                                             <hr>
@@ -99,8 +98,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                     <div class="col-md-6">
-                                                         <div class="form-group">                         
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
                                                             <label for="contrasena">Contraseña</label>
                                                             <input type="password" id="contrasena" value="password" class="form-control form-control-line">
                                                         </div>
@@ -109,7 +108,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="contacto">Telefono</label>
-                                                            <input type="number" id="contacto" placeholder="123 456 7890"  onkeypress="return event.charCode>=48 && event.charCode<=57" onchange="perfil.validarTelefono();" class="form-control form-control-line">
+                                                            <input type="number" id="contacto" placeholder="123 456 7890" onkeypress="return event.charCode>=48 && event.charCode<=57" onchange="perfil.validarTelefono();" class="form-control form-control-line">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,7 +116,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-12">Foto</label>
                                                     <div class="col-md-12">
-                                                        <input type="text" id="fotos"  class="form-control form-control-line" >
+                                                        <input type="text" id="fotos" class="form-control form-control-line">
                                                     </div>
                                                 </div>
 
@@ -131,7 +130,7 @@
                                                 <hr style="color: #0056b2;" />
                                                 <div class="form-group ">
                                                     <div class="col-sm-12">
-                                                        <button  type="button" class="btn btn-success text-white" onclick="perfil.actualizarPerfil();" >Actulizar Perfil </button>
+                                                        <button type="button" class="btn btn-success text-white" onclick="perfil.actualizarPerfil();">Actulizar Perfil </button>
                                                     </div>
                                                 </div>
                                             </form>

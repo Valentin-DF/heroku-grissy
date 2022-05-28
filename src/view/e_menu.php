@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../assets/toastify/toastify.css">
 
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
 </head>
@@ -41,7 +41,7 @@
                                 </div>
                                 <!-- Date range picker example-->
                                 <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
-                                    <span class="input-group-text"><i data-feather="calendar"></i></span>
+                                    <span class="input-group-text"><em data-feather="calendar"></em></span>
                                     <input disabled class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="me-3">
-                                                <i class="feather-xl text-secondary mb-3" data-feather="user"></i>
+                                                <em class="feather-xl text-secondary mb-3" data-feather="user"></em>
                                                 <h5>Perfil</h5>
                                                 <div class="text-muted small">Configuracion de los datos del usuario.</div>
                                             </div>
@@ -72,7 +72,7 @@
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="me-3">
-                                                <i class="feather-xl text-primary mb-3" data-feather="layout"></i>
+                                                <em class="feather-xl text-primary mb-3" data-feather="layout"></em>
                                                 <h5>Ventas</h5>
                                                 <div class="text-muted small">Ventana de procesos de venta</div>
                                             </div>
@@ -88,7 +88,7 @@
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="me-3">
-                                                <i class="feather-xl text-green mb-3" data-feather="package"></i>
+                                                <em class="feather-xl text-green mb-3" data-feather="package"></em>
                                                 <h5>Compras</h5>
                                                 <div class="text-muted small">Ventana de procesos de compra</div>
                                             </div>
@@ -111,151 +111,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="tab-content" id="dashboardNavContent">
-                                            <!-- Dashboard Tab Pane 1-->
-                                            <!-- <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
-                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                                            </div> -->
-                                            <!-- Dashboard Tab Pane 2-->
+
                                             <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
-                                                <!-- <table id="datatablesSimple">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Date</th>
-                                                            <th>Event</th>
-                                                            <th>Time</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Date</th>
-                                                            <th>Event</th>
-                                                            <th>Time</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>01/13/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-green" data-feather="zap"></i>
-                                                                Server online
-                                                            </td>
-                                                            <td>1:21 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/13/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-red" data-feather="zap-off"></i>
-                                                                Server restarted
-                                                            </td>
-                                                            <td>1:00 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/12/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126550</a>
-                                                            </td>
-                                                            <td>5:45 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/12/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-blue" data-feather="user"></i>
-                                                                Valerie Luna submitted
-                                                                <a href="#!">quarter four report</a>
-                                                            </td>
-                                                            <td>4:23 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/12/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-yellow" data-feather="database"></i>
-                                                                Database backup created
-                                                            </td>
-                                                            <td>3:51 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/12/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126549</a>
-                                                            </td>
-                                                            <td>1:22 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/11/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-blue" data-feather="user-plus"></i>
-                                                                New user created:
-                                                                <a href="#!">Sam Malone</a>
-                                                            </td>
-                                                            <td>4:18 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/11/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126548</a>
-                                                            </td>
-                                                            <td>4:02 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/11/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126547</a>
-                                                            </td>
-                                                            <td>3:47 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/11/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-green" data-feather="zap"></i>
-                                                                Server online
-                                                            </td>
-                                                            <td>1:19 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/11/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-red" data-feather="zap-off"></i>
-                                                                Server restarted
-                                                            </td>
-                                                            <td>1:00 AM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/10/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126547</a>
-                                                            </td>
-                                                            <td>5:31 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/10/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-purple" data-feather="shopping-cart"></i>
-                                                                New order placed! Order #
-                                                                <a href="#!">1126546</a>
-                                                            </td>
-                                                            <td>12:13 PM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>01/10/20</td>
-                                                            <td>
-                                                                <i class="me-2 text-blue" data-feather="user"></i>
-                                                                Diane Chambers submitted
-                                                                <a href="#!">quarter four report</a>
-                                                            </td>
-                                                            <td>10:56 AM</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table> -->
                                             </div>
                                         </div>
                                     </div>
@@ -265,7 +122,6 @@
                             <div class="col-xxl-4">
                                 <div class="row">
                                     <div class="col-xl-6 col-xxl-12">
-                                        <!-- Team members / people dashboard card example-->
                                         <div class="card mb-4">
                                             <div class="card-header">Grupo De Trabajo</div>
                                             <div class="card-body">

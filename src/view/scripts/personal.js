@@ -21,8 +21,8 @@ var personal = function () {
                         personals += '        <div class="caja col-md-5"><img class="img-fluid" src="' + obj.foto + '" alt="..." /></div>';
                         personals += '        <div class="col-md-7">';
                         personals += '            <div class="card-body">';
-                        personals += '                <h5 class="card-title text-center mb-3"><i>' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</i></h5>';
-                        personals += '                 <p class="card-text text-center mb-3"><i>(' + obj.nombreCargo + ')</i></p>';
+                        personals += '                <h5 class="card-title text-center mb-3"><em>' + obj.nombre + ' ' + obj.apellidoPaterno + ' ' + obj.apellidoMaterno + '</em></h5>';
+                        personals += '                 <p class="card-text text-center mb-3"><em>(' + obj.nombreCargo + ')</em></p>';
                         personals += '                <div class="card-footer  text-center">';
                         personals += '                    <div >';
                         personals += '                        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#cartillaPersonal-' + obj.id + '"><span class="fa-fw select-all fas"></span></button>';
@@ -30,7 +30,7 @@ var personal = function () {
                         personals += '                    </div>';
                         personals += '                    <div>';
                         personals += '                        <button type="button" class="btn btn-outline-danger btn-sm " onclick="personal.eliminarPersonal(' + obj.id + ', 0)"><span class="fa-fw select-all fas"></span></button>';
-                        personals += '                        <button type="button" class="btn btn-outline-success btn-sm "  onclick="personal.eliminarPersonal(' + obj.id + ', 1)"><i class="far fa-check-circle"></i></button>';
+                        personals += '                        <button type="button" class="btn btn-outline-success btn-sm "  onclick="personal.eliminarPersonal(' + obj.id + ', 1)"><em class="far fa-check-circle"></em></button>';
                         personals += '                    </div>';
                         personals += '                </div>';
                         personals += '            </div>';

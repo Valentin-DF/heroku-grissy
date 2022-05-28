@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../assets/toastify/toastify.css">
 
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
 </head>
@@ -37,17 +37,17 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="user"></i></div>
+                                        <div class="page-header-icon"><em data-feather="user"></em></div>
                                         Producto
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
                                     <a class="btn btn-sm btn-light text-primary" href="e_cargo.php">
-                                        <i class="me-1" data-feather="arrow-left"></i>
+                                        <em class="me-1" data-feather="arrow-left"></em>
                                         Cargo
                                     </a>
 
-                                    <a aria-label="dropdown" class="btn btn-sm btn-light text-primary" id="navbarDrop" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="menu"></i></a>
+                                    <a aria-label="dropdown" class="btn btn-sm btn-light text-primary" id="navbarDrop" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><em data-feather="menu"></em></a>
 
                                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDrop">
                                         <li> <a class="btn btn-sm btn-light text-primary" href="e_productoGeneral.php">Producto</a></li>
@@ -57,7 +57,7 @@
 
                                     <a class="btn btn-sm btn-light text-primary" href="e_area.php">
                                         Area
-                                        <i data-feather="arrow-right"></i>
+                                        <em data-feather="arrow-right"></em>
                                     </a>
                                 </div>
                             </div>
@@ -81,18 +81,18 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
-                                    <i class="fas fa-table me-1"></i>
+                                    <em class="fas fa-table me-1"></em>
                                     Lista General de Productos
                                 </div>
                                 <div class="border-0 shadow">
                                     <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="productoGeneral.en_guardar()" data-bs-target="#agregarProducto">
-                                        <i class="fa-solid fa-plus me-1"></i> Agregar
+                                        <em class="fa-solid fa-plus me-1"></em> Agregar
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table " id="example" style="width:100%">
+                            <table summary="Lista Producto General"  class="table " id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
@@ -146,15 +146,15 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn btn-outline-danger " data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" id="editar" onclick="productoGeneral.editarProducto();">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Editar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" id="guardar" onclick="productoGeneral.guardarProducto();">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>

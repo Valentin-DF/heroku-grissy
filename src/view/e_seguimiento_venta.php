@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -37,7 +37,7 @@
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-auto mt-4">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="mouse-pointer"></i></div>
+                                        <div class="page-header-icon"><em data-feather="mouse-pointer"></em></div>
                                         Seguimiento de Venta
                                     </h1>
                                     <div class="page-header-subtitle"></div>
@@ -49,31 +49,31 @@
 
                 <div class="container-xl px-4 mt-n10">
                     <div class=" row">
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
+                        <div class="col-xl-4 mb-4">
+                            <div class="card lift h-100 bg-primary text-white mb-4">
                                 <div class="card-body">Ventas Pendientes</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" onclick="seguimiento_venta.tablaDetealles(1)">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="small text-white"><em class="fas fa-angle-right"></em></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card bg-success text-white mb-4">
+                        <div class="col-xl-4 mb-4">
+                            <div class="card lift h-100 bg-success text-white mb-4">
                                 <div class="card-body">Ventas Cobradas</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" onclick="seguimiento_venta.tablaDetealles(2);">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="small text-white"><em class="fas fa-angle-right"></em></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
+                        <div class="col-xl-4 mb-4">
+                            <div class="card lift h-100 bg-danger text-white mb-4">
                                 <div class="card-body">Ventas Deshabilitadas</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" onclick="seguimiento_venta.tablaDetealles(0);">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="small text-white"><em class="fas fa-angle-right"></em></div>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
+                                    <em class="fas fa-chart-bar me-1"></em>
                                     Totalizado Diario
                                 </div>
                                 <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
@@ -93,11 +93,11 @@
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
+                            <em class="fas fa-table me-1"></em>
                             Detalle de las ventas
                         </div>
                         <div class="card-body">
-                            <table class="table " id="example" style="width:100%">
+                            <table summary="Lista Seguimiento"  class="table " id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>

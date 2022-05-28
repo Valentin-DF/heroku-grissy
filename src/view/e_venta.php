@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../assets/toastify/toastify.css">
 
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     <style>
         input[type=number]::-webkit-inner-spin-button,
@@ -47,7 +47,7 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="user"></i></div>
+                                        <div class="page-header-icon"><em data-feather="user"></em></div>
                                         Venta
                                     </h1>
                                 </div>
@@ -61,18 +61,18 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
-                                    <i class="fas fa-table me-1"></i>
+                                    <em class="fas fa-table me-1"></em>
                                     Lista General de Ventas
                                 </div>
                                 <div class="border-0 shadow">
                                     <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="venta.en_guardar()" data-bs-target="#agregarVenta">
-                                        <i class="fa-solid fa-plus me-1"></i> Agregar
+                                        <em class="fa-solid fa-plus me-1"></em> Agregar
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table " id="example" style="width:100%">
+                            <table summary="Lista Venta General" class="table " id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
@@ -219,7 +219,7 @@
 
                     <div class="row" style="margin-top: 10px;" id="tabla-producto">
                         <div class="col-sm-12">
-                            <table class="table table-responsive-sm mb-0" id="table1">
+                            <table  summary="Lista Producto"class="table table-responsive-sm mb-0" id="table1">
                                 <thead class="thead">
                                     <tr>
                                         <th>Id</th>
@@ -260,7 +260,7 @@
                         <div class="col-sm-12">
                             <div class="row" id="tabla-dettalleventa">
                                 <div class="col-sm-12">
-                                    <table class="table table-striped" id="table2">
+                                    <table summary="Lista Detalle Venta" class="table table-striped" id="table2">
                                         <thead>
                                             <tr>
                                                 <th>Producto</th>
@@ -310,15 +310,15 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Cancelar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar" onclick="venta.editarVenta()">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Editar</span>
                     </button>
                     <button type="button" class="btn btn-outline-primary" id="guardar" onclick="venta.guardarVenta()">
-                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <em class="bx bx-x d-block d-sm-none"></em>
                         <span class="d-none d-sm-block">Guardar</span>
                     </button>
                 </div>
