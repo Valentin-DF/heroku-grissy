@@ -84,7 +84,7 @@
             "ii",$estado,$id
         );
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -102,7 +102,7 @@
         );
     
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -119,7 +119,7 @@
         );
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -203,7 +203,7 @@
         );
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();

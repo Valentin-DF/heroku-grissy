@@ -49,7 +49,7 @@
             "ii",$estado,$id
         );
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -67,7 +67,7 @@
         );
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
         
         $stmt->close();
         $mysqli->close();
@@ -85,7 +85,7 @@
             $apellidoMaterno,$apellidoPaterno,$condicionSunat,$direccion,$docIdentidad,$estadoSunat,$nombre,$telefono,$codigo
         );
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();

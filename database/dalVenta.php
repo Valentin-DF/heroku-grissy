@@ -5,7 +5,6 @@
 
     function insertarVenta($idCliente,$total,$igv,$subTotal,$idPersonal,$codigo){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "INSERT INTO venta(idCliente,total,fecha,igv,subTotal,idPersonal,codigo,estado) VALUES(?,?,now(),?,?,?,?,1)";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -15,7 +14,7 @@
         );
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -32,7 +31,7 @@
         );
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -149,7 +148,7 @@
         );
     
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -169,7 +168,7 @@
         );
     
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -221,7 +220,7 @@
         ); 
 
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
@@ -238,7 +237,7 @@
             "ii",$estado,$id
         );
         $stmt->execute();
-        $stmt->get_result();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();

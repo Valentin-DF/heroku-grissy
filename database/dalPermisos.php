@@ -57,7 +57,6 @@
 
     function ActualizarPermisos($idpersonal,$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor){
         $mysqli = conexion();
-        $resultado = 0;
 
         $consultaSQL = "UPDATE permisos SET p_grissyVenta = ?,p_grissyArea = ?,p_grissyCliente = ?,p_grissyConfiguraciones = ?,p_grissyProductoEmp = ?,p_grissyPersonal = ?,p_grissyProveedor = ? WHERE idpersonal = ?";
         $stmt = $mysqli->prepare($consultaSQL);
@@ -66,15 +65,11 @@
             "iiiiiiis",$p_grissyVenta,$p_grissyArea,$p_grissyCliente,$p_grissyConfiguraciones,$p_grissyProductoEmp,$p_grissyPersonal,$p_grissyProveedor,$idpersonal
         );
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($resultado);
-            $stmt->fetch();
-        }
+        $stmt->execute();
+        // $stmt->get_result();
 
         $stmt->close();
         $mysqli->close();
-
-        return $resultado;
     }
 
     function ObtenerPermisosPorPersonal($idpersonal){
