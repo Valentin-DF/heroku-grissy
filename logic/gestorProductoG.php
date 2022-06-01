@@ -24,5 +24,11 @@ require_once('/xampp/htdocs/Grissy/database/dalProductoG.php');
         return ObtenerProductoGPorID($id);
     }
 
+    function existenciaProductoGenProductoE($id){
+        return existenciaProductoGProductoE($id);
+    }
 
+    function deleteProductoG($id){
+        return delecteProductoG($id);
+    }
 ?>
