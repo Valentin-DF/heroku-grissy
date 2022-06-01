@@ -141,4 +141,46 @@
         return $lista; 
     }
 
+    function existenciaAreaenProducto($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT if( (SELECT COUNT(*) FROM producto_e pe where pe.idarea  =  ?) != 0, true, false) as estado;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+
+    function delecteArea($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "DELETE FROM area WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $stmt->close();
+        $mysqli->close();    
+    }
+
 ?>

@@ -23,4 +23,12 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
     function buscarAreaPorId($id){
         return ObtenerAreaPorID($id);
     }
+
+    function existenciAreaProducto($id){
+        return existenciaAreaenProducto($id);
+    }
+
+    function deleteArea($id){
+        return delecteArea($id);
+    }
 ?>

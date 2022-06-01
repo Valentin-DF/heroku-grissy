@@ -21,6 +21,12 @@ require_once('/xampp/htdocs/Grissy/database/dalCargo.php');
         return ObtenerCargoPorID($id);
     }
 
+    function existenciaCargoPersonal($id){
+        return existenciaCargoenPersonal($id);
+    }
 
+    function deleteCargo($id){
+        return delecteCargo($id);
+    }
 
 ?>

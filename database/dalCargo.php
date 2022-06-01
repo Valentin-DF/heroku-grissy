@@ -118,4 +118,47 @@
         return $lista; 
     }
 
+
+    function existenciaCargoenPersonal($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT if( (SELECT COUNT(*) FROM personal p where p.idcargo  =  ?) != 0, true, false) as estado;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+
+    function delecteCargo($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "DELETE FROM cargo WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $stmt->close();
+        $mysqli->close();    
+    }
+
 ?>

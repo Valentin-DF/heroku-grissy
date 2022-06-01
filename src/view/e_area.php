@@ -152,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer ">
+                    <div class="modal-footer justify-content-center ">
                         <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal" id="cancelar" onclick="area.limpiar()">
                             <em class="bx bx-x d-block d-sm-none"></em>
                             <span class="d-none d-sm-block">Cancelar</span>

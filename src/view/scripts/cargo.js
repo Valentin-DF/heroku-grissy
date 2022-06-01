@@ -76,9 +76,10 @@ var cargo = function () {
                     { "title": "Principal", "data": "nombrePrincipal" },
                     { "title": "Secundario", "data": "nombreSecundario" },
                     {
-                        "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCargo' ><span class='fa-fw select-all fas'></span></button>"
-                            + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>"
-                            + "<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
+                        "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarCargo' ><i class='fa-solid fa-pen-to-square'></i></button>"
+                            + "<button class='eliminar btn btn-outline-warning btn-sm' ><i class='fa-solid fa-circle-minus'></i></button>"
+                            + "<button class='restablecer btn btn-outline-success btn-sm' ><i class='fa-solid fa-circle-check'></i></button>"
+                            + "<button class='exterminar btn btn-outline-danger btn-sm' ><i class='fa-solid fa-trash-can'></i></button>"
                     }
                 ],
                 "language": {
@@ -92,6 +93,39 @@ var cargo = function () {
             cargo.obtener_data_editar("#example tbody", table);
             cargo.obtener_data_eliminar("#example tbody", table);
             cargo.obtener_data_restaurar("#example tbody", table);
+            cargo.obtener_data_deletDefinitivo("#example tbody", table);
+        },
+
+        obtener_data_deletDefinitivo: function (tbody, table) {
+            $(tbody).on("click", "button.exterminar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                cargo.delectCargo(data.id);
+            });
+        },
+
+        delectCargo: function (id) {
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Cargo/delectCargo.php',
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    console.log(response);
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        Toastify({
+                            text: obj.msj,
+                            duration: 3000,
+                            close: true,
+                            backgroundColor: obj.color,
+                        }).showToast();
+                        cargo.obtenerListaCargo();
+                    });
+
+                }
+            });
         },
 
         obtener_data_editar: function (tbody, table) {
@@ -128,10 +162,11 @@ var cargo = function () {
                         $('#secundario').prop("checked", obj.secundario);
                         $('#principal').prop("checked", obj.principal);
                         if (obj.estado == 1) {
-
+                            document.getElementById("editar").style.display  = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
+                            document.getElementById("editar").style.display  = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 
