@@ -6,7 +6,14 @@ try {
 
     if (isset($_POST['codigo']) && isset($_POST['nombre'])) {
 
-        if ($_POST['codigo'] == "") {
+        if (exixtenciaProductoG($_POST['codigo']) == 1){
+            $mensaje  = array(
+                "warning" => "false",
+                "msj" => "El codigo se encuentra en uso",
+                "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
+            );
+            echo json_encode($mensaje);
+        }else if ($_POST['codigo'] == "") {
             $mensaje  = array(
                 "warning" => "false",
                 "msj" => "Necesita Colocar un codigo al producto",

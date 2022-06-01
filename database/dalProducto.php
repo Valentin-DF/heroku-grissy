@@ -200,3 +200,76 @@
         $mysqli->close();
 
     }
+
+    function validarExistencia($codigo){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT  if(COUNT(*)>0,true,false)  as estado  FROM producto_e WHERE codigo = ? ;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "s",
+            $codigo
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+
+    
+    function existenciaProductoDetalleVenta($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT if( (SELECT COUNT(*) FROM detalleventa v where v.idproducto =  ?) != 0, true, false) as estado;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+
+    function delectProducto($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "DELETE FROM producto_e WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $stmt->close();
+        $mysqli->close();    
+    }
+
+
+?>

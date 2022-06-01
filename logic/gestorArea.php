@@ -29,6 +29,10 @@ require_once('/xampp/htdocs/Grissy/database/dalArea.php');
     }
 
     function deleteArea($id){
-        return delecteArea($id);
+        return delectArea($id);
+    }
+     
+    function exixtenciaArea($codigo){
+        return validarExistencia($codigo);
     }
 ?>

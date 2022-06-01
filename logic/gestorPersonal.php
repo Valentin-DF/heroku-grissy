@@ -34,4 +34,12 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
         return actualizarPerfil($codigo, $nombre, $apellidoPaterno, $apellidoMaterno, $contacto, $direccion,  $correo, $foto, $contrasena);
     }
 
+    function existenciaPersonalenVenta($id){
+        return existenciaPersonalVenta($id);
+    }
+
+    function delectePersonal($id){
+        return delectPersonal($id);
+    }
+
 ?>

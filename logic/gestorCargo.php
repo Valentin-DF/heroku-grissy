@@ -26,7 +26,12 @@ require_once('/xampp/htdocs/Grissy/database/dalCargo.php');
     }
 
     function deleteCargo($id){
-        return delecteCargo($id);
+        return delectCargo($id);
+    }
+
+    function exixtenciaCargo($codigo){
+        return validarExistencia($codigo);
+
     }
 
 ?>

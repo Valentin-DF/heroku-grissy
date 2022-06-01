@@ -29,6 +29,12 @@ require_once('/xampp/htdocs/Grissy/database/dalProductoG.php');
     }
 
     function deleteProductoG($id){
-        return delecteProductoG($id);
+        return delectProductoG($id);
     }
+
+    function exixtenciaProductoG($codigo){
+        return validarExistencia($codigo);
+
+    }
+
 ?>

@@ -173,7 +173,7 @@
     function validarExistencia($docIdentidad){
 
         $mysqli = conexion();
-        $consultaSQL = "SELECT * FROM proveedor WHERE docIdentidad = ? ;";
+        $consultaSQL = "SELECT  if(COUNT(*)>0,true,false)  as estado  FROM proveedor WHERE docIdentidad = ? ;";
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
             "i",
@@ -195,6 +195,47 @@
 
     return $estado;
       
+    }
+    // function existenciaProveedorGProductoE($id){
+
+    //     $mysqli = conexion();
+    //     $consultaSQL = "SELECT if( (SELECT COUNT(*) FROM producto_e p where p.idproducto  =  ?) != 0, true, false) as estado;";
+    //     $stmt = $mysqli->prepare($consultaSQL);
+    //     $stmt->bind_param(
+    //         "i",
+    //         $id
+    //     );
+    //     $stmt->execute();
+
+    //     $result = $stmt->get_result();
+    
+    //       $estado = "";
+
+    //     if($row = $result->fetch_assoc()){
+    //         $estado = $row['estado'];
+
+    //     }
+
+    //     $stmt->close();
+    //     $mysqli->close();
+
+    // return $estado;
+      
+    // }
+
+    function delectProveedor($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "DELETE FROM proveedor WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $stmt->close();
+        $mysqli->close();    
     }
 
 ?>

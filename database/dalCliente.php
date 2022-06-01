@@ -71,7 +71,7 @@
     function validarExistencia($docIdentidad){
 
         $mysqli = conexion();
-        $consultaSQL = "SELECT * FROM cliente WHERE docIdentidad = ? ;";
+        $consultaSQL = "SELECT  if(COUNT(*)>0,true,false)  as estado FROM cliente WHERE docIdentidad = ? ;";
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
             "i",
@@ -230,6 +230,48 @@
         $mysqli->close();
     
         return $lista; 
+    }
+
+    function existenciaClienteVenta($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT if( (SELECT COUNT(*) FROM venta v where v.idCliente  =  ?) != 0, true, false) as estado;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+
+    function delectCliente($id){
+
+        $mysqli = conexion();
+        $consultaSQL = "DELETE FROM cliente WHERE id = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $id
+        );
+        $stmt->execute();
+
+        $stmt->close();
+        $mysqli->close();    
     }
 
 ?>

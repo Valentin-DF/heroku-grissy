@@ -33,4 +33,12 @@ require_once('/xampp/htdocs/Grissy/database/dalCliente.php');
 
     }
 
+    function existenciaClienteenVenta($id){
+        return  existenciaClienteVenta($id);
+    }
+
+    function deleteCliente($id){
+        return delectCliente($id);
+    }
+
 ?>

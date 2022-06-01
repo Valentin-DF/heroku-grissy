@@ -162,7 +162,7 @@
       
     }
 
-    function delecteProductoG($id){
+    function delectProductoG($id){
 
         $mysqli = conexion();
         $consultaSQL = "DELETE FROM producto_g WHERE id = ?";
@@ -176,4 +176,33 @@
         $stmt->close();
         $mysqli->close();    
     }
+
+    function validarExistencia($codigo){
+
+        $mysqli = conexion();
+        $consultaSQL = "SELECT  if(COUNT(*)>0,true,false)  as estado  FROM producto_g WHERE codigo = ? ;";
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "s",
+            $codigo
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+    
+          $estado = "";
+
+        if($row = $result->fetch_assoc()){
+            $estado = $row['estado'];
+
+        }
+
+        $stmt->close();
+        $mysqli->close();
+
+    return $estado;
+      
+    }
+    
+
 ?>

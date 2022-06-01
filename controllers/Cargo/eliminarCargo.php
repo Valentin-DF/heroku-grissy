@@ -12,7 +12,7 @@ try {
         if ($_POST['estado'] == 1) {
             $mensaje  = array(
                 "warning" => "true",
-                "msj" => "Se habilito el producto",
+                "msj" => "Se habilito el cargo",
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
             eliminarCargo($id, $estado);
@@ -20,7 +20,7 @@ try {
         } else {
             $mensaje  = array(
                 "warning" => "true",
-                "msj" => "Se inhabilito el producto",
+                "msj" => "Se inhabilito el cargo",
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
             eliminarCargo($id, $estado);
@@ -29,7 +29,7 @@ try {
     } else {
         $mensaje  = array(
             "warning" => "false",
-            "msj" => "No se selecciono el producto",
+            "msj" => "No se selecciono el cargo",
             "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
         );
         echo json_encode($mensaje);

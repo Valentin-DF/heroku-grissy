@@ -49,8 +49,8 @@ window.addEventListener('DOMContentLoaded', event => {
             new Litepicker({
                 element: litepickerRangePlugin,
                 startDate: new Date(),
-                // endDate: new Date(),
-                singleMode: false,
+                endDate: new Date(),
+                singleMode: true,
                 numberOfMonths: 2,
                 numberOfColumns: 2,
                 format: 'MMM DD, YYYY'

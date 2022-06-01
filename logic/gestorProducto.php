@@ -32,4 +32,17 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
         return ActualizarStockProducto($id,$cantidad);
     }
 
+    function exixtenciaProducto($codigo){
+        return validarExistencia($codigo);
+
+    }
+
+    function existenciaProductoDetalleenVenta($id){
+        return existenciaProductoDetalleVenta($id);
+    }
+
+    function delecteProducto($id){
+        return delectProducto($id);
+    }
+
 ?>

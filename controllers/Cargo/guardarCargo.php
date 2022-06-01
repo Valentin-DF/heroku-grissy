@@ -6,17 +6,24 @@ try {
 
     if (isset($_POST['codigo']) && isset($_POST['nombre'])  && isset($_POST['principal']) && isset($_POST['secundario']) ) {
 
-        if ($_POST['codigo'] == "") {
+        if (exixtenciaCargo($_POST['codigo']) == 1){
             $mensaje  = array(
                 "warning" => "false",
-                "msj" => "Necesita Colocar un codigo al producto",
+                "msj" => "El codigo se encuentra en uso",
+                "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
+            );
+            echo json_encode($mensaje);
+        }else if ($_POST['codigo'] == "") {
+            $mensaje  = array(
+                "warning" => "false",
+                "msj" => "Necesita Colocar un codigo al cargo",
                 "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
             );
             echo json_encode($mensaje);
         } else if ($_POST['nombre'] == "") {
             $mensaje  = array(
                 "warning" => "false",
-                "msj" => "Necesita Colocar un nombre al producto",
+                "msj" => "Necesita Colocar un nombre al cargo",
                 "color" => "linear-gradient(to right, #ff5c74,  #e30e2e )"
             );
             echo json_encode($mensaje);

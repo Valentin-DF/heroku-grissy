@@ -29,4 +29,8 @@ require_once('/xampp/htdocs/Grissy/database/dalProveedor.php');
 
     }
 
+    function delecteProveedor($id){
+        return delectProveedor($id);
+    }
+
 ?>
