@@ -155,10 +155,11 @@ var proveedor = function () {
                         $("#nombre").val(obj.nombre);
                         $("#telefono").val(obj.telefono);
                         if (obj.estado == 1) {
-
+                            document.getElementById("editar").style.display  = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
+                            document.getElementById("editar").style.display  = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 

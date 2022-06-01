@@ -204,12 +204,12 @@ var productoEmpresa = function () {
                         $("#cantidad").val(obj.cantidad);
                         $("#precio").val(obj.precio);
                         $("#idarea").val(obj.idarea);
-
                         if (obj.estado == 1) {
-
+                            document.getElementById("editar").style.display  = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
+                            document.getElementById("editar").style.display  = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 
