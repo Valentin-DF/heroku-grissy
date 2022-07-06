@@ -53,7 +53,7 @@
     function insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto){
         $mysqli = conexion();
 
-        $consultaSQL = "INSERT INTO producto_e(codigo, nombre, talla, cantidad, estado, precio, idarea, idproducto) VALUES(?,?,?,?,1,?,?,?)";
+        $consultaSQL = "CALL guardar_ProductoEmpresa (?,?,?,?,1,?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
@@ -61,10 +61,19 @@
         );
 
         $stmt->execute();
-        // $stmt->get_result();
+
+        $result = $stmt->get_result();
+
+        $id = 0; 
+
+        if($row = $result->fetch_assoc()){
+            $id = $row['id'];
+        }
 
         $stmt->close();
         $mysqli->close();
+
+        return  $id;
     }
 
     function ActualizarProducto($codigo,$nombre,$talla,$cantidad,$precio){

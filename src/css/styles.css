@@ -21058,3 +21058,7 @@ pre[class*=language-] {
 
   padding: .5rem;
 }
+
+.codigo {
+  font-size: 4px;
+}

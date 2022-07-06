@@ -67,11 +67,12 @@ try {
             $idArea = $_POST['idArea'];
             $idProducto = $_POST['idProducto'];
 
-            guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto);
+            $id = guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto);
             
             $mensaje  = array(
                 "warning" => "true",
                 "msj" => "Se guardo correctamente",
+                "id" => $id,
                 "color" => "linear-gradient(to right, #2e8f39,#8cfaa4)"
             );
             echo json_encode($mensaje);

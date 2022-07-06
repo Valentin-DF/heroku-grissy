@@ -73,6 +73,7 @@ var productoGeneral = function () {
                 productoGeneral.obtenerPorId(data.id);
             });
         },
+        
         obtener_data_eliminar: function (tbody, table) {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
@@ -124,6 +125,7 @@ var productoGeneral = function () {
             });
 
         },
+
         eliminarProducto: function (id,estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/ProductoG/eliminarProductoG.php',
@@ -183,6 +185,7 @@ var productoGeneral = function () {
             });
 
         },
+
         obtenerPorId: function (id) {
 
             document.getElementById("codigo").disabled = true;
@@ -223,13 +226,14 @@ var productoGeneral = function () {
                 }
             })
         },
+
         limpiar: function () {
             $("#codigo").val("");
             $("#nombre").val("");
             document.getElementById("estadoC").innerHTML = "";
             document.getElementById("estadoC").style.backgroundColor = "transparent";
-        },
-       
+        },  
+
         en_guardar: function () {
             document.getElementById("codigo").disabled = false;
             var btn_2 = document.getElementById('editar');

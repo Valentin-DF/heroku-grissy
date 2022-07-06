@@ -1,3 +1,5 @@
+var stockStatico;
+var idRefecinal;
 var productoEmpresa = function () {
 
     return {
@@ -43,6 +45,7 @@ var productoEmpresa = function () {
                 productoEmpresa.obtenerPorId(data.id);
             });
         },
+
         obtener_data_eliminar: function (tbody, table) {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
@@ -60,6 +63,9 @@ var productoEmpresa = function () {
         },
 
         guardarProducto: function () {
+            const storedToDos = localStorage.getItem("empleado");
+            const objec = JSON.parse(storedToDos);
+
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var talla = $("#talla").val();
@@ -94,8 +100,10 @@ var productoEmpresa = function () {
                             backgroundColor: obj.color,
                         }).showToast();
                         if (obj.warning == "true") {
+                            productoEmpresa.guardarEntradas_Salidas(objec.id, idArea, obj.id, cantidad, 1);
                             productoEmpresa.obtenerListaProductos();
                             productoEmpresa.limpiar();
+                            // console.log(obj.id);
                             $('#agregarProducto').modal('hide');
 
                         }
@@ -106,7 +114,8 @@ var productoEmpresa = function () {
             });
 
         },
-        eliminarProducto: function (id,estado) {
+
+        eliminarProducto: function (id, estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Producto/eliminarProducto.php',
                 method: "POST",
@@ -131,48 +140,62 @@ var productoEmpresa = function () {
         },
 
         editarProducto: function () {
+            const storedToDos = localStorage.getItem("empleado");
+            const objec = JSON.parse(storedToDos);
+
             var codigo = $("#codigo").val();
             var nombre = $("#nombre").val();
             var talla = $("#talla").val();
             var cantidad = $("#cantidad").val();
             var precio = $("#precio").val();
+            var idArea = $("#idarea").val();
 
+                $.ajax({
+                    url: 'http://localhost:8080/Grissy/controllers/Producto/editarProducto.php',
+                    method: "POST",
+                    data: {
+                        codigo: codigo,
+                        nombre: nombre,
+                        talla: talla,
+                        cantidad: cantidad,
+                        precio: precio,
+    
+                    },
+                    success: function (response) {
+    
+                        console.log(response);
+                        var objListado = JSON.parse(response);
+                        $(objListado).each(function (i, obj) {
+                            Toastify({
+                                text: obj.msj,
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: obj.color,
+                            }).showToast();
+                            if (obj.warning == "true") {
 
-            $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Producto/editarProducto.php',
-                method: "POST",
-                data: {
-                    codigo: codigo,
-                    nombre: nombre,
-                    talla: talla,
-                    cantidad: cantidad,
-                    precio: precio,
+                                productoEmpresa.obtenerListaProductos();
+                                productoEmpresa.limpiar();
+                                if(stockStatico < cantidad){
+                                    cantidad = cantidad - stockStatico;
+                                    productoEmpresa.guardarEntradas_Salidas(objec.id, idArea, idRefecinal, cantidad, 1);
+                                }else{
+                                    cantidad = stockStatico-cantidad;
+                                    productoEmpresa.guardarEntradas_Salidas(objec.id, idArea, idRefecinal, cantidad, 0);
 
-                },
-                success: function (response) {
-
-                    console.log(response);
-                    var objListado = JSON.parse(response);
-                    $(objListado).each(function (i, obj) {
-                        Toastify({
-                            text: obj.msj,
-                            duration: 3000,
-                            close: true,
-                            backgroundColor: obj.color,
-                        }).showToast();
-                        if (obj.warning == "true") {
-                            productoEmpresa.obtenerListaProductos();
-                            productoEmpresa.limpiar();
-                            $('#agregarProducto').modal('hide');
-
-                        }
-
-                    });
-
-                }
-            });
+                                }
+                                $('#agregarProducto').modal('hide');
+    
+                            }
+    
+                        });
+    
+                    }
+                });
+            
 
         },
+
         obtenerPorId: function (id) {
 
 
@@ -197,28 +220,31 @@ var productoEmpresa = function () {
 
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
-
+                        
                         $("#codigo").val(obj.codigo);
                         $("#nombre").val(obj.nombre);
                         $("#talla").val(obj.talla);
                         $("#cantidad").val(obj.cantidad);
                         $("#precio").val(obj.precio);
+                        stockStatico = obj.cantidad;
+                        idRefecinal = obj.id;
                         $("#idarea").val(obj.idarea);
                         if (obj.estado == 1) {
-                            document.getElementById("editar").style.display  = 'inline';
+                            document.getElementById("editar").style.display = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
-                            document.getElementById("editar").style.display  = 'none';
+                            document.getElementById("editar").style.display = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
-
+                        
                         }
 
                     });
                 }
             })
         },
+
         limpiar: function () {
             $("#codigo").val("");
             $("#nombre").val("");
@@ -228,6 +254,7 @@ var productoEmpresa = function () {
             document.getElementById("estadoC").innerHTML = "";
             document.getElementById("estadoC").style.backgroundColor = "transparent";
         },
+
         obtenerListaArea: function () {
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Area/obtenerListaArea.php",
@@ -254,6 +281,7 @@ var productoEmpresa = function () {
             })
 
         },
+
         obtenerListaProductoG: function () {
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/ProductoG/obtenerListaProductoG.php",
@@ -277,6 +305,7 @@ var productoEmpresa = function () {
             })
 
         },
+
         en_guardar: function () {
             document.getElementById("idarea").disabled = false;
             document.getElementById("idproducto").disabled = false;
@@ -287,6 +316,22 @@ var productoEmpresa = function () {
             btn_1.style.display = 'inline';
             this.limpiar();
 
+        },
+
+        guardarEntradas_Salidas: function (idEncargado, idArea, idProducto, monto, condicion) {
+            $.ajax({
+                url: 'http://localhost:8080/Grissy/controllers/Reporte/ingresarEntradaSalida.php',
+                method: "POST",
+                data: {
+                    idEncargado: idEncargado,
+                    idArea: idArea,
+                    idProducto: idProducto,
+                    monto: monto,
+                    condicion: condicion
+                }, success: function (response) {
+                    console.log(response);
+                }
+            });
         }
 
     }

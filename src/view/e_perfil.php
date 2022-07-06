@@ -112,15 +112,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="col-md-12">Foto</label>
-                                                    <div class="col-md-12">
-                                                        <input type="text" id="fotos" class="form-control form-control-line">
-                                                    </div>
+                                                    <input type="text" id="fotos" class="form-control form-control-line">
                                                 </div>
-
-
+                                                <!-- <input type="file" id="selectFile"> -->
                                                 <div class="form-group">
                                                     <label class="col-sm-12">Direccion</label>
                                                     <div class="col-sm-12">
@@ -176,7 +172,24 @@
         perfil.obtenerPorId();
 
     });
+    // $('#selectFile').on('change', function(e) {
+    //     var base64String='';
+    //     var file = e.target.files[0];
+
+    //     console.log(file)
+
+    //     var reader = new FileReader();
+    //     reader.onload = function() {
+    //         base64String = reader.result.replace("data:", "")
+    //             .replace(/^.+,/, "");
+    //         imageBase64Stringsep = base64String;
+    //         console.log()
+    //     }
+    //     console.log(reader.readAsDataURL(file));
+
+    // });
 </script>
+
 
 
 </html>
