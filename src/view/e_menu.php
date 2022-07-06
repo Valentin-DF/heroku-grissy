@@ -98,49 +98,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xxl-8">
-                                <!-- Tabbed dashboard card example-->
-                                <div class="card mb-4">
-                                    <div class="card-header border-bottom">
-                                        <!-- Dashboard card navigation-->
-                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
-                                            <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Overview</a></li>
-                                            <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">Activities</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content" id="dashboardNavContent">
-
-                                            <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-xxl-4">
-                                <div class="row">
-                                    <div class="col-xl-6 col-xxl-12">
-                                        <div class="card mb-4">
-                                            <div class="card-header">Grupo De Trabajo</div>
-                                            <div class="card-body">
-                                                <!-- Item 1 anidado despues-->
-                                                <!-- <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="../assets/img/illustrations/profiles/profile-1.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Sid Rooney</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+     
                     </div>
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
