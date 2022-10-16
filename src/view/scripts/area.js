@@ -153,11 +153,11 @@ var area = function () {
                         $("#foto").val(obj.foto);
                         $("#descripcion").val(obj.descripcion);
                         if (obj.estado == 1) {
-                            document.getElementById("editar").style.display  = 'inline';
+                            document.getElementById("editar").style.display = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
-                            document.getElementById("editar").style.display  = 'none';
+                            document.getElementById("editar").style.display = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 
@@ -225,7 +225,7 @@ var area = function () {
         },
 
 
-        eliminarArea: function (id,estado) {
+        eliminarArea: function (id, estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Area/eliminarArea.php',
                 method: "POST",

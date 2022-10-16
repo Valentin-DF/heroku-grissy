@@ -28,7 +28,7 @@
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="nav-link-icon"><em data-feather="layout"></em></div>
-                    Registros
+                    Mantenedores
                     <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
                 </a>
                 <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
@@ -36,6 +36,7 @@
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
                             <li class=""><a class="area nav-link" href="e_area.php">Area</a></li>
                             <li class=""><a class="cargo nav-link" href="e_cargo.php">Cargo</a></li>
+                            <li class=""><a class="tipoCambio nav-link" href="e_tipoCambio.php">Tipo Cambio</a></li>
                             <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
                                     data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false"
                                     aria-controls="pagesCollapseError">
@@ -53,8 +54,8 @@
                                                     href="e_productoEmpresa.php">Productos
                                                     Bienes</a></li>
                                             <li class=""><a class="producto nav-link"
-                                                        href="e_productoServicios.php">Productos
-                                                        Servicios</a></li>
+                                                    href="e_productoServicios.php">Productos
+                                                    Servicios</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -72,15 +73,35 @@
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
                             <li class=""><a class="cliente nav-link" href="e_cliente.php">Cliente</a></li>
-                            <li class=""><a class="personal nav-link" href="e_personal.php">Personal</a></li>
+                            <!-- <li class=""><a class="personal nav-link" href="e_personal.php">Personal</a></li> -->
+
+
+                            <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
+                                data-bs-toggle="collapse" data-bs-target="#pagesCollapsePersonal" aria-expanded="false"
+                                aria-controls="pagesCollapsePersonal">
+                                Personal
+                                <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapsePersonal"
+                                data-bs-parent="#accordionSidenavPagesMenu">
+                                <nav class="sidenav-menu-nested nav">
+                                    <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                                        <li class=""><a class="producto_general nav-link"
+                                                href="e_personal.php">Personal</a>
+                                        </li>
+                                        <li class=""><a class="producto nav-link"
+                                                href="e_salarioEmpleado.php"> Registro de Sueldo</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </li>
+
+
                             <li class=""><a class="proveedor nav-link" href="e_proveedor.php">Proveedor</a></li>
                         </ul>
                     </nav>
                 </div>
-                <a class="nav-link" href="e_tipoCambio.php">
-                    <div class="nav-link-icon"><em data-feather="bar-chart-2"></em></div>
-                    Tipo Cambio
-                </a>
+
                 <div class="sidenav-menu-heading">Gestor</div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -106,35 +127,28 @@
                     <nav class="sidenav-menu-nested nav">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
                             <li class=""><a class="compra nav-link" href="e_ordenCompra.php">Orden de Compra</a></li>
-                            <li class=""><a class="compra nav-link" href="e_ordenServicio.php">Orden de Servicios</a></li>
+                            <li class=""><a class="compra nav-link" href="e_ordenServicio.php">Orden de Servicios</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="sidenav-menu-heading">Caja</div>
-                <a class="nav-link" href="e_caja.php">
-                    <div class="nav-link-icon"><em data-feather="bar-chart-2"></em></div>
-                    Caja
-                </a>
-                <a class="nav-link" href="e_salarioEmpleado.php">
-                    <div class="nav-link-icon"><em data-feather="bar-chart-2"></em></div>
-                    Salario Empleado
-                </a>
                 <div class="sidenav-menu-heading">Sector Contable</div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
-                data-bs-target="#collapseContable" aria-expanded="false" aria-controls="collapseContable">
-                <div class="nav-link-icon"><em data-feather="user"></em></div>
-                contabilidad
-                <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
-            </a>
-            <div class="collapse" id="collapseContable" data-bs-parent="#accordionSidenav">
-                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsContable">
-                    <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                        <li class=""><a class="cliente nav-link" href="e_cliente.php">Cliente</a></li>
-                        <li class=""><a class="personal nav-link" href="e_personal.php">Personal</a></li>
-                        <li class=""><a class="proveedor nav-link" href="e_proveedor.php">Proveedor</a></li>
-                    </ul>
-                </nav>
-            </div>
+                    data-bs-target="#collapseContable" aria-expanded="false" aria-controls="collapseContable">
+                    <div class="nav-link-icon"><em data-feather="user"></em></div>
+                    Contabilidad
+                    <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
+                </a>
+                <div class="collapse" id="collapseContable" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsContable">
+                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                            <li class=""><a class="cliente nav-link" href="eC_ingresosYegresos.php">Relacion de Ingresos y Egresos</a></li>
+                            <li class=""><a class="personal nav-link" href="e_personal.php">Personal</a></li>
+                            <li class=""><a class="proveedor nav-link" href="e_proveedor.php">Proveedor</a></li>
+                            
+                        </ul>
+                    </nav>
+                </div>
                 <div class="sidenav-menu-heading">Reporte</div>
                 <a class="nav-link" href="eR_EntradaSalida.php">
                     <div class="nav-link-icon"><em data-feather="bar-chart-2"></em></div>

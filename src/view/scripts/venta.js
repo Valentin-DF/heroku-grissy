@@ -51,20 +51,27 @@ var venta = function () {
                     { "title": "Igv", "data": "igv" },
                     { "title": "Total", "data": "total" },
                     {
-                        "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button>"
-                            + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-solid fa-circle-minus'></span></button>"
-                            + "<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
+                        "title": "Acciones", "defaultContent": "<button title='Editar' type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button>"
+                            + "<button title='Desabilitar' class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-solid fa-circle-minus'></span></button>"
+                            + "<button title='Habilitar' class='restablecer btn btn-outline-info btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
+                            + "<button title='Aprobar' class='aprobar btn btn-outline-success btn-sm' ><span class='fa-solid fa-check-double'></span></button>"
+                            + "<button title='Imprimir' class='imprimir btn btn-outline-secondary btn-sm' ><span class='fa-solid fa-print'></span></button>"
+
+
                     }
                 ],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 },
-                // "responsive": "true",
+                // "responsive": "true",<i class="fa-solid fa-print"></i>
 
             });
+
             venta.obtener_data_editar("#example tbody", table);
             venta.obtener_data_eliminar("#example tbody", table);
             venta.obtener_data_restaurar("#example tbody", table);
+            venta.obtener_data_aprobar("#example tbody", table);
+
 
         },
         obtener_data_editar: function (tbody, table) {
@@ -78,16 +85,52 @@ var venta = function () {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                venta.inabilitarVenta(data.id, 0);
+                if (data.estado == 2) {
+                    Toastify({
+                        text: "La venta se encuentra APROBADA",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
+                } else {
+                    venta.inabilitarVenta(data.id, 0);
+                }
             });
         },
         obtener_data_restaurar: function (tbody, table) {
             $(tbody).on("click", "button.restablecer", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                venta.inabilitarVenta(data.id, 1);
+                if (data.estado == 2) {
+                    Toastify({
+                        text: "La venta se encuentra APROBADA",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
+                } else {
+                    venta.inabilitarVenta(data.id, 1);
+                }
             });
         },
+        obtener_data_aprobar: function (tbody, table) {
+            $(tbody).on("click", "button.aprobar", function () {
+                var data = table.row($(this).parents("tr")).data();
+                console.log(data);
+                if (data.estado == 0) {
+                    Toastify({
+                        text: "La venta se encuentra DESHABILITADA",
+                        duration: 3000,
+                        close: true,
+                        backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
+                    }).showToast();
+                } else {
+                    venta.inabilitarVenta(data.id, 2);
+                }
+            });
+        },
+
+
         consultaDocumento: function () {
             var doc = $("#docIdentidad").val();
             const radios = document.getElementsByName('esDocumento');

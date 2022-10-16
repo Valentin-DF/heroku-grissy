@@ -617,7 +617,7 @@ var ordenes = function () {
                     $(objListado).each(function (i, obj) {
 
                         $("#idPro").val(obj.id);
-                        $("#precioPro").val(obj.precio);
+                        // $("#precioPro").val(obj.precio);
                         $("#codigoPro").val(obj.codigo);
                         $("#cantidadPro").val(obj.cantidad);
                         AreaGlobal = obj.idarea;
@@ -670,6 +670,7 @@ var ordenes = function () {
         limpiarSeleccion: function () {
             $("#codigoPro").val('');
             $("#cantidadPro").val('');
+            $("#precioPro").val('');
             $("#cantidadEditable").val('');
         },
         IngresarProductoOrden: function (idTipo) {
@@ -684,6 +685,7 @@ var ordenes = function () {
                     idProducto = $("#idPro").val();
                     cantidad = $("#cantidadEditable").val();
                     precio = $("#precioPro").val();
+
                     total = parseFloat(precio) * parseInt(cantidad);
                     //---------------------------------------------------
                     cantidadActualizar = parseInt($("#cantidadPro").val()) + parseInt($("#cantidadEditable").val());

@@ -25,6 +25,10 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
         return ObtenerPersonalPorID($id);
     }
 
+    function buscarPersonalPorDocumento($documento){
+        return ObtenerPersonalPorDocumento($documento);
+    }
+
     function exixtenciaPersonal($dni){
         return validarExistencia($dni);
 
@@ -40,6 +44,14 @@ require_once('/xampp/htdocs/Grissy/database/dalPersonal.php');
 
     function delectePersonal($id){
         return delectPersonal($id);
+    }
+
+    function personalSinPagarEnElMEs(){
+        return obtenerSinPagarEnElMes();
+    }
+    
+    function  GuardarRegistroSalarioDelMes($idpersonal,  $salariobase,$bonificacionextra,$descuentos,$totalsueldo){
+        return insertarSalrioDelMes($idpersonal,  $salariobase,$bonificacionextra,$descuentos,$totalsueldo);
     }
 
 ?>

@@ -165,6 +165,41 @@
     
         return $lista; 
     }
+
+    function ObtenerPersonalPorDocumento($documento){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * from personal where dni = ?';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "i",
+            $documento
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+
+            $obj = new personal();
+            $obj->id = $row['id'];
+            $obj->dni = $row['dni'];
+            $obj->nombre = $row['nombre'];
+            $obj->apellidoPaterno = $row['apellidoPaterno'];
+            $obj->apellidoMaterno = $row['apellidoMaterno'];
+            $obj->sueldo = $row['sueldo'];
+            $obj->codigo = $row['codigo'];
+
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
+
     function validarExistencia($dni){
 
         $mysqli = conexion();
@@ -251,6 +286,54 @@
         $mysqli->close();    
     }
 
+
+    function obtenerSinPagarEnElMes(){
+        $mysqli = conexion();
+        $consultaSQL = 'CALL grissy_PersonalSinPagarEnElMes()';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+
+            $obj = new personal();
+            $obj->dni = $row['documento'];
+            $obj->nombre = $row['nombre'];
+            $obj->fechaContrato = $row['fecha'];
+
+
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
+
+
+
+
+    function insertarSalrioDelMes($idpersonal,  $salariobase,$bonificacionextra,$descuentos,$totalsueldo){
+        $mysqli = conexion();
+    
+        $consultaSQL = "INSERT INTO salario_personal (idPersonal,salario_Base, bonificacion_extra, descuentos, total_sueldo, fecha)
+         VALUES(?,?,?,?,?,now())";
+        $stmt = $mysqli->prepare($consultaSQL);
+
+        $stmt->bind_param(
+            "idddd", $idpersonal,  $salariobase,$bonificacionextra,$descuentos,$totalsueldo
+        );
+    
+        $stmt->execute();
+        // $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
+    }
 
 
 ?>

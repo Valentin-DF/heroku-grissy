@@ -106,7 +106,7 @@
         <div class="modal-header">
 
           <div class=" col-9">
-            <h2 class="modal-title">ordenes</h3>
+            <h4 class="modal-title">ORDEN DE COMPRA</h4>
           </div>
           <div class="col-3">
             <input type="text" class="form-control form-control-sm text-center " placeholder="Codigo" id="codigoordenes" aria-label="text" disabled readonly>
@@ -299,14 +299,16 @@
 
           <div class="row" style="margin-top: 10px;">
 
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="input-group">
                 <input type="hidden" class="form-control" disabled id="idPro">
-                <input type="hidden" class="form-control" disabled id="precioPro">
+                <!-- <input type="hidden" class="form-control" disabled id="precioPro"> -->
                 <input type="hidden" class="form-control" disabled id="cantidadPro">
                 <input type="text" placeholder="Codigo del producto" class="form-control" disabled id="codigoPro" aria-label="text">
                 <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
-                <!--  -->
+                <input type="number" class="form-control" placeholder="Precio Producto" id="precioPro" aria-label="text" > 
+
+                <!-- onkeypress="return (event.charCode>=48 && event.charCode<=57)" -->
                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="ordenes.IngresarProductoOrden(1)" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
                 </button>
                 <button aria-label="limpiarCliente" class="btn btn-outline-danger btn-sm" onclick="ordenes.limpiarSeleccion()" type="button" id="limpiarSeleccion"><span class="fa-fw select-all fas"></span>

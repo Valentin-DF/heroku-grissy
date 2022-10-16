@@ -61,16 +61,16 @@
                     <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
                         <div class="me-4 mb-3 mb-sm-0">
-                            <h1 class="mb-0"> Registro de Areas de la Empresa</h1>
+                            <h1 class="mb-0"> Relacion de Ingresos y Egresos</h1>
                         </div>
                         <!-- Date range picker example-->
-                        <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
+                        <!-- <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
                             <input disabled class="form-control ps-0 pointer text-center" id="litepickerRangePlugin" placeholder="Select date range..." />
-                        </div>
+                        </div> -->
                     </div>
 
 
-                    <div class="card mb-4">
+                    <!-- <div class="card mb-4">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
@@ -96,7 +96,7 @@
                                 </thead>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </main>
