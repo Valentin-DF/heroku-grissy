@@ -151,4 +151,23 @@
         $mysqli->close();
     }
 
+    function actualizarOrden($total,$igv,$subTotal,$codigo){
+        $mysqli = conexion();
+    
+        $consultaSQL = "UPDATE ordenes SET total = ?,igv = ?, subTotal = ?  WHERE codigo = ?";
+        $stmt = $mysqli->prepare($consultaSQL);
+    
+        $stmt->bind_param(
+            "ddds",
+            $total,$igv,$subTotal,$codigo
+        );
+    
+        $stmt->execute();
+        // $stmt->get_result();
+
+        $stmt->close();
+        $mysqli->close();
+    }
+
+
 ?>

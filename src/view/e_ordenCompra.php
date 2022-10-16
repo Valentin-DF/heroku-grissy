@@ -375,7 +375,7 @@
             <em class="bx bx-x d-block d-sm-none"></em>
             <span class="d-none d-sm-block">Cancelar</span>
           </button>
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar" onclick="ordenes.editarordenes(1)">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="editar" onclick="ordenes.editarOrdenes(1)">
             <em class="bx bx-x d-block d-sm-none"></em>
             <span class="d-none d-sm-block">Editar</span>
           </button>

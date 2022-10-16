@@ -816,13 +816,13 @@ var ordenes = function () {
             $("#docIdentidad").val('');
             this.limpiarSeleccion();
         },
-        editarOrdenes: function () {
+        editarOrdenes: function (idTipo) {
             codigoordenes = $("#codigoordenes").val();
             total = $("#total").val();
             igv = $("#igv").val();
             subTotal = $("#subTotal").val();
             $.ajax({
-                url: 'http://localhost:8080/Grissy/controllers/Ordenes/editarordenes.php',
+                url: 'http://localhost:8080/Grissy/controllers/Ordenes/editarOrdenes.php',
                 method: "POST",
                 data: {
                     codigo: codigoordenes,

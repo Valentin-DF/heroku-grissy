@@ -23,4 +23,8 @@ require_once('/xampp/htdocs/Grissy/database/dalOrden.php');
     function eliminarOrden($id, $estado){
         return eliminarOrdenG($id, $estado);
     }
+    
+    function editarOrden($total,$igv,$subTotal,$codigo){
+        return actualizarOrden($total,$igv,$subTotal,$codigo);
+    }
 ?>
