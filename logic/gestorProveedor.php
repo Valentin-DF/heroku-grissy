@@ -25,7 +25,7 @@ require_once('/xampp/htdocs/Grissy/database/dalProveedor.php');
     }
 
     function exixtenciaProveedor($docIdentidad){
-        return validarExistencia($docIdentidad);
+        return validarExistenciaP($docIdentidad);
 
     }
 

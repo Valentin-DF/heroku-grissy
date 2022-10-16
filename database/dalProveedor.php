@@ -59,7 +59,8 @@
     function insertarProveedor($codigo,$nombre,$apellidoPaterno,$apellidoMaterno,$docIdentidad,$direccion,$telefono,$estadoSunat,$condicionSunat){
         $mysqli = conexion();
 
-        $consultaSQL = "INSERT INTO proveedor ( codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
+        $consultaSQL = "INSERT INTO proveedor ( codigo, nombre, apellidoPaterno, apellidoMaterno, docIdentidad, direccion, telefono, estadoSunat, condicionSunat,estado,fechaRegistro) 
+                        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,1,now());";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
@@ -170,7 +171,7 @@
         return $lista; 
     }
     
-    function validarExistencia($docIdentidad){
+    function validarExistenciaP($docIdentidad){
 
         $mysqli = conexion();
         $consultaSQL = "SELECT  if(COUNT(*)>0,true,false)  as estado  FROM proveedor WHERE docIdentidad = ? ;";

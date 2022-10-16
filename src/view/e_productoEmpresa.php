@@ -61,7 +61,8 @@
 
                                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDrop">
                                         <li> <a class="btn btn-sm btn-light text-primary" href="e_productoGeneral.php">Producto</a></li>
-                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoEmpresa.php"> Producto Empresa</a></li>
+                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoEmpresa.php"> Producto Bienes</a></li>
+                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoServicios.php"> Producto Servicios</a></li>
                                     </ul>
 
 
@@ -92,7 +93,7 @@
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
                                     <em class="fas fa-table me-1"></em>
-                                    Lista General de Productos de la Empresa
+                                    Lista General de Productos Bienes
                                 </div>
                                 <div class="border-0 shadow">
                                     <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="productoEmpresa.en_guardar()" data-bs-target="#agregarProducto">
@@ -194,7 +195,15 @@
                                 <input type="number" id="precio" class="form-control " placeholder="Precio" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="idtipo">Tipo</label>
+                                <select class="form-control form-select" id="idtipo">
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn btn-outline-danger " data-bs-dismiss="modal">
@@ -240,6 +249,7 @@
 
         productoEmpresa.obtenerListaProductos();
         productoEmpresa.obtenerListaArea();
+        productoEmpresa.obtenerListaTipo();
         productoEmpresa.obtenerListaProductoG();
         document.getElementById("codigo").disabled = true;
 

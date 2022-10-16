@@ -220,7 +220,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label id="noEdit2" for="sueldo">Sueldo</label>
+                                <label id="noEdit2" for="sueldo">Sueldo Base</label>
                                 <input type="number" id="sueldo" class="form-control " placeholder="Sueldo" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
                             </div>
                         </div>

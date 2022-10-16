@@ -84,13 +84,29 @@
 
                             <div class="col-xl-4 mb-4">
                                 <!-- Dashboard example card 3-->
-                                <a class="card lift h-100" href="e_compra.php">
+                                <a class="card lift h-100" href="e_ordenCompra.php">
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="me-3">
                                                 <em class="feather-xl text-green mb-3" data-feather="package"></em>
-                                                <h5>Compras</h5>
-                                                <div class="text-muted small">Ventana de procesos de compra</div>
+                                                <h5>Orden de compra</h5>
+                                                <div class="text-muted small">Ventana de Ordenes de Compra</div>
+                                            </div>
+                                            <img src="../assets/img/illustrations/windows.svg" alt="..." style="width: 8rem" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-xl-4 mb-4">
+                                <!-- Dashboard example card 3-->
+                                <a class="card lift h-100" href="e_ordenServicio.php">
+                                    <div class="card-body d-flex justify-content-center flex-column">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="me-3">
+                                                <em class="feather-xl text-orange mb-3" data-feather="package"></em>
+                                                <h5>Orden de Servicio</h5>
+                                                <div class="text-muted small">Ventana de Ordenes de Servicio</div>
                                             </div>
                                             <img src="../assets/img/illustrations/windows.svg" alt="..." style="width: 8rem" />
                                         </div>
@@ -131,7 +147,7 @@
 <script src="scripts/menu.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        menu.grupoTrabajo();
+        // document.getElementById("codigo").disabled = true;
 
     });
 </script>

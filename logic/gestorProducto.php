@@ -5,12 +5,16 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
         return listaDeProductos();
     }
 
+    function obtenerListaDeTipoProductos(){
+        return listaDeTipoProductos();
+    }
+
     function eliminarProducto($id, $estado){
         return borrarProducto($id, $estado);
     }
 
-    function guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto){
-        return insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto);
+    function guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto, $idTipo){
+        return insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto, $idTipo);
     }
 
     function editarProducto($codigo,$nombre,$talla,$cantidad,$precio){
@@ -23,6 +27,9 @@ require_once('/xampp/htdocs/Grissy/database/dalProducto.php');
 
     function buscarProductoPorNombre($nombrePro){
         return ObtenerProductoPorNombre($nombrePro);
+    }
+    function buscarProductoPorNombreTipo($nombrePro,$idTipo){
+        return ObtenerProductoPorNombreTipo($nombrePro,$idTipo);
     }
     
     function buscarProductoPorNombre2($nombrePro){

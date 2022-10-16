@@ -1,3 +1,8 @@
 {
-    "liveServer.settings.port": 8080
+    "liveServer.settings.port": 8080,
+    "editor.formatOnSave": false,
+// Enable per-language
+"[javascript]": {
+    "editor.formatOnSave": true
+}
 }

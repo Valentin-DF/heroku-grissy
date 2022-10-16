@@ -12,6 +12,12 @@
         public $nombreArea;
         public $idproducto;
         public $nombreProducto;
+        public $idtipo;
+    }
+
+    class tipo_producto {
+        public $id;
+        public $tipo;
     }
 
 ?>

@@ -151,7 +151,7 @@
                                         <th scope="col">Emcargado</th>
                                         <th scope="col">Area</th>
                                         <th scope="col">Producto</th>
-                                        <th scope="col">Monto</th>
+                                        <th scope="col">Cantidad</th>
                                     </tr>
                                 </thead>
                                 <tbody id="lst-stock">

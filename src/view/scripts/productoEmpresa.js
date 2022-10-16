@@ -73,6 +73,7 @@ var productoEmpresa = function () {
             var precio = $("#precio").val();
             var idArea = $("#idarea").val();
             var idProducto = $("#idproducto").val();
+            var idTipo = $("#idtipo").val();
             var estado = 1;
 
             $.ajax({
@@ -86,7 +87,8 @@ var productoEmpresa = function () {
                     precio: precio,
                     estado: estado,
                     idArea: idArea,
-                    idProducto: idProducto
+                    idProducto: idProducto,
+                    idTipo: idTipo
                 },
                 success: function (response) {
 
@@ -276,6 +278,28 @@ var productoEmpresa = function () {
 
                         }
                         $("#idarea").append(area);
+                    });
+                }
+            })
+
+        },
+
+        obtenerListaTipo: function () {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Producto/obtenerListaTipoPorducto.php",
+                method: "GET",
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        var tipo = '';
+                        if(obj.id == 1){
+                            tipo = '<option value="' + obj.id + '">' + obj.tipo + '</option>';
+                        }
+                        $("#idtipo").append(tipo);
                     });
                 }
             })

@@ -1,5 +1,6 @@
 var AreaGlobal;
 var stockGlobal;
+var EstadoActual;
 var venta = function () {
 
     return {
@@ -51,7 +52,7 @@ var venta = function () {
                     { "title": "Total", "data": "total" },
                     {
                         "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarVenta' ><span class='fa-fw select-all fas'></span></button>"
-                            + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-fw select-all fas'></span></button>"
+                            + "<button class='eliminar btn btn-outline-danger btn-sm' ><span class='fa-solid fa-circle-minus'></span></button>"
                             + "<button class='restablecer btn btn-outline-success btn-sm' ><span class='fa-solid fa-circle-check'></span></button>"
                     }
                 ],
@@ -70,7 +71,7 @@ var venta = function () {
             $(tbody).on("click", "button.editar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                venta.obtenerPorCodigo(data.codigo, data.idCliente);
+                venta.obtenerPorCodigo(data.codigo, data.idCliente, data.estado);
             });
         },
         obtener_data_eliminar: function (tbody, table) {
@@ -359,7 +360,11 @@ var venta = function () {
                         producto += '<td>' + obj.cantidad + '</td>';
                         producto += '<td>' + obj.precio + '</td>';
                         producto += '<td>' + obj.talla + '</td>';
-                        producto += '<td class="text-center"><button class="btn btn-outline-primary btn-sm" type="button" onclick="venta.botonSeleccionadorDeProducto(' + obj.id + ');"><span class="fa-fw select-all fas"></span></button></button></td>';
+                        if (EstadoActual == 0 || EstadoActual == 2) {
+                            producto += '<td class="text-center"><button  disabled="true" class="btn btn-outline-primary btn-sm" type="button" onclick="venta.botonSeleccionadorDeProducto(' + obj.id + ');"><span class="fa-fw select-all fas"></span></button></button></td>';
+                        } else {
+                            producto += '<td class="text-center"><button  class="btn btn-outline-primary btn-sm" type="button" onclick="venta.botonSeleccionadorDeProducto(' + obj.id + ');"><span class="fa-fw select-all fas"></span></button></button></td>';
+                        }
                         producto += '</tr>';
 
                         $("#lst-producto").append(producto);
@@ -487,9 +492,9 @@ var venta = function () {
                         }
                     });
 
-                        venta.guardarEntradas_Salidas(objec.id,AreaGlobal,idProducto,cantidadActualizar,0)
+                    venta.guardarEntradas_Salidas(objec.id, AreaGlobal, idProducto, cantidad, 0)
 
-                    this.limpiarSeleccion();
+                    venta.limpiarSeleccion();
                 } else {
                     Toastify({
                         text: "Ingrese la cantidad a vender",
@@ -505,7 +510,7 @@ var venta = function () {
                     close: true,
                     backgroundColor: "linear-gradient(to right, #ff5c74,#e30e2e )",
                 }).showToast();
-                this.limpiarSeleccion();
+                venta.limpiarSeleccion();
             }
         },
         listarDetalleVenta: function () {
@@ -535,7 +540,13 @@ var venta = function () {
                         detalleventa += '<td>' + obj.cantidad + '</td>';
                         detalleventa += '<td>' + obj.precio + '</td>';
                         detalleventa += '<td>' + obj.total + '</td>';
-                        detalleventa += '<td><button class=" btnbtn-transparent-light btn-xs" type="button" onclick="venta.eliminarVenta(' + obj.id + ',' + obj.idProducto + ',' + obj.cantidad + ')"><span class="fa-fw select-all fas"></span></button></button></td>';
+
+                        if (EstadoActual == 2 || EstadoActual == 0) {
+                            detalleventa += '<td><button  disabled="true" class=" btnbtn-transparent-light btn-xs" type="button" onclick="venta.eliminarVenta(' + obj.id + ',' + obj.idProducto + ',' + obj.cantidad + ')"><span class="fa-fw select-all fas"></span></button></button></td>';
+                        } else {
+                            detalleventa += '<td><button   class=" btnbtn-transparent-light btn-xs" type="button" onclick="venta.eliminarVenta(' + obj.id + ',' + obj.idProducto + ',' + obj.cantidad + ')"><span class="fa-fw select-all fas"></span></button></button></td>';
+
+                        }
                         detalleventa += '</tr>';
                         $("#lst-detalle").append(detalleventa);
 
@@ -615,7 +626,7 @@ var venta = function () {
             const storedToDos = localStorage.getItem("empleado");
             const objec = JSON.parse(storedToDos);
             var fecha = new Date();
-            var mes = this.zeroFill(fecha.getMonth(), 2);
+            var mes = venta.zeroFill(fecha.getMonth(), 2);
             var anio = fecha.getFullYear();
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Venta/generarCodigo.php",
@@ -695,16 +706,16 @@ var venta = function () {
         },
         limpiarModal: function () {
             $("#docIdentidad").val('');
-            this.limpiarSeleccion();
+            venta.limpiarSeleccion();
         },
         en_guardar: function () {
 
-            this.generarCodigo();
+            venta.generarCodigo();
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
-            this.limpiar();
+            venta.limpiar();
             $("#lst-detalle").empty();
             $("#total").val("");
             $("#igv").val("");
@@ -713,16 +724,23 @@ var venta = function () {
 
 
         },
-        obtenerPorCodigo: function (codigo, idCliente) {
+        obtenerPorCodigo: function (codigo, idCliente, estado) {
             document.getElementById("docIdentidad").disabled = true;
 
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
-            btn_2.style.display = 'inline';
-            btn_1.style.display = 'none';
+            EstadoActual = estado;
+            if (estado == 0 || estado == 2) {
+                btn_2.style.display = 'none';
+                btn_1.style.display = 'none';
+            } else {
+                btn_2.style.display = 'inline';
+                btn_1.style.display = 'none';
+            }
+
             console.log(codigo);
             $("#codigoVenta").val(codigo);
-            this.listarDetalleVenta();
+            venta.listarDetalleVenta();
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Cliente/buscarClientePorId.php",
                 method: "GET",

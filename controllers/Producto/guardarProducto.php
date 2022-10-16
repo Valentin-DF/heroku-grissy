@@ -66,8 +66,9 @@ try {
             $precio = $_POST['precio'];
             $idArea = $_POST['idArea'];
             $idProducto = $_POST['idProducto'];
+            $idTipo = $_POST['idTipo'];
 
-            $id = guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto);
+            $id = guardarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto,$idTipo);
             
             $mensaje  = array(
                 "warning" => "true",

@@ -191,7 +191,7 @@ var reporte = function () {
                         $("#lst-venta").append(venta);
                     });
 
-                    document.getElementById("totalLista").innerHTML = 'S/. ' + sumaVentas;
+                    document.getElementById("totalLista").innerHTML = 'S/. ' + (sumaVentas).toFixed(4);
                 }
             })
 

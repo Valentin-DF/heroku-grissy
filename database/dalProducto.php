@@ -4,7 +4,7 @@
 
     function listaDeProductos(){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM producto_e';
+        $consultaSQL = 'SELECT * FROM producto_e where idtipo =1';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->execute();
@@ -33,10 +33,34 @@
         return $lista;
     }
 
+    function listaDeTipoProductos(){
+        $mysqli = conexion();
+        $consultaSQL = 'SELECT * FROM tipo_producto';
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+    
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new tipo_producto();
+            $obj->id = $row['id'];
+            $obj->tipo = $row['tipo'];
+            array_push($lista, $obj);
+        }
+    
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista;
+    }
+
     function borrarProducto($id, $estado){
         $mysqli = conexion();
     
-        $consultaSQL = "UPDATE producto_e SET estado = ? WHERE id = ?";
+        $consultaSQL = "UPDATE producto_e SET estado = ? WHERE id = ? and idtipo =1";
         $stmt = $mysqli->prepare($consultaSQL);
     
         $stmt->bind_param(
@@ -50,14 +74,14 @@
         $mysqli->close();
     }
 
-    function insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto){
+    function insertarProducto($codigo, $nombre, $talla, $cantidad, $estado, $precio, $idArea, $idProducto,$idTipo){
         $mysqli = conexion();
 
-        $consultaSQL = "CALL guardar_ProductoEmpresa (?,?,?,?,1,?,?,?)";
+        $consultaSQL = "CALL guardar_ProductoEmpresa (?,?,?,?,1,?,?,?,?)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "sssidii", $codigo, $nombre, $talla, $cantidad,$precio, $idArea, $idProducto
+            "sssidiii", $codigo, $nombre, $talla, $cantidad,$precio, $idArea, $idProducto,$idTipo
         );
 
         $stmt->execute();
@@ -95,7 +119,7 @@
 
     function ObtenerProductoPorID($id){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM producto_e WHERE id = ?';
+        $consultaSQL = 'SELECT * FROM producto_e WHERE id = ? and idtipo =1';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->bind_param(
@@ -159,6 +183,41 @@
     
         return $lista; 
     }
+
+    function ObtenerProductoPorNombreTipo($nombrePro,$idTipo){
+        $mysqli = conexion();
+        $consultaSQL = " CALL grissy_ListarProductoPorNombreTipo( ? ,?); ";
+        
+        $stmt = $mysqli->prepare($consultaSQL);
+        $stmt->bind_param(
+            "si",
+            $nombrePro,$idTipo
+        );
+        $stmt->execute();
+    
+        $lista = array();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+    
+            $obj = new producto();
+            $obj->id = $row['id'];
+            $obj->nombre = $row['nombre'];
+            $obj->cantidad = $row['cantidad'];
+            $obj->precio = $row['precio'];
+            $obj->codigo = $row['codigo'];
+            $obj->talla = $row['talla'];
+            $obj->estado = $row['estado'];
+            $obj->idarea = $row['idarea'];
+            array_push($lista, $obj);
+        }
+
+        $stmt->close();
+        $mysqli->close();
+    
+        return $lista; 
+    }
+
     function ObtenerProductoPorNombre2($nombrePro){
         $mysqli = conexion();
         $consultaSQL = " CALL grissy_ListarProductoSinLimitePorNombre( ? ); ";
