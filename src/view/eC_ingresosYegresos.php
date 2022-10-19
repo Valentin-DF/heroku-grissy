@@ -38,7 +38,7 @@
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><em data-feather="user"></em></div>
-                                        Area
+                                        Relacion de Ingresos y Egresos
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
@@ -60,44 +60,99 @@
                 <div class="container-xl px-4 mt-4">
                     <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-                        <div class="me-4 mb-3 mb-sm-0">
-                            <h1 class="mb-0"> Relacion de Ingresos y Egresos</h1>
+                        <div class="input-group">
+                            <input class="input-group-text " disabled type="text" id="descripcion_fecha">
+                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha_inicial">
+                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha_final">
+                            <input class="form-control ps-0 pointer text-center" type="month" id="fecha_mes_ano">
+                            <button aria-label="Buscar" class="btn btn-outline-success btn-sm" onclick="ingresos_egresos.mostrar()"><span class="fa-solid fa-magnifying-glass"></span>
+                            </button>
+
+                            <button aria-label="filtrar" class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#mostrarFiltros" aria-expanded="false"><span class="fa-solid fa-sort-down"></span>
+                            </button>
+
                         </div>
-                        <!-- Date range picker example-->
-                        <!-- <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
-                            <input disabled class="form-control ps-0 pointer text-center" id="litepickerRangePlugin" placeholder="Select date range..." />
-                        </div> -->
+
+                    </div>
+                    <div class="collapse" id="mostrarFiltros">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="radio" name="status" id="fecha" checked value="fecha" onclick="ingresos_egresos.mostrarRadio()"> <label for="fecha">En Fecha</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" name="status" id="rango_fechas" value="rango_fechas" onclick="ingresos_egresos.mostrarRadio()"> <label for="rango_fechas">Entre Rango de Fechas</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" name="status" id="mes_ano" value="mes_ano" onclick="ingresos_egresos.mostrarRadio()"> <label for="mes_ano">Entre Mes y Año</label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
                     </div>
 
 
-                    <!-- <div class="card mb-4">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
-                                <div class="me-4 mb-3 mb-sm-0">
-                                    <em class="fas fa-table me-1"></em>
-                                    Lista General de Areas de la Empresa
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5> Ingresos:</h5>
                                 </div>
-                                <div class="border-0 shadow">
-                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="area.en_guardar()" data-bs-target="#agregarArea">
-                                        <em class="fa-solid fa-plus me-1"></em> Agregar
-                                    </button>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Monto Monetario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="lst-ingresos">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th>
+                                                    <p id="totalIngresos"></p>
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <table summary="Lista Area"  class="table " id="example" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Nombre</th>
-                                        <th>descripcion</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div> -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5> Gastos:</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Monto Monetario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="lst-gastos">
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th>
+                                                    <p id="totalGastos"></p>
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
 
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
             <footer class="footer-admin mt-auto footer-light">
@@ -106,70 +161,7 @@
         </div>
     </div>
 
-    <!--AGREGAR AREA EN UN MODAL-->
-    <div class="modal fade " id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
 
-                <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
-                        <div class="me-4 mb-3 mb-sm-0">
-                            Registro de area
-                        </div>
-                        <div class=" shadow">
-                            <span class="badge rounded-pill" id="estadoC"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="codigo">Codigo*</label>
-                                <input type="text" id="codigo" class="form-control " placeholder="Codigo">
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <label for="nombre">Nombre*</label>
-                                <input type="text" id="nombre" class="form-control " placeholder="Nombre">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="foto">URL Foto</label>
-                                <input type="text" id="foto" class="form-control " placeholder="Foto">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
-                                <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripcion"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-center ">
-                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal" id="cancelar" onclick="area.limpiar()">
-                            <em class="bx bx-x d-block d-sm-none"></em>
-                            <span class="d-none d-sm-block">Cancelar</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" id="editar" onclick="area.editarArea()">
-                            <em class="bx bx-x d-block d-sm-none"></em>
-                            <span class="d-none d-sm-block">Editar</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" id="guardar" onclick="area.guardarArea()">
-                            <em class="bx bx-x d-block d-sm-none"></em>
-                            <span class="d-none d-sm-block">Guardar</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
@@ -191,13 +183,11 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/area.js"></script>
+<script src="scripts/ingresos_egresos.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
-        area.obtenerListaArea();
-        document.getElementById("codigo").disabled = true;
-
+        ingresos_egresos.mostrarRadio();
     });
 </script>
 
