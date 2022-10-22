@@ -766,7 +766,7 @@ var ordenes = function () {
                             total: total,
                             igv: igv,
                             subTotal: subTotal,
-                            idTipo: 1
+                            idTipo: idTipo
                         },
                         complete: function (response) {
                             console.log(response);

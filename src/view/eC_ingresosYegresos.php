@@ -187,6 +187,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
+        var fechita = new Date();
+        ingresos_egresos.buscarPorFecha(ingresos_egresos.formatDate(fechita), "", "");
         ingresos_egresos.mostrarRadio();
     });
 </script>

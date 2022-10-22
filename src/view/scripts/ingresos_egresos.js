@@ -112,7 +112,7 @@ var ingresos_egresos = function () {
                     });
                     console.log(sumaIngreso);
 
-                    document.getElementById("totalIngresos").innerHTML = sumaIngreso;
+                    document.getElementById("totalGastos").innerHTML = (sumaIngreso).toFixed(4);
 
                 }
             });
@@ -121,7 +121,7 @@ var ingresos_egresos = function () {
                 method: "GET",
                 data: data,
                 success: function (response) {
-                    var sumaGastos = 0;
+                    var sumaGastos = 0.00;
                     var objListado = JSON.parse(response);
                     $(objListado).each(function (i, obj) {
                         var venta = '';
@@ -142,11 +142,25 @@ var ingresos_egresos = function () {
                     });
                     console.log(sumaGastos);
 
-                    document.getElementById("totalGastos").innerHTML = sumaGastos;
+                    document.getElementById("totalIngresos").innerHTML = (sumaGastos).toFixed(4);
 
                 }
             });
 
         },
+
+        formatDate: function (date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
     }
 }();
