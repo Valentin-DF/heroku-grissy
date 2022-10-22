@@ -6,6 +6,7 @@
         public $monto;
         public $tipo;
         public $estado;
+        public $nombreTipo;
     }
 
 ?>

@@ -38,7 +38,7 @@
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><em data-feather="user"></em></div>
-                                        Relacion de Ingresos y Egresos
+                                        Estado de Resultado Integral
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
@@ -84,7 +84,7 @@
                                     <input type="radio" name="status" id="rango_fechas" value="rango_fechas" onclick="ingresos_egresos.mostrarRadio()"> <label for="rango_fechas">Entre Rango de Fechas</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="radio" name="status" id="mes_ano" value="mes_ano" onclick="ingresos_egresos.mostrarRadio()"> <label for="mes_ano">Entre Mes y Año</label>
+                                    <input type="radio" name="status" id="mes_ano" value="mes_ano" onclick="ingresos_egresos.mostrarRadio()"> <label for="mes_ano">Por Periodo</label>
                                 </div>
 
                             </div>
@@ -126,7 +126,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5> Gastos:</h5>
+                                    <h5> Egresos:</h5>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">

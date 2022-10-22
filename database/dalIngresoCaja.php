@@ -4,7 +4,7 @@
 
     function listaDeIngresoCaja(){
         $mysqli = conexion();
-        $consultaSQL = 'SELECT * FROM ingreso_caja';
+        $consultaSQL = 'CALL grissy_ListaDeIngresoCaja();';
         
         $stmt = $mysqli->prepare($consultaSQL);
         $stmt->execute();
@@ -21,6 +21,7 @@
             $obj->estado = $row['estado'];
             $obj->tipo = $row['tipo'];
             $obj->codigo = $row['codigo'];
+            $obj->nombreTipo = $row['nombreTipo'];
             array_push($lista, $obj);
         }
 

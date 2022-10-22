@@ -134,20 +134,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="tipo">
-                                <label class="form-check-label" for="tipo">
-                                    Monto de compras
-                                </label>
-                            </div>
-
-                            <!-- 0 para caja fin de dia y 1 para registro de monto de compra-->
-
+                     <div class="row" id="checkss">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="efectivo" value="efectivo"  checked>
+                            <label class="form-check-label" for="efectivo"> EFECTIVO EN CAJA </label>
+                            <!-- 0 -->
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="compra" value="compra" >
+                            <label class="form-check-label" for="compra"> EFECTIVO PARA COMPRAS </label>
+                            <!-- 1 -->
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="servicio" value="servicio">
+                            <label class="form-check-label" for="servicio"> EFECTIVOS PARA SERVICIO </label>
+                            <!-- 2 -->
                         </div>
                     </div>
-                    <div class="modal-footer justify-content-center ">
+
+                    <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal" id="cancelar" onclick="ingresoCaja.limpiar()">
                             <em class="bx bx-x d-block d-sm-none"></em>
                             <span class="d-none d-sm-block">Cancelar</span>

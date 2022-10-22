@@ -4,20 +4,40 @@ var ingresoCaja = function () {
         en_guardar: function () {
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
+            var checkss = document.getElementById('checkss');
+            document.getElementById("codigo").disabled = true;
+
             btn_2.style.display = 'none';
             btn_1.style.display = 'inline';
+            checkss.style.display = 'inline';
+
             this.limpiar();
         },
 
         guardarIngresoCaja: function () {
 
             var montos = $("#monto").val();
-            var tipo = 0;
-            if (document.getElementById('tipo').checked == true) {
-                tipo = 1
-            }
             var codigo = $("#codigo").val();
-            // console.log();
+
+            var tipo;
+            const radios = document.getElementsByName('tipo');
+            console.log(radios);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    if (radios[i].value == "efectivo") {
+                        tipo = 0
+                    }
+                    if (radios[i].value == "compra") {
+                        tipo = 1
+                    }
+                    if (radios[i].value == "servicio") {
+                        tipo = 2
+                    }
+                    break;
+                }
+
+            }
+
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/IngresoCaja/guardarIngresoCaja.php',
                 method: "POST",
@@ -60,7 +80,7 @@ var ingresoCaja = function () {
                     { "title": "Codigo", "data": "codigo" },
                     { "title": "Fecha", "data": "fecha" },
                     { "title": "Monto", "data": "monto" },
-                    { "title": "Tipo", "data": "tipo" },
+                    { "title": "Tipo", "data": "nombreTipo" },
                     {
                         "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarArea' ><i class='fa-solid fa-pen-to-square'></i></button>"
                             + "<button class='eliminar btn btn-outline-warning btn-sm' ><i class='fa-solid fa-circle-minus'></i></button>"
@@ -125,8 +145,11 @@ var ingresoCaja = function () {
         obtenerPorId: function (id) {
             var btn_2 = document.getElementById('editar');
             var btn_1 = document.getElementById('guardar');
+            var checkss = document.getElementById('checkss');
             btn_2.style.display = 'inline';
             btn_1.style.display = 'none';
+            checkss.style.display = 'none';
+            document.getElementById("codigo").disabled = false;
 
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/IngresoCaja/buscarIngresoCajaPorId.php",
@@ -143,7 +166,6 @@ var ingresoCaja = function () {
                     $(objListado).each(function (i, obj) {
                         $("#codigo").val(obj.codigo);
                         $("#monto").val(obj.monto);
-                        $("#tipo").val(obj.tipo);
                         if (obj.estado == 1) {
                             document.getElementById("editar").style.display = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
@@ -237,7 +259,7 @@ var ingresoCaja = function () {
 
         limpiar: function () {
             $("#codigo").val("");
-            $("#nombre").val("");
+            $("#monto").val("");
             document.getElementById("codigo").disabled = false;
             document.getElementById("estadoC").innerHTML = "";
             document.getElementById("estadoC").style.backgroundColor = "transparent";

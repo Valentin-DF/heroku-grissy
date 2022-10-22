@@ -19,7 +19,7 @@ var ingresos_egresos = function () {
                         document.getElementById("fecha_mes_ano").hidden = true;
                     }
                     if (radios[i].value == "mes_ano") {
-                        $("#descripcion_fecha").val("En Mes y Año");
+                        $("#descripcion_fecha").val("Por Periodo");
                         document.getElementById("fecha_inicial").hidden = true;
                         document.getElementById("fecha_final").hidden = true;
                         document.getElementById("fecha_mes_ano").hidden = false;
