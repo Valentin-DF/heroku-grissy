@@ -132,11 +132,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-11">
+            <div class="col-sm-6">
               <div class="input-group ">
                 <input type="number" class="form-control" placeholder="Documento de identidad del Proveedor" id="docIdentidad" aria-label="text" oninput="ordenes.consultaDocumento();" onchange="ordenes.validarCantidades();" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
                 <button aria-label="visualizarCliente" data-bs-toggle="collapse" onclick="ordenes.consultaDocumento();" data-bs-target="#datoCliente" aria-expanded="false" class="btn btn-outline-primary btn-sm " type="button" id="vizualizarCliente"><span class="fa-fw select-all fas"></span></button>
                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" id="agregarCliente" type="button" onclick="ordenes.agregarProveedor();"><span class="fa-fw select-all fas"></span></button>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="input-group">
+              <input class="input-group-text " disabled type="text" value="Moneda">
+                <select class="form-control form-select" id="idMoneda" placeholder="Moneda" >
+                </select>
               </div>
             </div>
 
@@ -306,7 +313,7 @@
                 <input type="hidden" class="form-control" disabled id="cantidadPro">
                 <input type="text" placeholder="Codigo del producto" class="form-control" disabled id="codigoPro" aria-label="text">
                 <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
-                <input type="number" class="form-control" placeholder="Precio Producto" id="precioPro" aria-label="text" > 
+                <input type="number" class="form-control" placeholder="Precio Producto" id="precioPro" aria-label="text">
 
                 <!-- onkeypress="return (event.charCode>=48 && event.charCode<=57)" -->
                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="ordenes.IngresarProductoOrden(1)" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
@@ -419,6 +426,7 @@
   $(document).ready(function() {
     ordenes.obtenerPorNombre(1);
     ordenes.obtenerListaOrdenesC(1);
+    ordenes.obtenerListaMoneda();
   });
 </script>
 

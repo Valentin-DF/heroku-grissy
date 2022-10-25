@@ -73,28 +73,25 @@
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
                             <li class=""><a class="cliente nav-link" href="e_cliente.php">Cliente</a></li>
-                            <!-- <li class=""><a class="personal nav-link" href="e_personal.php">Personal</a></li> -->
-
-
                             <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
-                                data-bs-toggle="collapse" data-bs-target="#pagesCollapsePersonal" aria-expanded="false"
-                                aria-controls="pagesCollapsePersonal">
-                                Personal
-                                <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapsePersonal"
-                                data-bs-parent="#accordionSidenavPagesMenu">
-                                <nav class="sidenav-menu-nested nav">
-                                    <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                                        <li class=""><a class="producto_general nav-link"
-                                                href="e_personal.php">Personal</a>
-                                        </li>
-                                        <li class=""><a class="producto nav-link"
-                                                href="e_salarioEmpleado.php"> Registro de Sueldo</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </li>
+                                    data-bs-toggle="collapse" data-bs-target="#pagesCollapsePersonal"
+                                    aria-expanded="false" aria-controls="pagesCollapsePersonal">
+                                    Personal
+                                    <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapsePersonal"
+                                    data-bs-parent="#accordionSidenavPagesMenu">
+                                    <nav class="sidenav-menu-nested nav">
+                                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                                            <li class=""><a class="producto_general nav-link"
+                                                    href="e_personal.php">Personal</a>
+                                            </li>
+                                            <li class=""><a class="producto nav-link" href="e_salarioEmpleado.php">
+                                                    Registro de Sueldo</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </li>
                             <li class=""><a class="proveedor nav-link" href="e_proveedor.php">Proveedor</a></li>
                         </ul>
                     </nav>
@@ -149,10 +146,30 @@
                 <div class="collapse" id="collapseContable" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsContable">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                            <li class=""><a class="cliente nav-link" href="eC_ingresosYegresos.php">Relacion de Ingresos y Egresos</a></li>
-                            <li class=""><a class="personal nav-link" href="eC_libroDiario.php">Libro Diario</a></li>
-                            <li class=""><a class="proveedor nav-link" href="e_proveedor.php">Proveedor</a></li>
-                            
+                            <li class=""><a class="cliente nav-link" href="eC_ingresosYegresos.php">Relacion de Ingresos
+                                    y Egresos</a></li>
+                            <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
+                                data-bs-toggle="collapse" data-bs-target="#pagesCollapseAsientoContable"
+                                aria-expanded="false" aria-controls="pagesCollapseAsientoContable">
+                                Asiento Contable
+                                <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
+                            </a>
+                            <div class="collapse" id="pagesCollapseAsientoContable"
+                                data-bs-parent="#accordionSidenavPagesMenu">
+                                <nav class="sidenav-menu-nested nav">
+                                    <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
+                                        <li class=""><a class="producto_general nav-link"
+                                            href="eC_libroDiario.php">Libro Diario</a>
+                                        </li>
+                                        <li class=""><a class="producto_general nav-link"
+                                            href="eC_libroMayor.php">Libro Mayor</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </li>
+
+
                         </ul>
                     </nav>
                 </div>

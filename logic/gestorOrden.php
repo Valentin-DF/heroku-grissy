@@ -8,8 +8,8 @@ require_once('/xampp/htdocs/Grissy/database/dalOrden.php');
         return generarCodigoO($tipo);
     }
     
-    function guardarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo){
-        return insertarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo);
+    function guardarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo,$idMoneda){
+        return insertarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo,$idMoneda);
     }
 
     function guardarDetalleOrden($codigoOrden, $idProducto, $cantidad, $precio,$total){

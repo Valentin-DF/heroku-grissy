@@ -292,7 +292,7 @@ var ordenes = function () {
                     direccion: direccion,
                     docIdentidad: $("#docIdentidad").val(),
                     estadoSunat: estadoSunat,
-                    telefono: telefono
+                    telefono: telefono,
                 },
                 complete: function (response) {
                     console.log(response);
@@ -348,10 +348,10 @@ var ordenes = function () {
             $(tbody).on("click", "button.editar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                ordenes.obtenerPorCodigo(data.codigo, data.idProveedor, data.idTipo, data.estado);
+                ordenes.obtenerPorCodigo(data.codigo, data.idProveedor, data.idTipo, data.estado, data.idMoneda);
             });
         },
-        obtenerPorCodigo: function (codigo, idProveedor, idTipo, estado) {
+        obtenerPorCodigo: function (codigo, idProveedor, idTipo, estado, idMoneda) {
             document.getElementById("docIdentidad").disabled = true;
 
             var btn_2 = document.getElementById('editar');
@@ -367,6 +367,7 @@ var ordenes = function () {
             }
             console.log(codigo);
             $("#codigoordenes").val(codigo);
+            $("#idMoneda").val(idMoneda);
             this.listarDetalleordenes(idTipo);
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Proveedor/buscarProveedorPorId.php",
@@ -685,7 +686,7 @@ var ordenes = function () {
                     idProducto = $("#idPro").val();
                     cantidad = $("#cantidadEditable").val();
                     precio = $("#precioPro").val();
-
+                    idmoneda = $("#idMoneda").val();
                     total = parseFloat(precio) * parseInt(cantidad);
                     //---------------------------------------------------
                     cantidadActualizar = parseInt($("#cantidadPro").val()) + parseInt($("#cantidadEditable").val());
@@ -700,7 +701,7 @@ var ordenes = function () {
                             idProducto: idProducto,
                             cantidad: cantidad,
                             precio: precio,
-                            total: total
+                            total: total,
                         },
                         complete: function (response) {
                             console.log(response);
@@ -753,6 +754,8 @@ var ordenes = function () {
             total = $("#total").val();
             igv = $("#igv").val();
             subTotal = $("#subTotal").val();
+            idmoneda = $("#idMoneda").val();
+
             if ($("#docIdentidad").val().length == 8 || $("#docIdentidad").val().length == 11) {
                 if ($("#idProveedor").val() != "") {
 
@@ -766,7 +769,8 @@ var ordenes = function () {
                             total: total,
                             igv: igv,
                             subTotal: subTotal,
-                            idTipo: idTipo
+                            idTipo: idTipo,
+                            idMoneda: idmoneda
                         },
                         complete: function (response) {
                             console.log(response);
@@ -852,6 +856,28 @@ var ordenes = function () {
                     console.log(response);
                 }
             });
-        }
+        },
+        obtenerListaMoneda: function () {
+            var moneda = '';
+
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/Moneda/ListarMoneda.php",
+                method: "GET",
+                timeout: 0,
+                success: function (response) {
+
+                    console.log(response);
+
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+
+                        moneda = '<option class="text-blue" value="' + obj.id + '">' + obj.nombre + '</option>';
+                        $("#idMoneda").append(moneda);
+
+
+                    });
+                }
+            })
+        },
     }
 }();

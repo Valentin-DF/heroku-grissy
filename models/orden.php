@@ -13,6 +13,7 @@
         public $idTipo;
         //--------------------
         public $proveedor;
+        public $idMoneda;
 
     }
     class codigoO {

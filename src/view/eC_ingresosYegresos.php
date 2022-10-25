@@ -104,7 +104,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Nombre</th>
+                                                <th>Descripcion</th>
                                                 <th>Monto Monetario</th>
                                             </tr>
                                         </thead>
@@ -132,7 +132,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Nombre</th>
+                                                <th>DEscripcion</th>
                                                 <th>Monto Monetario</th>
                                             </tr>
                                         </thead>

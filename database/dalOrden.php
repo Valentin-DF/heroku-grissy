@@ -31,6 +31,7 @@
             $obj->estado = $row['estado'];
             $obj->proveedor = $row['proveedor'];
             $obj->idTipo = $row['idTipo'];
+            $obj->idMoneda = $row['idMoneda'];
             array_push($lista, $obj);
         }
     
@@ -65,14 +66,14 @@
         return $lista;
     }
 
-    function insertarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo){
+    function insertarOrden($idProveedor,$total,$igv,$subTotal,$codigo,$idTipo,$idMoneda){
         $mysqli = conexion();
 
-        $consultaSQL = "INSERT INTO ordenes(idProveedor,total,fecha,igv,subTotal,idTipo,codigo,estado) VALUES(?,?,now(),?,?,?,?,1)";
+        $consultaSQL = "INSERT INTO ordenes(idProveedor,total,fecha,igv,subTotal,idTipo,codigo,estado,idMoneda) VALUES(?,?,now(),?,?,?,?,1,?)";
         $stmt = $mysqli->prepare($consultaSQL);
 
         $stmt->bind_param(
-            "idddis", $idProveedor,$total,$igv,$subTotal,$idTipo,$codigo
+            "idddisi", $idProveedor,$total,$igv,$subTotal,$idTipo,$codigo,$idMoneda
         );
 
         $stmt->execute();
