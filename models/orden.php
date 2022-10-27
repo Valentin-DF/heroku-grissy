@@ -20,4 +20,11 @@
         public $codigo;
     }
 
+    class proOrden {
+        public $fecha;
+        public $documento;
+        public $precio;
+
+    }
+
 ?>

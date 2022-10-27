@@ -37,7 +37,7 @@
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-auto mt-4">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><em data-feather="mouse-pointer"></em></div>
+                                        <div class="page-header-icon"><em class="fa-solid fa-cart-shopping"></em></div>
                                         Seguimiento de Venta
                                     </h1>
                                     <div class="page-header-subtitle"></div>

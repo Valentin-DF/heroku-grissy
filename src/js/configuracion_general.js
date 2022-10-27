@@ -8,7 +8,6 @@ window.onload = function () {
         const storedToDos = localStorage.getItem("empleado");
         const obj = JSON.parse(storedToDos);
 
-        console.log(obj);
         permisos.configurarAcceso(obj.codigo);
         // $("#usuario").val(obj.nombre);
         document.getElementById("usuario1U").innerHTML = obj.nombre + " " + obj.apellidoPaterno + " " + obj.apellidoMaterno;

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grissy - Ingresos Y Egresos</title>
+    <title>Grissy - Precios del Producto</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/carga.css">
@@ -16,7 +16,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
 
 <body class="nav-fixed">
@@ -37,8 +47,8 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><em data-feather="user"></em></div>
-                                        Estado de Resultado Integral
+                                        <div class="page-header-icon"><em class="fa-sharp fa-solid fa-cash-register"></em></div>
+                                        Precios del Producto
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
@@ -58,110 +68,74 @@
                     </div>
                 </header>
                 <div class="container-xl px-4 mt-4">
-                    <!-- Custom page header alternative example-->
-                    <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-                        <div class="input-group">
-                            <input class="input-group-text " disabled type="text" id="descripcion_fecha">
-                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha_inicial">
-                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha_final">
-                            <input class="form-control ps-0 pointer text-center" type="month" id="fecha_mes_ano">
-                            <button aria-label="Buscar" class="btn btn-outline-success btn-sm" onclick="ingresos_egresos.mostrar()"><span class="fa-solid fa-magnifying-glass"></span>
-                            </button>
-
-                            <button aria-label="filtrar" class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#mostrarFiltros" aria-expanded="false"><span class="fa-solid fa-sort-down"></span>
-                            </button>
-
-                        </div>
-
-                    </div>
-                    <div class="collapse" id="mostrarFiltros">
-                        <div class="card card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <input type="radio" name="status" id="fecha" checked value="fecha" onclick="ingresos_egresos.mostrarRadio()"> <label for="fecha">En Fecha</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="status" id="rango_fechas" value="rango_fechas" onclick="ingresos_egresos.mostrarRadio()"> <label for="rango_fechas">Entre Rango de Fechas</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="radio" name="status" id="mes_ano" value="mes_ano" onclick="ingresos_egresos.mostrarRadio()"> <label for="mes_ano">Por Periodo</label>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5> Ingresos:</h5>
-                                </div>
                                 <div class="card-body">
-                                    <table class="table">
+                                    <table summary="Lista de Productos" class="table " id="example" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Descripcion</th>
-                                                <th>Monto Monetario</th>
+                                                <th>Producto</th>
+                                                <th>Talla</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="lst-ingresos">
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Total</th>
-                                                <th>
-                                                    <p id="totalIngresos"></p>
-                                                </th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
-
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6"  id="mostraActualizar2">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5> Egresos:</h5>
-                                </div>
                                 <div class="card-body">
-                                    <table class="table">
+                                <table summary="Ordenes Referencia" class="table " id="example2" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>DEscripcion</th>
-                                                <th>Monto Monetario</th>
+                                                <th>Fecha</th>
+                                                <th>Documento</th>
+                                                <th>Precio</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="lst-gastos">
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Total</th>
-                                                <th>
-                                                    <p id="totalGastos"></p>
-                                                </th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="container-xl px-4 mt-4" id="mostraActualizar">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <input type="hidden" id="id">
+                                <input type="text" class="input-group-text " id="codigoPro" disabled></span>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group  mt-2 ">
+                                            <input type="text" class="input-group-text " disabled placeholder="Precio Actual" aria-label="text">
+                                            <input type="number" class="form-control" disabled id="precio_actual" aria-label="text" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group  mt-2 ">
+                                            <input type="text" class="input-group-text " disabled placeholder="Nuevo Precio" aria-label="text">
+                                            <input type="number" class="form-control" id="precio_nuevo" aria-label="text" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="button-group mt-2">
+                                    <button aria-label="Actualizar" class="btn btn-outline-primary" onclick="precio_producto.actualizarPrecio()">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
             <footer class="footer-admin mt-auto footer-light">
                 <?php include "eP_footer.html"; ?>
             </footer>
         </div>
     </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
@@ -183,13 +157,14 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/ingresos_egresos.js"></script>
+<script src="scripts/precioProducto.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
-        var fechita = new Date();
-        ingresos_egresos.buscarPorFecha(ingresos_egresos.formatDate(fechita), "", "");
-        ingresos_egresos.mostrarRadio();
+        var div = document.getElementById('mostraActualizar');
+        var div2 = document.getElementById('mostraActualizar2');
+        div.style.visibility = 'hidden';
+        div2.style.visibility = 'hidden';
+        precio_producto.obtenerProductos();
     });
 </script>
 

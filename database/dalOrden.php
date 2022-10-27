@@ -3,6 +3,37 @@
  require_once('/xampp/htdocs/Grissy/models/orden.php');
  require_once('/xampp/htdocs/Grissy/models/detalleOrden.php');
 
+
+ function mostraProductorOrden($idproducto){
+    $mysqli = conexion();
+    $consultaSQL =  'SELECT o.fecha as fecha, o.codigo as documento , dor.precio as precio FROM detalleorden dor INNER JOIN ordenes o on o.codigo = dor.codigoOrden INNER JOIN producto_e pe on pe.id = dor.idproducto where pe.id = ? and o.idTipo = 1 ORDER BY pe.id ASC LIMIT 5';
+    
+    $stmt = $mysqli->prepare($consultaSQL);
+
+    $stmt->bind_param(
+        "i", $idproducto
+    );
+
+    $stmt->execute();
+
+    $lista = array();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+
+        $obj = new proOrden();
+        $obj->fecha = $row['fecha'];
+        $obj->documento = $row['documento'];
+        $obj->precio = $row['precio'];
+        array_push($lista, $obj);
+    }
+
+    $stmt->close();
+    $mysqli->close();
+
+    return $lista;
+}
+
     function mostrarOrden($idtipo){
         $mysqli = conexion();
         $consultaSQL = 'CALL grissy_ListaDeOrdenes( ? )';

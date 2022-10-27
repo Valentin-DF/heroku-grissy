@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Grissy - Ordenes</title>
+  <title>Grissy - Orden de Compra</title>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
   <link href="../css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/carga.css">
@@ -47,7 +47,7 @@
               <div class="row align-items-center justify-content-between pt-3">
                 <div class="col-auto mb-3">
                   <h1 class="page-header-title">
-                    <div class="page-header-icon"><em data-feather="user"></em></div>
+                    <div class="page-header-icon"><em data-feather="package"></em></div>
                     Ordenes
                   </h1>
                 </div>
@@ -132,18 +132,19 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="input-group ">
                 <input type="number" class="form-control" placeholder="Documento de identidad del Proveedor" id="docIdentidad" aria-label="text" oninput="ordenes.consultaDocumento();" onchange="ordenes.validarCantidades();" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
                 <button aria-label="visualizarCliente" data-bs-toggle="collapse" onclick="ordenes.consultaDocumento();" data-bs-target="#datoCliente" aria-expanded="false" class="btn btn-outline-primary btn-sm " type="button" id="vizualizarCliente"><span class="fa-fw select-all fas"></span></button>
                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" id="agregarCliente" type="button" onclick="ordenes.agregarProveedor();"><span class="fa-fw select-all fas"></span></button>
               </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-7">
               <div class="input-group">
-              <input class="input-group-text " disabled type="text" value="Moneda">
-                <select class="form-control form-select" id="idMoneda" placeholder="Moneda" >
+                <input class="input-group-text " disabled type="text" value="Moneda">
+                <select class="form-control form-select" id="idMoneda" placeholder="Moneda" onchange="ordenes.ocultarTipoCambio()">
                 </select>
+                <input class="input-group-text " disabled type="number" id="tipo_cambio">
               </div>
             </div>
 
@@ -313,7 +314,7 @@
                 <input type="hidden" class="form-control" disabled id="cantidadPro">
                 <input type="text" placeholder="Codigo del producto" class="form-control" disabled id="codigoPro" aria-label="text">
                 <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
-                <input type="number" class="form-control" placeholder="Precio Producto" id="precioPro" aria-label="text">
+                <input type="number" class="form-control" placeholder="Precio del Producto" id="precioPro" aria-label="text">
 
                 <!-- onkeypress="return (event.charCode>=48 && event.charCode<=57)" -->
                 <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="ordenes.IngresarProductoOrden(1)" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
@@ -336,7 +337,7 @@
                       <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>Precio</th>
+                        <th>Precio S/.</th>
                         <th>Total</th>
                         <th>Accion</th>
                       </tr>

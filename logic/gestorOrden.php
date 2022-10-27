@@ -4,6 +4,11 @@ require_once('/xampp/htdocs/Grissy/database/dalOrden.php');
     function ListaDeDetalleOrdenes($tipo){
         return mostrarOrden($tipo);
     }
+
+    function listaProductoOrden($idproducto){
+        return mostraProductorOrden($idproducto);
+    }
+
     function obtenerCodigoOrden($tipo){
         return generarCodigoO($tipo);
     }

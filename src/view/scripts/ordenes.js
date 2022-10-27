@@ -18,7 +18,36 @@ var ordenes = function () {
             $("#igv").val("");
             $("#subTotal").val("");
             document.getElementById("docIdentidad").disabled = false;
+
+            ordenes.mostrarTipoCambio();
+
         },
+
+        mostrarTipoCambio: function () {
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/TipoCambio/mostraTipoCambiHoy.php",
+                method: "GET",
+                timeout: 0,
+                success: function (response) {
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        $("#tipo_cambio").val(obj.compra);
+                    });
+                }
+            })
+        },
+
+        ocultarTipoCambio: function () {
+            var ocultar = document.getElementById('tipo_cambio');
+            var moneda = $("#idMoneda").val();
+            if (moneda == 2) {
+                ocultar.style.visibility = 'hidden'
+            }
+            if (moneda == 1) {
+                ocultar.style.visibility = 'visible';
+            }
+        },
+
         generarCodigo: function (idtipo) {
             const storedToDos = localStorage.getItem("empleado");
             const objec = JSON.parse(storedToDos);
@@ -262,10 +291,8 @@ var ordenes = function () {
                     $("#estadoSunat").val(response.responseJSON.estado);
                     $("#direccion").val(response.responseJSON.direccion);
 
-                    // ordenes.buscarClientePorDocIdentidad(doc);
                     console.log($("#docIdentidad").val());
                     ordenes.guardarProveedor();
-                    // ordenes.buscarProveedorPorDocIdentidad($("#docIdentidad").val());
 
                 }
             });
@@ -348,10 +375,10 @@ var ordenes = function () {
             $(tbody).on("click", "button.editar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                ordenes.obtenerPorCodigo(data.codigo, data.idProveedor, data.idTipo, data.estado, data.idMoneda);
+                ordenes.obtenerPorCodigo(data.codigo, data.idProveedor, data.idTipo, data.estado, data.idMoneda, data.fecha);
             });
         },
-        obtenerPorCodigo: function (codigo, idProveedor, idTipo, estado, idMoneda) {
+        obtenerPorCodigo: function (codigo, idProveedor, idTipo, estado, idMoneda, fechita) {
             document.getElementById("docIdentidad").disabled = true;
 
             var btn_2 = document.getElementById('editar');
@@ -369,6 +396,32 @@ var ordenes = function () {
             $("#codigoordenes").val(codigo);
             $("#idMoneda").val(idMoneda);
             this.listarDetalleordenes(idTipo);
+            var ocultar = document.getElementById('tipo_cambio');
+
+            if (idMoneda == 2) {
+                ocultar.style.visibility = 'hidden'
+            }
+            if (idMoneda == 1) {
+                ocultar.style.visibility = 'visible';
+            }
+
+
+            $.ajax({
+                url: "http://localhost:8080/Grissy/controllers/TipoCambio/mostraTipoCambioFecha.php",
+                method: "GET",
+                data: {
+                    fecha: fechita
+                },
+                timeout: 0,
+                success: function (response) {
+                    var objListado = JSON.parse(response);
+                    $(objListado).each(function (i, obj) {
+                        $("#tipo_cambio").val(obj.compra);
+                    });
+                }
+            })
+
+
             $.ajax({
                 url: "http://localhost:8080/Grissy/controllers/Proveedor/buscarProveedorPorId.php",
                 method: "GET",
@@ -685,8 +738,16 @@ var ordenes = function () {
                     codigoordenes = $("#codigoordenes").val();
                     idProducto = $("#idPro").val();
                     cantidad = $("#cantidadEditable").val();
-                    precio = $("#precioPro").val();
                     idmoneda = $("#idMoneda").val();
+
+                    if (idmoneda == 1) {
+                        precio = $("#precioPro").val() * $("#tipo_cambio").val();
+                    }
+                    if (idmoneda == 2) {
+                        precio = $("#precioPro").val();
+                    }
+
+
                     total = parseFloat(precio) * parseInt(cantidad);
                     //---------------------------------------------------
                     cantidadActualizar = parseInt($("#cantidadPro").val()) + parseInt($("#cantidadEditable").val());

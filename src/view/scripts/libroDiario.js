@@ -1,9 +1,8 @@
 var libro_diario = function () {
 
     return {
-        buscarPorFecha: function () {
+        buscarPorFecha: function (fechaDelDia) {
             $("#lst-libroDiario").empty();
-            var fechaDelDia = $("#fecha").val();
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/LibroDiario/listaLibroDiario.php',
                 method: "GET",
@@ -65,11 +64,18 @@ var libro_diario = function () {
                     document.getElementById("totalDebe").innerHTML = (sumaDebe).toFixed(4);
                     document.getElementById("totalHaber").innerHTML = (sumaHaber).toFixed(4);
 
+                    if (sumaHaber == sumaDebe && sumaDebe != 0 && sumaHaber != 0) {
+                        document.getElementById("estadoContable").innerHTML = "BALANCE CUADRADO";
+                        document.getElementById("estadoContable").style.backgroundColor = "#2ecc71";
+                    } if (sumaHaber == sumaDebe && sumaDebe == 0 && sumaHaber == 0) {
+                        document.getElementById("estadoContable").innerHTML = "";
+                        document.getElementById("estadoContable").style.backgroundColor = "#ffffff";
+                    } else {
+                        document.getElementById("estadoContable").innerHTML = "BALANCE DESCUADRADO";
+                        document.getElementById("estadoContable").style.backgroundColor = "#cc2e2e";
+                    }
                 }
             });
-
-
-
         },
         formatDate: function (date) {
             var d = new Date(date),
@@ -86,7 +92,6 @@ var libro_diario = function () {
         },
 
         mostrar: function () {
-
             var fecha = $("#fecha").val();
             if (fecha == "") {
                 Toastify({
