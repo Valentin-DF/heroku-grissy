@@ -1,0 +1,284 @@
+<section id="inicio" #inicio class="position-relative section section-lg section-hero section-shaped">
+  <!-- Background circles -->
+  <div class="shape shape-style-1 shape-primary">
+    <span class="span-150"></span>
+    <span class="span-50"></span>
+    <span class="span-50"></span>
+    <span class="span-75"></span>
+    <span class="span-100"></span>
+    <span class="span-75"></span>
+    <span class="span-50"></span>
+    <span class="span-100"></span>
+    <span class="span-50"></span>
+    <span class="span-100"></span>
+  </div>
+  <div class="container shape-container d-flex align-items-center py-lg">
+    <div class="col px-0">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-6 text-center ">
+          <img src="./assets/imagen/nombre_empresa.png" style="width: 200px;" class="img-fluid">
+          <p class="lead text-white mt-5"> Disfute de nuestro catalogo virtual de productos en las distintas marcas y
+            modelos a los mejores precios del mercado
+          </p>
+          <div class="btn-wrapper mt-5">
+
+            <button [routerLink]="['catalogo']" class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0">
+              <span class="btn-inner--text">Catalogo</span>
+            </button>
+            <button [routerLink]="['anuncios']" class="btn btn-lg btn-white btn-icon mb-3 mb-sm-0">
+              <span class="btn-inner--text">Anucnios</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SVG separator -->
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1">
+      <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+
+<section style="padding-top:50px;padding-bottom:25px ">
+  <div class="text-center container" >
+    <div class="column mcb-column mcb-item-a3b768c11 one column_column" style="padding-bottom:30px">
+      <div class="column_attr clearfix" style="">
+        <h3>
+          <span style="vertical-align: inherit;">
+            <span style="vertical-align: inherit;">EXPLORE LO MÁS DE </span>
+          </span><span class="counter-inline animate-math"><span class="number" data-to="5000">
+              <span style="vertical-align: inherit;">
+                <span style="vertical-align: inherit;"> 5000</span>
+              </span>
+            </span></span>
+          <span style="vertical-align: inherit;">
+            <span style="vertical-align: inherit;"> PRODUCTOS </span>
+          </span><br>
+          <span style="vertical-align: inherit;">
+            <span style="vertical-align: inherit;"> EN POLOS, CAMISAS, VESTIDOS, PANTALONES Y MÁS...</span>
+          </span>
+        </h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-2 col-4">
+        <a target="_blank" placement="top" ngbTooltip="Bootstrap 4 - Most popular front-end component library">
+          <img
+            src="https://themes.muffingroup.com/be/clothingstore/wp-content/uploads/2021/08/clothingstore-home-icon1.webp"
+            class="img-fluid">
+        </a>
+      </div>
+      <div class="col-lg-2 col-4">
+        <a target="_blank" placement="top" ngbTooltip="Angular - One framework. Mobile &amp; desktop">
+          <img
+            src="https://themes.muffingroup.com/be/clothingstore/wp-content/uploads/2021/08/clothingstore-home-icon2.webp"
+            class="img-fluid">
+        </a>
+      </div>
+      <div class="col-lg-2 col-4">
+        <a target="_blank" placement="top" ngbTooltip="Vue.js - The progressive javascript framework">
+          <img
+            src="https://themes.muffingroup.com/be/clothingstore/wp-content/uploads/2021/08/clothingstore-home-icon4.webp"
+            class="img-fluid">
+        </a>
+      </div>
+      <div class="col-lg-2 col-4">
+        <a target="_blank" placement="top" ngbTooltip="[Coming Soon] Sketch - Digital design toolkit">
+          <img
+            src="https://themes.muffingroup.com/be/clothingstore/wp-content/uploads/2021/08/clothingstore-home-icon5.webp"
+            class="img-fluid opacity-3">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="novedades" #novedades class="novedades" style="padding-top:50px;padding-bottom:25px ">
+
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab label="CABALLEROS">
+        <section class="section">
+          <div class="section-heading">
+            <div class="row mx-2">
+              <div class="col-md-6">
+                <h3 style="span-weight: 700;">LO ULTIMO PARA CABALLEROS</h3>
+              </div>
+              <div class="col-md-6" style="    display: flex; flex-direction: row-reverse;">
+                <a [routerLink]="['catalogo']" [queryParams]="{'d':'caballeros'}" class="gl-cta gl-cta--tertiary" title="VER MAS"><span>VER
+                    MAS</span></a></div>
+            </div>
+          </div>
+          <p-carousel [value]="caballeros" [numVisible]="4" [numScroll]="3" [circular]="false"
+            [responsiveOptions]="responsiveOptions" [showIndicators]="true" [showNavigators]="false">
+            <ng-template let-product pTemplate="item">
+              <section class="product-item">
+                <div class="product-item-content">
+                  <div class="mb-3">
+                    <p-card header="{{product.nombre}}" subheader="S/. {{product.precio}}"
+                      [style]="{ 'max-width': '100%'}" styleClass="p-card-shadow">
+                      <ng-template pTemplate="header">
+                        <img alt="Card" src="{{product.imagen}}" height="300px">
+                      </ng-template>
+                    </p-card>
+                  </div>
+                </div>
+              </section>
+            </ng-template>
+          </p-carousel>
+        </section>
+      </mat-tab>
+      <mat-tab label="DAMAS">
+        <section class="section">
+          <div class="section-heading my-2 ">
+            <div class="row mx-2">
+              <div class="col-md-6">
+                <h3 style="span-weight: 700;">LO ULTIMO PARA DAMAS</h3>
+              </div>
+              <div class="col-md-6" style="    display: flex; flex-direction: row-reverse;">
+                <a [routerLink]="['catalogo']" [queryParams]="{'d':'damas'}"  class="gl-cta gl-cta--tertiary" title="VER MAS"><span>VER
+                    MAS</span></a></div>
+            </div>
+          </div>
+          <p-carousel [value]="damas" [numVisible]="3" [numScroll]="3" [circular]="false"
+            [responsiveOptions]="responsiveOptions" [showIndicators]="true" [showNavigators]="false">
+            <ng-template let-product pTemplate="item">
+              <div class="product-item">
+                <div class="product-item-content">
+                  <div class="mb-3">
+                    <p-card header="{{product.nombre}}" subheader="{{product.precio}}"
+                      [style]="{ 'max-width': '100%'}" styleClass="p-card-shadow">
+                      <ng-template pTemplate="header">
+                        <img alt="Card" src="{{product.imagen}}" height="300px">
+                      </ng-template>
+                    </p-card>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </section>
+      </mat-tab>
+      <mat-tab label="NIÑOS Y BEBES">
+        <section class="section">
+          <div class="section-heading my-2 ">
+            <div class="row mx-2">
+              <div class="col-md-6">
+                <h3 style="span-weight: 700;">LO ULTIMO PARA NIÑOS Y BEBES</h3>
+              </div>
+              <div class="col-md-6" style="    display: flex; flex-direction: row-reverse;">
+                <a [routerLink]="['catalogo']" [queryParams]="{'d':'infantil'}" class="gl-cta gl-cta--tertiary" title="VER MAS"><span>VER
+                    MAS</span></a></div>
+            </div>
+          </div>
+          <p-carousel [value]="ninos" [numVisible]="3" [numScroll]="3" [circular]="false"
+            [responsiveOptions]="responsiveOptions" [showIndicators]="true" [showNavigators]="false">
+            <ng-template let-product pTemplate="item">
+              <div class="product-item">
+                <div class="product-item-content">
+                  <div class="mb-3">
+                    <p-card header="{{product.nombre}}" subheader="{{product.precio}}"
+                      [style]="{ 'max-width': '100%'}" styleClass="p-card-shadow">
+                      <ng-template pTemplate="header">
+                        <img alt="Card" src="{{product.imagen}}" height="300px">
+                      </ng-template>
+                    </p-card>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </section>
+      </mat-tab>
+      <mat-tab label="ROPA INTERIOR">
+        <section class="section">
+          <div class="section-heading my-2 ">
+            <div class="row mx-2">
+              <div class="col-md-6">
+                <h3 style="span-weight: 700;">LO ULTIMO EN ROPA INTERIOR</h3>
+              </div>
+              <div class="col-md-6" style="    display: flex; flex-direction: row-reverse;">
+                <a [routerLink]="['catalogo']" [queryParams]="{'d':'interiores'}" infantil class="gl-cta gl-cta--tertiary" title="VER MAS"><span>VER
+                    MAS</span></a></div>
+            </div>
+          </div>
+          <p-carousel [value]="interior" [numVisible]="3" [numScroll]="3" [circular]="false"
+            [responsiveOptions]="responsiveOptions" [showIndicators]="true" [showNavigators]="false">
+            <ng-template let-product pTemplate="item">
+              <div class="product-item">
+                <div class="product-item-content">
+                  <div class="mb-3">
+                    <p-card header="{{product.nombre}}" subheader="{{product.precio}}"
+                      [style]="{ 'max-width': '100%'}" styleClass="p-card-shadow">
+                      <ng-template pTemplate="header">
+                        <img alt="Card" src="{{product.imagen}}" height="300px">
+                      </ng-template>
+                    </p-card>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>
+
+<section id="ubicanos" #ubicanos >
+  <div class="container" style="color: #ffffff;background-color: #292d33;">
+    <div class="row">
+
+      <div class="col-md-12 u-container-layout-2">
+        <h1 class="text-center  ntitulo" style="font-size: calc(1em + 1vw);">CONTACTANOS</h1>
+      </div>
+
+      <div class="col-md-12 ">
+        <div class="row">
+          <div class="col-md-6 text-center contenedor">
+            <div class="row">
+              <div class="col-md-6 u-container-layout-2" style="flex: 30 30 auto;">
+                <span class="u-icon-1 "><i class="pi pi-map-marker" style="font-size: 2rem"></i></span>
+                <h5 class="ntitulo">UBIQUENOS</h5>
+                <p class="nc"> Calle Francisco de Zela° 300 - Chicago -Trujillo, Trujillo, Peru</p>
+              </div>
+              <div class="col-md-6 u-container-layout-2" style="flex: 30 0 auto;">
+                <span class="u-icon-1 "><i class="pi pi-envelope" style="font-size: 2rem"></i></span>
+                <h5 class="ntitulo">ATENCIÓN</h5>
+                <div class="nc">
+                  <span> 09:00 am - 13:00 pm</span><br>
+                  <span> 14:00 am - 20:00 pm</span><br>
+                  <span> {{estado}}</span>
+                </div>
+
+              </div>
+              <div class="col-md-6 u-container-layout-2" style="flex: 30 0 auto;">
+                <span class="u-icon-1 "><i class="pi pi-phone" style="font-size: 2rem"></i></span>
+                <h5 class="ntitulo">LLAMANOS</h5>
+                <p class="nc"> 966 477 663 <p>
+
+              </div>
+              <div class="col-md-6 u-container-layout-2" style="flex: 30 0 auto;">
+                <div class="u-container-layout u-valign-middle u-container-layout-4">
+                  <h5 class="ntitulo">CONTACTENOS</h5>
+                  <p class="nc">Póngase en contacto con nosotros a travez de nuestras redes sociales.</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="background-color: azure;">
+            <!-- <p-gmap [options]="options" [style]="{'width':'100%','height':'320px'}"></p-gmap> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 u-container-layout-2">
+      </div>
+    </div>
+  </div>
+
+</section>
+

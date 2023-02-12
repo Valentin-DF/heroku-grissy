@@ -1,0 +1,37 @@
+<div class="vh-100" style="background-color: #905b67;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-9">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="../../../../assets/imagen/imagen.jpg" alt="login form" class="img-fluid"
+                style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form [formGroup]="form">
+                  <div class="text-center pt-1 mb-4">
+                    <img src="../../../../assets/imagen/nombre_empresa.png" height="70px" alt="login" />
+                    <p class="mb-3">Moda y Diseño del Peru SAC</p>
+                  </div>
+                  <div class=" mb-2">
+                    <label for="email">Email</label>
+                    <input formControlName="email" name="email" type="text" pInputText class="form-control " aria-label="Usuario">
+                  </div>
+                  <div class=" mb-4">
+                    <label for="contrasena">Contraseña</label>
+                    <input formControlName="contrasena" name="contrasena" type="password" pInputText class="form-control " aria-label="Contraseña">
+                  </div>
+                  <div class="text-center pt-1 mb-3">
+                    <button type="submit" class="btn btn-outline-primary" (click)="login()" >Ingresar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

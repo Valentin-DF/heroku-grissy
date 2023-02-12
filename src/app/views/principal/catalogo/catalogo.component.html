@@ -1,0 +1,52 @@
+<div class="contenedor">
+
+  <div class=" container" >
+    <div class="row ">
+      <div class="col-md-12"  style="display: flex; justify-content: center;">
+        <section class="products-list">
+          <div class=" product-item">
+            <img src="../../../../assets/images/iphone.jpg" height=" 200px">
+            <div class="informacion">
+              <h4></h4>
+              <h6></h6>
+              <button title="vista" class></button>
+            </div>
+          </div>
+          <div class="product-item" category="laptops">
+            <img src="../../../../assets/imagen/nombre_empresa.png" height=" 200px">
+            <a href="#">Laptop Toshiba</a>
+          </div>
+          <div class="product-item" category="smartphones">
+            <img src="./images/samsung_galaxy.jpg" height=" 200px">
+            <a href="#">Samsung Galaxy</a>
+          </div>
+          <div class="product-item" category="smartphones">
+            <img src="./images/iphone.jpg" height=" 200px">
+            <a href="#">Iphone 7</a>
+          </div>
+          <div class="product-item" category="ordenadores">
+            <img src="./images/pc_hp.jpg" height=" 200px">
+            <a href="#">PC Hp</a>
+          </div>
+          <div class="product-item" category="ordenadores">
+            <img src="./images/pc_lenovo.jpg" height=" 200px">
+            <a href="#">PC Lenovo</a>
+          </div>
+          <div class="product-item" category="monitores">
+            <img src="./images/monitor_asus.jpg" height=" 200px">
+            <a href="#">Monitor Asus</a>
+          </div>
+          <div class="product-item" category="audifonos">
+            <img src="./images/jbl.jpg" height=" 200px">
+            <a href="#">Audifonos JBL</a>
+          </div>
+        </section>
+      </div>
+      <div class="col-md-12">
+        <p-paginator [rows]="20" [totalRecords]="10 " (onPageChange)="paginate($event)" [pageLinkSize]="3">
+        </p-paginator>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<app-table-grissy #tablegrissy baseURL="/area.php" [colsTable]="colsTable" (modal)="modal($event)">
+</app-table-grissy>
+
+<p-dialog [(visible)]="abrirModal" [style]="{width: '50vw'}" [breakpoints]="{'960px': '75vw'}" [maximizable]="true"
+  [draggable]="false" [resizable]="false" [modal]="true">
+  <ng-template pTemplate="header">
+    <h4>Registro</h4>
+  </ng-template>
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="mx-2 my-2">
+        <div class="form-group ">
+          <label for="codigo">Codigo</label>
+          <div class="input-group ">
+            <input title="codigo" type="text" class="form-control" formControlName="codigo">
+            <p-message *ngIf="this.form.get('codigo')?.errors?.['required']" severity="error"></p-message>
+            <p-message *ngIf="!this.form.get('codigo')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <div class="input-group ">
+            <input title="nombre" type="text" class="form-control" formControlName="nombre">
+            <p-message *ngIf="this.form.get('nombre')?.errors?.['required']" severity="error"></p-message>
+            <p-message *ngIf="!this.form.get('nombre')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="container">
+      <p-button label="Guardar" (onClick)="guardadito(tablegrissy);"></p-button>
+      <p-button label="Cancelar" (onClick)=" abrirModal = false;"></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

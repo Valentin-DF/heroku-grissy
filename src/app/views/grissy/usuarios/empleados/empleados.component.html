@@ -1,0 +1,60 @@
+<app-table-grissy #tablegrissy  baseURL="/empleado.php" [colsTable]="colsTable" (modal)="modal($event)"></app-table-grissy>
+
+<p-dialog [(visible)]="abrirModal" [style]="{width: '50vw'}" [breakpoints]="{'960px': '75vw'}" [maximizable]="true"
+  [draggable]="false" [resizable]="false" [modal]="true">
+  <ng-template pTemplate="header">
+    <h4>Registro</h4>
+  </ng-template>
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="mx-2 my-2">
+        <div class="form-group">
+          <label for="codigo">Codigo</label>
+          <input title="codigo" type="text" class="form-control" formControlName="codigo"
+            [ngClass]="{ 'is-invalid': submitted && f['codigo'].errors}">
+          <div *ngIf="submitted && f['codigo'].errors" class="invalid-feedback">
+            <div *ngIf="f['codigo'].errors['required']">Por favor, ingresa un 'Codigo'</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input title="nombre" type="text" class="form-control" formControlName="nombre"
+            [ngClass]="{ 'is-invalid': submitted && f['nombre'].errors}">
+          <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
+            <div *ngIf="f['nombre'].errors['required']">Por favor, ingresa un 'Codigo'</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo</label>
+          <input title="email" type="text" class="form-control" formControlName="email"
+            [ngClass]="{ 'is-invalid': submitted && f['email'].errors}">
+          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+            <div *ngIf="f['email'].errors['required']">Por favor, ingresa un 'Codigo'</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="url_imagen">Foto</label>
+
+          <span id="condicion">{{limite}}</span>
+          <div class="file-drop-area">
+            <span class="fake-btn">Seleccionar Imagen</span>
+            <span class="file-msg">{{nombreImagen}}</span>
+            <input title="Foto" class="form-control" class="file-input" (change)="cargarArchivo($event)"
+              type="file" accept="image/*" />
+          </div>
+          <div>
+            <p-image src="{{form.value.url_imagen}}" alt="Image" width="150" [preview]="true"
+              class="card shadow-4 img">
+            </p-image>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="container">
+      <p-button label="Guardar" (onClick)=" abrirModal = !guardadito(form,tablegrissy);"></p-button>
+      <p-button label="Cancelar" (onClick)=" abrirModal = false;"></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

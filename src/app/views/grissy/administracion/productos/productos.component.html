@@ -1,0 +1,110 @@
+<app-table-grissy #tablegrissy baseURL="/producto.php" [colsTable]="colsTable" (modal)="modal($event)">
+</app-table-grissy>
+
+<form [formGroup]="form">
+  <p-dialog [(visible)]="abrirModal" [style]="{width: '50vw'}" [breakpoints]="{'750px': '100vw'}" [maximizable]="true"
+    [draggable]="false" [resizable]="false" [modal]="true">
+    <ng-template pTemplate="header">
+      <h4>Registro</h4>
+    </ng-template>
+    <div class="container">
+
+      <div class="mx-2 my-2">
+
+
+        <div class="form-group ">
+          <label for="codigo">Codigo</label>
+          <div class="input-group ">
+            <input title="codigo" type="text" class="form-control" formControlName="codigo">
+            <p-message *ngIf="this.form.get('codigo')?.errors?.['required']" severity="error"></p-message>
+            <p-message *ngIf="!this.form.get('codigo')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <div class="input-group ">
+            <input title="nombre" type="text" class="form-control" formControlName="nombre">
+            <p-message *ngIf="this.form.get('nombre')?.errors?.['required']" severity="error"></p-message>
+            <p-message *ngIf="!this.form.get('nombre')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="text">Descripcion</label>
+          <div class="input-group ">
+          <textarea id="text" title="descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3"
+            formControlName="descripcion"></textarea>
+          <p-message *ngIf="this.form.get('descripcion')?.errors?.['required']" severity="error"></p-message>
+          <p-message *ngIf="!this.form.get('descripcion')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="exampleFormControlTextarea1">Precio</label>
+          <div class="input-group ">
+            <span class="input-group-text ">S/ </span>
+          <input title="precio" formControlName="precio" class="form-control" type="number" mode="decimal">
+          <p-message *ngIf="this.form.get('precio')?.errors?.['required']" severity="error"></p-message>
+          <p-message *ngIf="!this.form.get('precio')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="idtalla">Talla</label>
+          <div class="input-group ">
+          <app-autocomplete-grissy formControlName="idtalla"
+            controllerPath="http://localhost:8080/b_grissy/controllers/buscar/talla_data.php" [OnClear]="clear">
+          </app-autocomplete-grissy>
+          <p-message *ngIf="this.form.get('idtalla')?.errors?.['required']" severity="error"></p-message>
+          <p-message *ngIf="!this.form.get('idtalla')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="idmarca">Marca</label>
+          <div class="input-group ">
+          <app-autocomplete-grissy formControlName="idmarca"
+            controllerPath="http://localhost:8080/b_grissy/controllers/buscar/marca_data.php" [OnClear]="clear">
+          </app-autocomplete-grissy>
+          <p-message *ngIf="this.form.get('idmarca')?.errors?.['required']" severity="error"></p-message>
+          <p-message *ngIf="!this.form.get('idmarca')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="idarea">Area</label>
+          <div class="input-group ">
+          <app-autocomplete-grissy formControlName="idarea"
+            controllerPath="http://localhost:8080/b_grissy/controllers/buscar/area_data.php" [OnClear]="clear">
+          </app-autocomplete-grissy>
+          <p-message *ngIf="this.form.get('idarea')?.errors?.['required']" severity="error"></p-message>
+          <p-message *ngIf="!this.form.get('idarea')?.errors?.['required']" severity="success"></p-message>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="url_imagen">Foto</label>
+
+          <span id="condicion">{{limite}}</span>
+          <div class="file-drop-area">
+            <span class="fake-btn">Seleccionar Imagen</span>
+            <span class="file-msg">{{nombreImagen}}</span>
+            <input title="Foto" class="form-control" class="file-input" (change)="cargarArchivo($event)" type="file"
+              accept="image/*" />
+          </div>
+          <div>
+            <p-image src="{{form.value.url_imagen}}" alt="Image" width="150" [preview]="true" class="card shadow-4 img">
+            </p-image>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <ng-template pTemplate="footer">
+      <div class="container">
+        <p-button label="Guardar" (onClick)="guardadito(tablegrissy);"></p-button>
+        <p-button label="Cancelar" (onClick)=" abrirModal = false;"></p-button>
+      </div>
+    </ng-template>
+  </p-dialog>
+</form>

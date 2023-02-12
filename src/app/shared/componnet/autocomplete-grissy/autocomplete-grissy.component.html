@@ -1,0 +1,17 @@
+<div class="p-inputgroup">
+  <button class="p-inputgroup-addon btn-finder" type="button" title="buscar"
+    [disabled]="true"><i class="pi pi-search" style="font-size: 12px;"></i>
+  </button>
+  <p-autoComplete [inputStyle]="{'width':'100%', 'max-width': '100%' }" [(ngModel)]="descriptionValue"
+    (completeMethod)="descriptionSearch($event)" (onSelect)="onSelect($event)" (onBlur)="clear($event)"
+    [suggestions]="results" [forceSelection]="true" appendTo="body" field='label' placeholder="Seleccionar...">
+    <ng-template let-value pTemplate="item">
+      <span style="font-size:11px; text-transform: uppercase;">{{value?.label}}
+      </span>
+      <div class="dv2"></div>
+      <span class="displayCode">
+        {{value?.code ?? 'nocode'}}
+      </span>
+    </ng-template>
+  </p-autoComplete>
+</div>

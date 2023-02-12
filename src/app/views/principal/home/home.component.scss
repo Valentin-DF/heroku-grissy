@@ -1,0 +1,198 @@
+.main-banner {
+  justify-content: center;
+}
+.centrado{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// .card {
+//   height: 370px;
+// }
+
+// .card-img-top {
+//   height: 270px;
+// }
+
+
+.titulo {
+  font-size: 40px;
+  font-family: 'Dancing Script', cursive;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.subtitulo {
+  margin: 0;
+  color: #000;
+  display: inline;
+  font-size: 50px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.sabor {
+  color: #fff;
+  margin: 7px 0;
+  font-size: 50px;
+  font-weight: 600;
+  text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
+  font-family: 'Dancing Script', cursive;
+  margin-top: 0;
+}
+
+.linea-division {
+  width: 80%;
+  height: 2px;
+  background-color: #36221c;
+}
+
+
+img{
+  display:block;
+  margin:auto;
+  }
+
+  .product-item {
+    .product-item-content {
+        margin: 1rem;
+    }
+
+    .product-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+}
+:host ::ng-deep .p-card .p-card-title {
+  font-size: 14px !important;
+  font-weight: 0;
+}
+h3, .woocommerce ul.products li.product h3 {
+  font-size: 100%;
+  // line-height: 42px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+// h1, h2, h3, h4, .text-logo #logo {
+//   font-family: "Poppins", Helvetica, Arial, sans-serif;
+// }
+
+.titulo-novedades {
+  font-size: 50px;
+}
+.clearfix {
+  text-align: center;
+  color: #c2185b;
+}
+
+.novedades {
+  background-color: primary;
+}
+
+:host ::ng-deep .p-card .p-card-content {
+  padding: 0rem 0 !important;
+
+}
+
+.tm-site-header-box {
+  display: inline-block;
+  padding: 40px 80px 40px 40px;
+  margin: 40px 40px 100px;
+}
+.tm-site-header-box {
+  margin-bottom: 0;
+}
+
+.tm-section {
+  margin-right: 75px;
+  max-width: 100%;
+}
+
+.tm-section-title {
+  font-size: 3.4rem;
+  margin-left: 40px;
+  text-transform: uppercase;
+}
+
+.tm-section {
+  margin-right: 75px;
+  max-width: 100%;
+}
+
+.tm-section-title {
+  font-size: 3.4rem;
+  margin-left: 40px;
+  text-transform: uppercase;
+}
+
+.tm-section-0 {
+  margin-top: 70px;
+  max-width: 575px;
+}
+.tm-section-1 {
+  margin-top: 70px;
+  max-width: 420px;
+}
+.tm-content {
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.u-container-layout-2 {
+  padding: 30px;
+}
+.u-icon-1 {
+  height: 80px;
+  width: 80px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.u-icon-circle {
+  border-radius: 50%;
+}
+
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ntitulo {
+  color: #999999 !important;
+  margin: 13px -1px 0;
+  font-weight: 400;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.nc {
+    margin: 13px -1px 0;
+}
+
+.titulo {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 3rem;
+color: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-line-1 {
+  width: 86px;
+  height: 3px;
+  transform-origin: right center;
+  margin: 30px auto 0;
+}
+
+.u-border-palette-2-base, .u-separator-palette-2-base:after {
+  border-color: #db545a;
+  stroke: #db545a;
+}

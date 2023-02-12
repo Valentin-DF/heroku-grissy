@@ -1,0 +1,23 @@
+
+.headroom {
+    will-change: transform;
+    background: linear-gradient(100deg, #231170 15%, #6e50b6 85%);
+
+
+    @include transition($transition-base);
+}
+.headroom--pinned {
+	@extend .position-fixed;
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+	@extend .position-fixed;
+    transform: translateY(-100%);
+}
+
+.headroom--not-top {
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+  background-color: transparent;
+      box-shadow: 0 1px 10px rgba(130, 130, 134, 0.1);
+}

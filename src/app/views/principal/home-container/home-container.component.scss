@@ -1,0 +1,73 @@
+:host ::ng-deep.container {
+  // width: 100%;
+  // max-width: 1500px;
+  // margin: 0 auto;
+  width: 100%;
+
+  margin: auto;
+  max-width: 1500px;
+  display: block;
+
+}
+
+
+// .content {
+//   flex: 1 0 auto !important;
+//   padding-top: 8rem;
+// }
+ .bodys {
+  // display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+//  .footers {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   }
+
+
+
+
+// :host {
+//   // Hack 100% w/h
+//   display: flex;
+//   flex-direction: column;
+//   flex: 2;
+//   height: 1500px;
+//   overflow: auto;
+
+//   .page-content {
+//     .content-wrapper {
+//       .content-inner {
+//         .content {
+//           padding: 4rem 1rem;
+//         }
+//       }
+//     }
+//   }
+
+
+//   .development-tools {
+//     position: fixed;
+//     z-index: 3;// z-index: 1;
+//     top: 35%;
+//     width: 54px;
+//     height: 50px;
+//     right: -5px;
+//     text-align: center;
+//     line-height: 56px;
+//     cursor: pointer;
+//   }
+
+//   .development-tools a.development-toggle {
+//     border-radius: 5px;
+//     display: block;
+//     box-shadow: -3px 0 8px rgb(0 0 0 / 10%);
+
+//     i {
+//       font-size: xx-large;
+//     }
+//   }
+// }

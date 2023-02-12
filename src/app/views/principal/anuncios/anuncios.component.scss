@@ -1,0 +1,116 @@
+:host ::ng-deep.contenedor {
+
+  width: 100%;
+  padding-top: 5rem;
+  margin: auto;
+  max-width: 1500px;
+  display: block;
+  flex: 1 0 auto !important;
+}
+.cont {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+}
+.spaces {
+  padding-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  width: 900px;
+  height: auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px 2px rgba(0,0,0,.2);
+}
+
+.header-contenido {
+    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.header {
+  width: 60%;
+  border-right:  1px solid #ddd;
+}
+.descripcion {
+  width: 80%;
+  background: #fbfbfb;
+  position: relative;
+}
+
+ .contenido {
+  padding-left: 20px;
+  padding-top: 5px;
+
+  padding-bottom: 20px;
+  padding-right: 20px;
+
+  text-align: center;
+}
+
+.header {
+
+  align-content: center;
+  justify-content: center;
+  display: flex;
+}
+.header p-image{
+  display: flex;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+//   // position: relative;
+//   box-shadow: 0 0 0 8px rgba(0,0,0,.06);
+//   margin: 20px 30px;
+  transition: .2s;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+
+  color: #e16e6e !important;
+}
+
+@media (max-width:600px){
+  .card-container{
+    display: block;
+    width: 300px;
+    height: auto;
+    box-shadow: 1px 1px 4px 2px rgba(0,0,0,.2);
+
+  }
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+  }
+  .header p-image{
+    display: flex;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 20px;
+    // border-radius: 20px;
+    // padding: 20px 20px 5px;
+  }
+
+  .header-contenido {
+    padding: 10px;
+    display: flex;
+    justify-content: start;
+    vertical-align:top;
+  }
+  .contenido {
+    justify-content: justify;
+    white-space: pre-line;
+  }
+
+  .descripcion {
+    width: 100%;
+  }
+}

@@ -1,0 +1,121 @@
+<div class="card">
+  <!-- <app-select-grissy></app-select-grissy> -->
+  <div class="card-body" style="height: 100%;">
+    <!-- <div class="container"> -->
+    <p-toolbar styleClass="mb-4 gap-2 toolinterno">
+      <ng-template pTemplate="left">
+        <div class="container">
+          <button title="Nuevo" pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text"
+            (click)="abrirModal1()"></button>
+          <button title="Editar" pButton pRipple type="button" icon="pi pi-pencil"
+            class="p-button-rounded p-button-secondary p-button-text" (click)="abrirModal2(list)"
+            [disabled]="!list|| !list.length"></button>
+          <button title="Eliminar" pButton pRipple type="button" icon="pi pi-trash"
+            class="p-button-rounded p-button-danger p-button-text" [disabled]="!list|| !list.length"
+            (click)="eliminarSeleccionados(list)"></button>
+          <button title="Actualizar" pButton pRipple type="button" icon="pi pi-refresh"
+            class="p-button-rounded p-button-help p-button-text" (click)="listarTabla()"></button>
+          <button title="Habilitar" pButton pRipple type="button" icon="pi pi-check-circle"
+            class="p-button-rounded p-button-success p-button-text" (click)="estadoFila(list,1)"
+            [disabled]="!list|| !list.length"></button>
+          <button title="Dehabilitar" pButton pRipple type="button" icon="pi pi-minus-circle"
+            class="p-button-rounded p-button-warning p-button-text" (click)="estadoFila(list,0)"
+            [disabled]="!list|| !list.length"></button>
+          <button title="Exportar" pButton pRipple type="button" icon="pi pi-file-export"
+            class="p-button-rounded p-button-text p-button-plain" (click)="exportExcel()"></button>
+        </div>
+      </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [columns]="selectedColumns" [value]="lista" [resizableColumns]="true" responsiveLayout="scroll"
+      selectionMode="multiple" [globalFilterFields]="['codigo','nombre']" columnResizeMode="expand" scrollHeight="300px"
+      [style]="{'width': '100%!important','overflow':'auto!important'}" [(selection)]="list" editMode="row"
+      styleClass="p-datatable-gridlines p-datatable-sm" [rows]="10" [paginator]="true">
+      <ng-template pTemplate="caption">
+        <div class=" row flex align-items-center justify-content-between">
+          <!-- Vista Columnas -->
+          <div class="col-md-4 col-sm-12">
+            <p-multiSelect [options]="colsTable" [(ngModel)]="selectedColumns" optionLabel="field"
+              selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}" placeholder="Choose Columns">
+            </p-multiSelect>
+          </div>
+          <!-- Buscar Informacion -->
+          <div class="col-md-4 col-sm-12">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+              <input type="text" pInputText placeholder="Buscar" class="p-inputtext-lg"
+                (input)="busqueda($event, 'contains')">
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th style="width: 3rem" class="text-center">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th class="text-center" style="width: 4rem">#</th>
+          <th *ngFor="let col of columns" class="text-center" pSortableColumn="{{col.field}}" style="width: auto">
+            {{col.label}}
+            <p-sortIcon field="{{col.field}}"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+        <tr [ngClass]="{'row-accessories': rowData.habilitado === 0 }" [pSelectableRow]="rowData"
+          [pSelectableRowIndex]="rowIndex">
+          <td style="width: 3rem " class="text-center">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td>
+            <div style="font-size: 11px; text-transform: uppercase;" class="text-center">{{rowData.index}}</div>
+          </td>
+          <td *ngFor="let col of columns">
+            <p-cellEditor>
+              <ng-template pTemplate="output">
+                <div style="font-size: 11px; text-transform: uppercase; width: auto;" class="text-center">
+
+                  <div *ngIf="col.ftype  === 'date'">
+                    <span style="justify-content: center; display: flex;">
+                      {{ rowData[col.field] | date:'dd/MM/yyyy'}}</span>
+                  </div>
+
+                  <div *ngIf="col.ftype  === 'month'">
+                    <span style="justify-content: center; display: flex;">
+                      {{  rowData[col.field]| date:'MMyyyy'}}</span>
+                  </div>
+
+                  <div *ngIf="col.ftype  === 'checkbox'" class="contentCenter ">
+                    <p-checkbox [ngModel]="rowData[col.field] === 1? true:false" [readonly]="true" [binary]="true">
+                    </p-checkbox>
+                  </div>
+
+                  <div *ngIf="col.ftype === undefined || col.ftype === 'text'">
+                    <span class="mr-2 bg" style="justify-content: center; display: flex;"
+                      *ngIf="col.suggest && (!col.required? ((col.required === false? true: false)):(col.required?col.required:false))">
+                    </span>
+                    {{ rowData[col.field].label ?? rowData[col.field]}}
+                  </div>
+
+                  <div *ngIf="col.ftype  === 'imagen'">
+
+                    <p-image [src]="rowData[col.field]" alt="Image" width="100" [preview]="true" class="card img">
+                    </p-image>
+                  </div>
+
+                </div>
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="100%" class="text-center sinelemtos">
+            <span> NO SE HAN AÑADIDO ELEMENTOS</span></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

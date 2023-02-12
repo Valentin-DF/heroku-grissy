@@ -1,0 +1,45 @@
+:host ::ng-deep .p-menubar {
+  display: flex;
+  align-items: center;
+
+
+}
+
+:host ::ng-deep  .p-menubar-end {
+  align-self: start;
+}
+
+
+:host ::ng-deep  .p-toolbar {
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  position: fixed;
+}
+
+.bg-light {
+  background-color: transparent !important;
+}
+
+
+// :host ::ng-deep button {
+//   margin-right: .25em;
+// }
+
+
+// :host ::ng-deep.p-panelmenu .p-panelmenu-header > a{
+//   padding: .8rem !important;
+// }
+
+
+// :host ::ng-deep.p-menubar {
+//   border: 0px ;
+//   border-radius: 0px;
+// }
+
+
+// :host ::ng-deep.p-menuitem-text {
+//   font-size: 13px !important;
+// }
