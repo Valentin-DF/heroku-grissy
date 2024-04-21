@@ -86,6 +86,7 @@ var cliente = function () {
                     "url": "http://localhost:8080/Grissy/controllers/Cliente/obtenerListaClientes.php",
                     "dataSrc": ""
                 },
+                "order": [[5, 'desc']],
                 "columns": [
                     { "title": "Codigo", "data": "codigo" },
                     { "title": "Doc. Identidad", "data": "docIdentidad" },
@@ -155,11 +156,11 @@ var cliente = function () {
                         $("#nombre").val(obj.nombre);
                         $("#telefono").val(obj.telefono);
                         if (obj.estado == 1) {
-                            document.getElementById("editar").style.display  = 'inline';
+                            document.getElementById("editar").style.display = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
-                            document.getElementById("editar").style.display  = 'none';
+                            document.getElementById("editar").style.display = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 

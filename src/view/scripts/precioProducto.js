@@ -62,6 +62,8 @@ var precio_producto = function () {
                     { "title": "Fecha", "data": "fecha" },
                     { "title": "Documento", "data": "documento" },
                     { "title": "Precio", "data": "precio" }],
+                "order": [[0, 'desc']],
+                "lengthMenu": [5, 10],
                 "language": {
                     "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
                 },

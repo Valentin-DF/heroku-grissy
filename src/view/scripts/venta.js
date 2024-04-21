@@ -43,6 +43,7 @@ var venta = function () {
                     },
                     "dataSrc": ""
                 },
+                "order": [[1, 'desc']],
                 "columns": [
                     { "title": "Codigo", "data": "codigo" },
                     { "title": "Fecha", "data": "fecha" },

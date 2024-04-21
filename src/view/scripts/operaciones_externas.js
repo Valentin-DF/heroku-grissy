@@ -1,4 +1,4 @@
-var area = function () {
+var operaciones_externas = function () {
 
     return {
         en_guardar: function () {
@@ -59,13 +59,15 @@ var area = function () {
             var table = $('#example').DataTable({
                 "ajax": {
                     "method": "GET",
-                    "url": "http://localhost:8080/Grissy/controllers/Area/obtenerListaArea.php",
+                    "url": "http://localhost:8080/Grissy/controllers/Area/obtenerListaAreas.php",
                     "dataSrc": ""
                 },
                 "columns": [
-                    { "title": "Codigo", "data": "codigo" },
-                    { "title": "Nombre", "data": "nombre" },
-                    { "title": "Descripcion", "data": "descripcion" },
+                    { "title": "Codigo", "data": "codigos" },
+                    { "title": "Descripcion", "data": "descripcions" },
+                    { "title": "Monto", "data": "Monto" },
+                    { "title": "Tipo De operacion", "data": "Tipo" },
+
                     {
                         "title": "Acciones", "defaultContent": "<button type='button' class='editar btn btn-outline-primary btn-sm' data-bs-toggle='modal' data-bs-target='#agregarArea' ><i class='fa-solid fa-pen-to-square'></i></button>"
                             + "<button class='eliminar btn btn-outline-warning btn-sm' ><i class='fa-solid fa-circle-minus'></i></button>"

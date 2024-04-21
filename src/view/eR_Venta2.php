@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
     <link rel="stylesheet" href="../assets/toastify/toastify.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
 
 </head>
@@ -38,7 +38,7 @@
                                 <div class="col-auto mt-4">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><em data-feather="mouse-pointer"></em></div>
-                                        Movimientos de las Ventas
+                                        Seguimiento de las Ventas
                                     </h1>
                                     <div class="page-header-subtitle"></div>
                                 </div>
@@ -91,7 +91,7 @@
                                 <div class="row pt-3">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <button aria-label="busqueda" class="btn btn-outline-primary btn-sm " type="button" id="busquedar" onclick="rVentas.busquedaAvanzadav();">BUSCAR</button>
+                                            <button aria-label="busqueda" class="btn btn-outline-primary btn-sm " type="button" id="busquedar" onclick="reporte.busquedaAvanzadav();">BUSCAR</button>
                                         </div>
                                     </div>
                                 </div>
@@ -99,22 +99,26 @@
                         </div>
 
                         <div class="card-body">
-                            <table summary="Lista vENTA" class="table " id="example" style="width:100%">
+
+                            <table summary="Lista de Ventas" class="table table-responsive " id="example" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
-                                        <th>Doc. Identidad</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido Paterno</th>
-                                        <th>Apellido Materno</th>
-                                        <th>Fecha Registro</th>
-                                        <!-- <th>Estado</th> -->
-                                        <th>Acciones</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">codigoVenta</th>
+                                        <th scope="col">Encargado</th>
+                                        <th scope="col">Cliente</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Estado</th>
+
                                     </tr>
                                 </thead>
+                                <tbody id="lst-venta">
+                                </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="5" style="text-align:right">Total:</th>
+                                        <th colspan="5">Total</th>
+                                        <th><p id="totalLista"></p></th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -128,6 +132,9 @@
             </footer>
         </div>
     </div>
+
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -142,18 +149,18 @@
     <script src="../js/litepicker.js"></script>
     <script src="../js/scripts.js"></script>
     <script src="../js/configuracion_general.js"></script>
-
-
     <script src="../assets/toastify/toastify.js"></script>
+    <script src="../js/toExcel.js"></script>
+
 </body>
 
+
 <script src="scripts/permisos.js"></script>
-<script src="scripts/rVentas.js"></script>
+<script src="scripts/reporte.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        rVentas.obtenerListaEncargado();
-
-        rVentas.obtenerListaV();
+        reporte.obtenerListaEncargado();
+        reporte.obtenerListaV();
     });
 </script>
 

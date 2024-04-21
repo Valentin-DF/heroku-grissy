@@ -1,0 +1,7 @@
+var periodo = function () {
+
+    return {
+
+
+    }
+}();

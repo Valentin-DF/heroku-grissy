@@ -14,7 +14,7 @@ var proveedor = function () {
 
         },
 
-        desblockGuardar: function(){
+        desblockGuardar: function () {
             document.getElementById("docIdentidad").disabled = false;
             document.getElementById("nombre").disabled = false;
             document.getElementById("apellidoPaterno").disabled = false;
@@ -89,6 +89,7 @@ var proveedor = function () {
                     "url": "http://localhost:8080/Grissy/controllers/Proveedor/obtenerListaProveedor.php",
                     "dataSrc": ""
                 },
+                "order": [[5, 'desc']],
                 "columns": [
                     { "title": "Codigo", "data": "codigo" },
                     { "title": "Doc. Identidad", "data": "docIdentidad" },
@@ -155,11 +156,11 @@ var proveedor = function () {
                         $("#nombre").val(obj.nombre);
                         $("#telefono").val(obj.telefono);
                         if (obj.estado == 1) {
-                            document.getElementById("editar").style.display  = 'inline';
+                            document.getElementById("editar").style.display = 'inline';
                             document.getElementById("estadoC").innerHTML = "Activo";
                             document.getElementById("estadoC").style.backgroundColor = "#2ecc71";
                         } else {
-                            document.getElementById("editar").style.display  = 'none';
+                            document.getElementById("editar").style.display = 'none';
                             document.getElementById("estadoC").innerHTML = "Inactivo";
                             document.getElementById("estadoC").style.backgroundColor = "#cc2e2e";
 
@@ -170,7 +171,7 @@ var proveedor = function () {
             })
         },
 
-        blockEditar: function(){
+        blockEditar: function () {
             document.getElementById("docIdentidad").disabled = true;
             document.getElementById("nombre").disabled = true;
             document.getElementById("apellidoPaterno").disabled = true;
@@ -241,7 +242,7 @@ var proveedor = function () {
             $(tbody).on("click", "button.eliminar", function () {
                 var data = table.row($(this).parents("tr")).data();
                 console.log(data);
-                proveedor.eliminarProveedor(data.id,0);
+                proveedor.eliminarProveedor(data.id, 0);
             });
         },
 
@@ -253,7 +254,7 @@ var proveedor = function () {
             });
         },
 
-        eliminarProveedor: function (id,estado) {
+        eliminarProveedor: function (id, estado) {
             $.ajax({
                 url: 'http://localhost:8080/Grissy/controllers/Proveedor/eliminarProveedor.php',
                 method: "POST",
@@ -448,12 +449,12 @@ var proveedor = function () {
                 }
             }
         },
-        
+
         validarTelefono: function () {
             var telefono = $("#telefono").val();
             if (telefono.length > 9) {
                 $("#telefono").val('');
-               
+
             }
             if (telefono.length < 9) {
                 $("#telefono").val('');

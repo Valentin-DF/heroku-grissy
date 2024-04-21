@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grissy - Libro Diario</title>
+    <title>Grissy - Areas</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/carga.css">
@@ -37,8 +37,8 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><em data-feather="user"></em></div>
-                                        Asiento Contable
+                                        <div class="page-header-icon"><em data-feather="layout"></em></div>
+                                        Periodo
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
@@ -60,53 +60,41 @@
                 <div class="container-xl px-4 mt-4">
                     <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-                        <div class="input-group">
-                            <input class="input-group-text " disabled type="text" value="Fecha">
-                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha">
-                            <button aria-label="Buscar" class="btn btn-outline-success btn-sm" onclick="libro_diario.mostrar()"><span class="fa-solid fa-magnifying-glass"></span>
-                            </button>
+                        <div class="me-4 mb-3 mb-sm-0">
+                            <h1 class="mb-0"> Registro de Areas de la Empresa</h1>
                         </div>
-
+                        <!-- Date range picker example-->
+                        <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
+                            <input disabled class="form-control ps-0 pointer text-center" id="litepickerRangePlugin" placeholder="Select date range..." />
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row align-items-center justify-content-between">
-                                        <div class="col-auto">
-                                            <span></span>
-                                        </div>
-                                        <div class="col-12 col-xl-auto">
-                                            <span class="badge rounded-pill" id="estadoContable"></span>
-                                        </div>
-                                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
+                                <div class="me-4 mb-3 mb-sm-0">
+                                    <em class="fas fa-table me-1"></em>
+                                    Lista General de Areas de la Empresa
                                 </div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Descripcion</th>
-                                                <th>Debe</th>
-                                                <th>Haber</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="lst-libroDiario">
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th></th>
-                                                <th>
-                                                    <p id="totalDebe"></p>
-                                                </th>
-                                                <th>
-                                                    <p id="totalHaber"></p>
-                                                </th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                <div class="border-0 shadow">
+                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="area.en_guardar()" data-bs-target="#agregarArea">
+                                        <em class="fa-solid fa-plus me-1"></em> Agregar
+                                    </button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <table summary="Lista Area" class="table " id="example" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>descripcion</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
 
@@ -118,7 +106,7 @@
         </div>
     </div>
 
-
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
@@ -140,12 +128,12 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/libroDiario.js"></script>
+<script src="scripts/periodo.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        var fechita = new Date();
-        console.log('fechita => ', libro_diario.formatDate(fechita));
-        libro_diario.buscarPorFecha(libro_diario.formatDate(fechita));
+
+
+
     });
 </script>
 

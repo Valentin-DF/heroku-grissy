@@ -245,7 +245,7 @@
                                 <input type="hidden" class="form-control" disabled id="cantidadPro">
                                 <input type="text" placeholder="Codigo del producto" class="form-control" disabled id="codigoPro" aria-label="text">
                                 <input type="number" class="form-control" placeholder="Cantidad" id="cantidadEditable" aria-label="text" oninput="venta.validarCantidad()" onkeypress="return (event.charCode>=48 && event.charCode<=57)">
-                                <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="venta.IngresarProductoOrden(1)" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
+                                <button aria-label="guardarCliente" class="btn btn-outline-success btn-sm" onclick="venta.IngresarProductoVenta(1)" type="button" id="guardarProducto"><span class="fa-fw select-all fas"></span>
                                 </button>
                                 <button aria-label="limpiarCliente" class="btn btn-outline-danger btn-sm" onclick="venta.limpiarSeleccion()" type="button" id="limpiarSeleccion"><span class="fa-fw select-all fas"></span>
                                 </button>

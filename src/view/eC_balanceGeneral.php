@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grissy - Libro Diario</title>
+    <title>Grissy - Balance General</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/carga.css">
@@ -38,7 +38,7 @@
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
                                         <div class="page-header-icon"><em data-feather="user"></em></div>
-                                        Asiento Contable
+                                        Balance General
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
@@ -58,58 +58,99 @@
                     </div>
                 </header>
                 <div class="container-xl px-4 mt-4">
-                    <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
                         <div class="input-group">
-                            <input class="input-group-text " disabled type="text" value="Fecha">
-                            <input class="form-control ps-0 pointer text-center" type="date" id="fecha">
-                            <button aria-label="Buscar" class="btn btn-outline-success btn-sm" onclick="libro_diario.mostrar()"><span class="fa-solid fa-magnifying-glass"></span>
+                            <input class="input-group-text " disabled type="text" value="Año de Busqueda:">
+                            <input class="form-control ps-0 pointer text-center" type="number" id="anio">
+                            <button aria-label="Buscar" class="btn btn-outline-success btn-sm" onclick="balance_general.mostrar()"><span class="fa-solid fa-magnifying-glass"></span>
                             </button>
                         </div>
-
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="row align-items-center justify-content-between">
-                                        <div class="col-auto">
-                                            <span></span>
-                                        </div>
-                                        <div class="col-12 col-xl-auto">
-                                            <span class="badge rounded-pill" id="estadoContable"></span>
-                                        </div>
-                                    </div>
+                                    <h5> Activos:</h5>
                                 </div>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>Descripcion</th>
-                                                <th>Debe</th>
-                                                <th>Haber</th>
+                                                <th>Monto Monetario</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="lst-libroDiario">
+                                        <tbody id="lst-activos">
+                                        <tr>
+                                            <th><span>Efectivo en caja </span></th>
+                                            <th><span>600.000 </span></th>
+                                            </tr>
+                                            <tr>
+                                            <th><span>Inventario de mercaderia </span></th>
+                                            <th><span> 150356.000</span></th>
+                                            </tr>
+                                            <tr>
+                                            <th><span>Cuentas por cobrar</span></th>
+                                            <th><span> 426.000</span></th>
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th></th>
+                                                <th>Total</th>
                                                 <th>
-                                                    <p id="totalDebe"></p>
-                                                </th>
-                                                <th>
-                                                    <p id="totalHaber"></p>
+                                                    <p id="totalActivos">151382.0000</p>
                                                 </th>
                                             </tr>
                                         </tfoot>
                                     </table>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5> Pasivos:</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Descripcion</th>
+                                                <th>Monto Monetario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="lst-pasivos">
+                                            <tr>
+                                            <th><span>Deudas de la empresa </span></th>
+                                            <th><span>15000.000 </span></th>
+                                            </tr>
+                                            <tr>
+                                            <th><span>Impuestos de las ventas </span></th>
+                                            <th><span> 2053.000</span></th>
+                                            </tr>
+                                            <tr>
+                                            <th><span>Gastos por pagar</span></th>
+                                            <th><span> 16743.250</span></th>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th>
+                                                    <p id="totalPasivos">31743.2500</p>
 
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
             <footer class="footer-admin mt-auto footer-light">
@@ -140,12 +181,13 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/libroDiario.js"></script>
+<script src="scripts/balance_general.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        var fechita = new Date();
-        console.log('fechita => ', libro_diario.formatDate(fechita));
-        libro_diario.buscarPorFecha(libro_diario.formatDate(fechita));
+
+        var today = new Date();
+        var year = today.getFullYear();
+        balance_general.buscarPorFecha(year);
     });
 </script>
 

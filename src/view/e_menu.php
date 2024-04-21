@@ -58,7 +58,7 @@
                                             <div class="me-3">
                                                 <em class="feather-xl text-secondary mb-3" data-feather="user"></em>
                                                 <h5>Perfil</h5>
-                                                <div class="text-muted small">Configuracion de los datos del usuario.</div>
+                                                <div class="text-muted small">Configuracion de Usuario.</div>
                                             </div>
                                             <img src="../assets/img/illustrations/processing.svg" alt="..." style="width: 8rem" />
                                         </div>

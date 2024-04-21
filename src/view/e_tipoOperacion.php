@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grissy - Producto Empresa</title>
+    <title>Grissy - Areas</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.0/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/sc-2.0.6/sp-2.0.1/sl-1.4.0/datatables.min.css" />
     <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/carga.css">
@@ -16,17 +16,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-    <style>
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
 
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-    </style>
 </head>
 
 <body class="nav-fixed">
@@ -47,27 +37,19 @@
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><em  data-feather="layout"></em></div>
-                                        Producto Empresa
+                                        <div class="page-header-icon"><em data-feather="layout"></em></div>
+                                        Tipo Operacion
                                     </h1>
                                 </div>
                                 <div class="col-12 col-xl-auto mb-3">
-                                    <a class="btn btn-sm btn-light text-primary" href="e_cargo.php">
+                                    <a class="btn btn-sm btn-light text-primary" href="e_productoEmpresa.php">
                                         <em class="me-1" data-feather="arrow-left"></em>
-                                        Cargo
+                                        Producto
                                     </a>
+                                    <a class="btn btn-sm btn-light text-primary" href="e_cargo.php">
 
-                                    <a aria-label="dropdown" class="btn btn-sm btn-light text-primary" id="navbarDrop" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><em data-feather="menu"></em></a>
+                                        Cargo
 
-                                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDrop">
-                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoGeneral.php">Producto</a></li>
-                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoEmpresa.php"> Producto Bienes</a></li>
-                                        <li> <a class="btn btn-sm btn-light text-primary" href="e_productoServicios.php"> Producto Servicios</a></li>
-                                    </ul>
-
-
-                                    <a class="btn btn-sm btn-light text-primary" href="e_area.php">
-                                        Area
                                         <em data-feather="arrow-right"></em>
                                     </a>
                                 </div>
@@ -79,7 +61,7 @@
                     <!-- Custom page header alternative example-->
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
                         <div class="me-4 mb-3 mb-sm-0">
-                            <h1 class="mb-0"> Registro de Productos Empresa</h1>
+                            <h1 class="mb-0"> Registro de Tipo de Operación</h1>
                         </div>
                         <!-- Date range picker example-->
                         <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
@@ -93,24 +75,22 @@
                             <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                                 <div class="me-4 mb-3 mb-sm-0">
                                     <em class="fas fa-table me-1"></em>
-                                    Lista General de Productos Bienes
+                                    Lista General de Tipo de Operación
                                 </div>
                                 <div class="border-0 shadow">
-                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="productoEmpresa.en_guardar()" data-bs-target="#agregarProducto">
+                                    <button class="btn btn-outline-success  btn-sm " data-bs-toggle="modal" type="button" onclick="area.en_guardar()" data-bs-target="#agregarArea">
                                         <em class="fa-solid fa-plus me-1"></em> Agregar
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table summary="Lista producto empresa"  class="table " id="example" style="width:100%">
+                            <table summary="Lista Area" class="table " id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
-                                        <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>precio</th>
-                                        <th>Talla</th>
+                                        <th>Descripcion</th>
+                                        <th>Componentes</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -126,21 +106,20 @@
         </div>
     </div>
 
-    <!--AGREGAR PRODUCTO EN UN MODAL-->
-    <div class="modal fade text-left" id="agregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-backdrop="static" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+    <!--AGREGAR AREA EN UN MODAL-->
+    <div class="modal fade " id="agregarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" data-bs-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
 
                     <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row ">
                         <div class="me-4 mb-3 mb-sm-0">
-                            Registro de producto empresa
+                            Registro de de Tipo Operaciones
                         </div>
                         <div class=" shadow">
                             <span class="badge rounded-pill" id="estadoC"></span>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -152,72 +131,44 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="form-group">
-                                <label for="nombre">Nombre comercial*</label>
+                                <label for="nombre">Descripcion*</label>
                                 <input type="text" id="nombre" class="form-control " placeholder="Nombre">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="idproducto">Producto</label>
-                                <select class="form-control form-select" id="idproducto">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="idarea">Area</label>
-                                <select class="form-control form-select" id="idarea">
-                                </select>
+                        <label for="monto">Tipo</label>
+                        <div class=" mx-2 form-group">
+                            
+                            <div class="row" id="checkss">
+                                <div class="form-check">
+                                    <input class="form-check-input " type="radio" name="tipo" id="efectivo" value="efectivo" checked>
+                                    <label class="form-check-label" for="efectivo"> Activo </label>
+                                    <!-- 0 -->
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="compra" value="compra">
+                                    <label class="form-check-label" for="compra"> Pasivo </label>
+                                    <!-- 1 -->
+                                </div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="talla">Talla</label>
-                                <input type="text" id="talla" class="form-control " placeholder="Talla" onkeypress="return (event.charCode>=48 && event.charCode<=57) || (event.charCode>=65 && event.charCode<=90)|| (event.charCode>=97 && event.charCode<=122)">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad*</label>
-                                <input type="number" id="cantidad" class="form-control " placeholder="Cantidad" onkeypress="return event.charCode>=48 && event.charCode<=57">
-                            </div>
-                        </div>
+                    <div class="modal-footer justify-content-center ">
+                        <button type="button" class="btn btn btn-outline-danger" data-bs-dismiss="modal" id="cancelar" onclick="area.limpiar()">
+                            <em class="bx bx-x d-block d-sm-none"></em>
+                            <span class="d-none d-sm-block">Cancelar</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" id="editar" onclick="area.editarArea()">
+                            <em class="bx bx-x d-block d-sm-none"></em>
+                            <span class="d-none d-sm-block">Editar</span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" id="guardar" onclick="area.guardarArea()">
+                            <em class="bx bx-x d-block d-sm-none"></em>
+                            <span class="d-none d-sm-block">Guardar</span>
+                        </button>
                     </div>
-                    <div class="row">
-                        <!-- <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="precio">Precio*</label>
-                                <input type="number" id="precio" class="form-control " placeholder="Precio" onkeypress="return (event.charCode>=48 && event.charCode<=57) || event.charCode==46">
-                            </div>
-                        </div> -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="idtipo">Tipo</label>
-                                <select class="form-control form-select" id="idtipo">
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn btn-outline-danger " data-bs-dismiss="modal">
-                        <em class="bx bx-x d-block d-sm-none"></em>
-                        <span class="d-none d-sm-block">Cancelar</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary" id="editar" onclick="productoEmpresa.editarProducto();">
-                        <em class="bx bx-x d-block d-sm-none"></em>
-                        <span class="d-none d-sm-block">Editar</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary" id="guardar" onclick="productoEmpresa.guardarProducto();">
-                        <em class="bx bx-x d-block d-sm-none"></em>
-                        <span class="d-none d-sm-block">Guardar</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -243,14 +194,11 @@
 </body>
 
 <script src="scripts/permisos.js"></script>
-<script src="scripts/productoEmpresa.js"></script>
+<script src="scripts/area.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
-        productoEmpresa.obtenerListaProductos();
-        productoEmpresa.obtenerListaArea();
-        productoEmpresa.obtenerListaTipo();
-        productoEmpresa.obtenerListaProductoG();
+        area.obtenerListaArea();
         document.getElementById("codigo").disabled = true;
 
     });

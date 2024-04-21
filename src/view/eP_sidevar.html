@@ -37,6 +37,7 @@
                             <li class=""><a class="area nav-link" href="e_area.php">Area</a></li>
                             <li class=""><a class="cargo nav-link" href="e_cargo.php">Cargo</a></li>
                             <li class=""><a class="tipoCambio nav-link" href="e_tipoCambio.php">Tipo Cambio</a></li>
+                            <li class=""><a class="tipoOperacion nav-link" href="e_tipoOperacion.php">Tipo Operación</a></li>
                             <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
                                     data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false"
                                     aria-controls="pagesCollapseError">
@@ -136,6 +137,10 @@
                     <div class="nav-link-icon"><em class="fa-sharp fa-solid fa-cash-register"></em></div>
                     Precio Producto
                 </a>
+                <a class="nav-link" href="e_OperacionesExternas.php">
+                    <div class="nav-link-icon"><em class="fa-sharp fa-solid fa-cash-register"></em></div>
+                    Registro de Operaciones Externas
+                </a>
                 <div class="sidenav-menu-heading">Revelación</div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseContable" aria-expanded="false" aria-controls="collapseContable">
@@ -146,43 +151,26 @@
                 <div class="collapse" id="collapseContable" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsContable">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                            <li class=""><a class="cliente nav-link" href="eC_ingresosYegresos.php">Relacion de Ingresos
-                                    y Egresos</a></li>
-                            <li class=""><a class="nav-link collapsed" href="javascript:void(0);"
-                                    data-bs-toggle="collapse" data-bs-target="#pagesCollapseAsientoContable"
-                                    aria-expanded="false" aria-controls="pagesCollapseAsientoContable">
-                                    Asiento Contable
-                                    <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAsientoContable"
-                                    data-bs-parent="#accordionSidenavPagesMenu">
-                                    <nav class="sidenav-menu-nested nav">
-                                        <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                                            <li class=""><a class="producto_general nav-link"
-                                                    href="eC_libroDiario.php">Libro Diario</a>
-                                            </li>
-                                            <li class=""><a class="producto_general nav-link"
-                                                    href="eC_libroMayor.php">Libro Mayor</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </li>
+                            <li class=""><a class="cliente nav-link" href="eC_ingresosYegresos.php">Estado Resultado</a></li>
+                            <li class=""><a class="cliente nav-link" href="eC_libroDiario.php">Asiento Contable</a></li>
+                            <li class=""><a class="cliente nav-link" href="eC_balanceGeneral.php">Balance General</a></li>
                         </ul>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseContable2" aria-expanded="false" aria-controls="collapseContable2">
                     <div class="nav-link-icon"><em data-feather="user"></em></div>
-                    Reporte 
+                    Reporte
                     <div class="sidenav-collapse-arrow"><em class="fas fa-angle-down"></em></div>
                 </a>
 
                 <div class="collapse" id="collapseContable2" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsContable2">
                         <ul class="navbar-nav ms-auto ms-md-3 me-3 me-lg-4">
-                            <li class=""><a class="cliente nav-link" href="eR_EntradaSalida.php">Movimientos del Stock</a></li>
-                            <li class=""><a class="cliente nav-link" href="eR_Venta.php">Movimientos de la Ventas</a></li>
+                            <li class=""><a class="cliente nav-link" href="eR_EntradaSalida.php">Movimientos del
+                                    Stock</a></li>
+                            <li class=""><a class="cliente nav-link" href="eR_Venta.php">Movimientos de la Ventas</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
